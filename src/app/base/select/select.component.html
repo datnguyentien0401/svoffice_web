@@ -1,0 +1,8 @@
+<mat-form-field style="width: 100%;">
+  <mat-label>{{label|translate}}</mat-label>
+  <mat-select [(ngModel)]="selectedValue" (ngModelChange)="onChange($event)" class="readonly-block" disabled="{{disabled}}" [required]="required">
+    <mat-option *ngFor="let d of data" [value]="d.value">
+      {{d.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

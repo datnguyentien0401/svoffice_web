@@ -1,0 +1,19 @@
+.form {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  app-input-x, app-select-x {
+    margin: 0 0.5rem;
+    flex-basis: calc(100% / 3 - 1.5rem);
+  }
+
+  .btn-sec {
+    display: flex;
+    width: 100%;
+    place-content: center;
+    margin: 0.5rem;
+
+    button:last-child {
+      margin-left: 0.5rem;
+    }
+  }
+}

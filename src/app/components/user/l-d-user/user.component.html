@@ -1,0 +1,48 @@
+<h2> {{ moduleName + '.management.' | translate }} </h2>
+<form [formGroup]="searchForm" style="margin: 0px 1rem; text-align: center">
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="1rem">
+    <app-input name="username" formControlName="username"
+               [placeholder]="moduleName + '.management.search.username'"
+               [hint]="moduleName + '.management.search.hint.username'"
+               style="width: calc(33% - 1rem);"></app-input>
+    <app-input name="firstName" formControlName="firstName"
+               [placeholder]="moduleName + '.management.search.firstName'"
+               [hint]="moduleName + '.management.search.hint.firstName'"
+               style="width: calc(33% - 1rem);"></app-input>
+    <app-input name="lastName" formControlName="lastName"
+               [placeholder]="moduleName + '.management.search.lastName'"
+               [hint]="moduleName + '.management.search.hint.lastName'"
+               style="width: calc(33% - 1rem);"></app-input>
+    <app-input name="tel" formControlName="tel"
+               [placeholder]="moduleName + '.management.search.tel'"
+               [hint]="moduleName + '.management.search.hint.tel'"
+               style="width: calc(33% - 1rem);"></app-input>
+    <app-input name="email" formControlName="email"
+               [placeholder]="moduleName + '.management.search.email'"
+               [hint]="moduleName + '.management.search.hint.email'"
+               style="width: calc(33% - 1rem);"></app-input>
+    <app-select [label]="moduleName + '.management.search.status'" [data]="statusValues"
+                name="status" formControlName="status" style="width: calc(33% - 1rem);"
+    ></app-select>
+    <app-select [label]="moduleName + '.management.search.type'" [data]="typeValues"
+                name="type" formControlName="type" style="width: calc(33% - 1rem);"
+    ></app-select>
+    <app-autocomplete name="organization" formControlName="organization"
+                      [data]="organizationValues"
+                      [placeholder]="moduleName + '.management.search.organization'"
+                      [label]="moduleName + '.management.search.organization'"
+                      [hint]="moduleName + '.management.search.hint.organization'"
+                      [required]="false" [readonly]="false"
+                      style="width: calc(33% - 1rem);"></app-autocomplete>
+  </div>
+  <button mat-fab color="primary" style="width: 60px;" type="button" (click)="onSubmit()">
+    <mat-icon>search</mat-icon>
+  </button>
+</form>
+<div class="content">
+  <app-table [columns]="columns" [buttons]="buttons"
+             [paging]="paging" (pagingChange)="pagingChange($event)"
+             [moduleName]="moduleName" [results]="results"
+             (clickAction)="onClick($event)">
+  </app-table>
+</div>

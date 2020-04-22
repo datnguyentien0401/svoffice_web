@@ -1,0 +1,221 @@
+@import '../../node_modules/@angular/material/theming';
+
+//////////////////////////////////////////////////////////////////////////////
+// ATHENA THEME
+//////////////////////////////////////////////////////////////////////////////
+
+$athena-dark-primary-text: #3e2723;
+$athena-light-primary-text: #fff1e7;
+$athena-color: (
+  50: #fffff7,
+  100: #fff1e7,
+  200: #ff968a,
+  300: #ff675b,
+  400: #ff515b,
+  500: #ff4060,
+  600: #f43e60,
+  700: #e63854,
+  800: #d82049,
+  900: #bf0c4b,
+  A100: #ffecec,
+  A200: #ffdecd,
+  A400: #f1a798,
+  A700: #e98c8a,
+  contrast: (
+    50: $athena-dark-primary-text,
+    100: $athena-dark-primary-text,
+    200: $athena-dark-primary-text,
+    300: $athena-dark-primary-text,
+    400: $athena-dark-primary-text,
+    500: $athena-light-primary-text,
+    600: $athena-light-primary-text,
+    700: $athena-light-primary-text,
+    800: $athena-light-primary-text,
+    900: $athena-light-primary-text,
+    A100: $athena-dark-primary-text,
+    A200: $athena-dark-primary-text,
+    A400: $athena-light-primary-text,
+    A700: $athena-light-primary-text,
+  )
+);
+$athena-typography: mat-typography-config(
+  $font-family:   'Roboto, "Helvetica Neue", sans-serif',
+  $display-4:     mat-typography-level(112px, 112px, 300),
+  $display-3:     mat-typography-level(66px, 56px, 400),
+  $display-2:     mat-typography-level(55px, 48px, 400),
+  $display-1:     mat-typography-level(44px, 40px, 400),
+  $headline:      mat-typography-level(34px, 32px, 400),
+  $title:         mat-typography-level(30px, 32px, 500),
+  $subheading-2:  mat-typography-level(16px, 22px, 500),
+  $subheading-1:  mat-typography-level(15px, 24px, 400),
+  $body-2:        mat-typography-level(14px, 24px, 500),
+  $body-1:        mat-typography-level(14px, 30px, 400),
+  $caption:       mat-typography-level(12px, 20px, 400),
+  $button:        mat-typography-level(14px, 14px, 500),
+    // Line-height must be unit-less fraction of the font-size.
+  $input:         mat-typography-level(inherit, 1.125, 400)
+
+);
+
+$athena-light-theme-foreground: (
+  base:              $athena-dark-primary-text,
+  divider:           $dark-dividers,
+  dividers:          $dark-dividers,
+  disabled:          $dark-disabled-text,
+  disabled-button:   rgba($athena-dark-primary-text, 0.26),
+  disabled-text:     $dark-disabled-text,
+  hint-text:         $dark-disabled-text,
+  secondary-text:    $dark-secondary-text,
+  icon:              rgba($athena-dark-primary-text, 0.54),
+  icons:             rgba($athena-dark-primary-text, 0.54),
+  text:              rgba($athena-dark-primary-text, 0.87),
+  slider-min:        rgba($athena-dark-primary-text, 0.87),
+  slider-off:        rgba($athena-dark-primary-text, 0.26),
+  slider-off-active: rgba($athena-dark-primary-text, 0.38),
+);
+$athena-light-theme-background: (
+  status-bar: $athena-light-primary-text,
+  app-bar:    $athena-light-primary-text,
+  background: $athena-light-primary-text,
+  hover:      rgba($athena-dark-primary-text, 0.04),
+  card:       mat-color($athena-color, 100),
+  dialog:     mat-color($athena-color, 100),
+  disabled-button: rgba($athena-dark-primary-text, 0.04),
+  raised-button: mat-color($athena-color, 100),
+  focused-button: $dark-focused,
+  selected-button: $athena-light-primary-text,
+  selected-disabled-button: $athena-light-primary-text,
+  disabled-button-toggle: $athena-light-primary-text,
+  unselected-chip: $athena-light-primary-text,
+  disabled-list-option: $athena-light-primary-text,
+);
+
+$athena-theme: (
+  primary: mat-palette($athena-color, A200, A100, A400),
+  accent: mat-palette($mat-brown, 800, 700, 600),
+  warn: mat-palette($mat-red),
+  is-dark: false,
+  foreground: $athena-light-theme-foreground,
+  background: $athena-light-theme-background,
+);
+
+
+.athena {
+  @include angular-material-theme($athena-theme);
+  @include angular-material-typography($athena-typography);
+  $background: mat-color($athena-color, 100);
+  $primary: mat-color($athena-color, A200);
+  $accent: mat-color($mat-brown, 500);
+  $warn: mat-color($mat-red, 500);
+  main {
+    background-color: $background;
+  }
+  mat-sidenav-content {
+    background-color: $background;
+  }
+  a, a:hover, a:hover span {
+    color: $accent;
+    text-decoration: none;
+    outline: none;
+  }
+  h1, h2, h3, h4, h5, h6, h7 {
+    text-transform: uppercase;
+    color: $accent;
+  }
+  .mat-raised-button:not([class*="mat-elevation-z"]),
+  .mat-button:not([class*="mat-elevation-z"]),
+  .mat-icon-button {
+    text-transform: uppercase;
+    border-radius: 0 10px 0;
+  }
+  .mat-fab:not([class*="mat-elevation-z"]) {
+    text-transform: uppercase;
+    border-radius: 0 30px 0;
+  }
+  .mat-raised-button.back {
+    text-transform: uppercase;
+    color: $light-primary-text;
+    background-color: mat-color($mat-grey, A700);
+  }
+  .mat-card {
+    margin: 10px 10px 0 10px;
+  }
+  .mat-list .mat-list-item .mat-list-text h4.mat-line {
+    font-weight: 800;
+    color: $accent;
+  }
+  .mat-list .mat-list-item .mat-list-text p.mat-line {
+    color: $primary;
+  }
+  .mat-toolbar {
+    @extend .mat-accent;
+    @include mat-elevation(2);
+  }
+  .mat-card {
+    background-color: mat-color($athena-color, 100);;
+    color: $dark-primary-text;
+  }
+  .mat-card.mat-card-accent {
+    background-color: $accent;
+    color: $light-primary-text;
+  }
+  .mat-card.mat-card-warn {
+    background-color: $warn;
+    color: $light-primary-text;
+  }
+}
+
+////////////////////////////////////////////////////////////////////
+// HERA THEME
+////////////////////////////////////////////////////////////////////
+
+$hera-theme: mat-dark-theme(
+    mat-palette($mat-green),
+    mat-palette($mat-purple),
+    mat-palette($mat-red)
+);
+
+.hera {
+  @include angular-material-theme($hera-theme);
+
+  $background: mat-color($mat-grey, 700);;
+  $primary: mat-color($mat-green, 500);
+  $accent: mat-color($mat-purple, 500);
+  $warn: mat-color($mat-red, 500);
+
+  main {
+    background-color: $background;
+  }
+  mat-sidenav-content {
+    background-color: $background;
+  }
+  a, a:hover, a:hover span {
+    color: $primary;
+    text-decoration: none;
+    outline: none;
+  }
+  h1, h2, h3, h4, h5, h6, h7 {
+    color: $primary;
+  }
+
+  .mat-raised-button.back {
+    color: $light-primary-text;
+    background-color: mat-color($mat-grey, A700);
+  }
+
+  .mat-card {
+    margin: 10px 10px 0 10px;
+  }
+  .mat-card.mat-card-accent {
+    background-color: $accent;
+    color: $dark-primary-text;
+  }
+  .mat-card.mat-card-warn {
+    background-color: $warn;
+    color: $light-primary-text;
+  }
+  .mat-toolbar {
+    @extend .mat-primary;
+    @include mat-elevation(2);
+  }
+}

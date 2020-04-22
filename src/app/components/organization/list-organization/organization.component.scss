@@ -1,0 +1,71 @@
+:host ::ng-deep {
+  mat-table {
+    box-shadow: none !important;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+
+  mat-header-cell {
+    color: rgba(127, 127, 127, 1);
+  }
+
+  mat-cell {
+    font-size: 14px;
+  }
+
+  mat-cell:nth-child(2),
+  mat-header-cell:nth-child(2) {
+    max-width: 25%;
+  }
+
+  mat-cell:nth-child(3),
+  mat-header-cell:nth-child(3) {
+    max-width: 30%;
+  }
+
+  mat-cell:first-child,
+  mat-header-cell:first-child {
+    max-width: 5%;
+  }
+
+  mat-cell:last-child {
+    max-width: 30%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 0.5rem;
+  }
+
+  @media screen and (max-width: 959px) {
+    .mat-column-tel, .mat-column-email {
+      display: none;
+    }
+  }
+
+}
+
+.content {
+  margin: 1rem;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+h2 {
+  margin: 0.5rem 0 0.5rem 1rem;
+}
+
+.form {
+  div {
+    display: flex;
+    width: 100%;
+
+    ns-input {
+      @media screen and (max-width: 599px) {
+        flex-basis: calc(100% - 1rem);
+      }
+    }
+
+    app-select {
+      @media screen and (max-width: 599px) {
+        flex-basis: calc(100% - 1rem);
+      }
+    }
+  }
+}

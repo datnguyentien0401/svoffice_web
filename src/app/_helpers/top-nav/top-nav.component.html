@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button id="menu" (click)="navService.appDrawer.opened ? navService.closeNav() : navService.openNav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="TopToHome" (click)="goToHome()">SVoffice</span>
+  <div style="text-align: center;width: 100%">
+    <span>{{navService.title | translate}}</span>
+  </div>
+
+<div class="username" style="margin: 0 1rem"><span>{{cookieService.get('username')}}</span></div>
+  <span class="spacer"></span>
+  <div>
+    <mat-select class="mat-select-language" [(value)]="selectedLanguage" [ngClass]="selectedLanguage" (selectionChange)="onChangeLanguage($event)">
+      <mat-option [value]="lang.code" *ngFor="let lang of appsetting.LANGS">
+        <img class="logo" [src]="lang.logo">
+      </mat-option>
+    </mat-select>
+  </div>
+</mat-toolbar>

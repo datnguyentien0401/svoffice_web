@@ -1,0 +1,34 @@
+:host ::ng-deep {
+  mat-table {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+  mat-header-cell {
+    color: rgba(127, 127, 127, 1);
+    place-content: center;
+    align-content: center;
+  }
+  mat-cell {
+    font-size: 14px;
+    width: 30%;
+    div {
+      width: 100%;
+      overflow: hidden !important;
+      text-overflow: ellipsis;
+
+      display: flex;
+      place-content: center;
+      align-content: center;
+    }
+  }
+
+
+
+  mat-cell:first-child, mat-header-cell:first-child {
+    max-width: 5%;
+    place-content: center;
+    align-items: center;
+  }
+  mat-table {
+    box-shadow: none !important;
+  }
+}

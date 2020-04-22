@@ -1,0 +1,29 @@
+<h2> {{ moduleName + '.management.' | translate }} </h2>
+<form [formGroup]="searchForm" style="margin: 0px 1rem; text-align: center">
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="1rem">
+    <app-input name="code" formControlName="code"
+              [placeholder]="moduleName + '.management.search.code'"
+              [hint]="moduleName + '.management.search.hint.code'"
+              style="width: calc(33% - 1rem);">
+    </app-input>
+    <app-input name="name" formControlName="name"
+              [placeholder]="moduleName + '.management.search.name'"
+              [hint]="moduleName + '.management.search.hint.name'"
+              style="width: calc(33% - 1rem);">
+    </app-input>
+    <app-select [label]="moduleName + '.management.search.status'"
+                [data]="statusValues"
+                name="status" formControlName="status" style="width: calc(33% - 1rem);">
+    </app-select>
+  </div>
+  <button mat-fab color="primary" style="width: 60px;" type="button" (click)="onSubmit()">
+    <mat-icon>search</mat-icon>
+  </button>
+</form>
+<div class="content">
+  <app-table [columns]="columns" [buttons]="buttons" [paging]="paging"
+            [moduleName]="moduleName" [results]="results"
+            (pagingChange)="pagingChange($event)"
+            (clickAction)="onClick($event)">
+  </app-table>
+</div>

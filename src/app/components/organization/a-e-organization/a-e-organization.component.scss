@@ -1,0 +1,17 @@
+.form {
+  app-input-x, app-select-x {
+    margin: 0 0.5rem;
+    flex-basis: calc(100% / 3 - 1.5rem);
+  }
+
+  .btn-sec {
+    display: flex;
+    width: 100%;
+    place-content: flex-end;
+    margin: 0.5rem;
+
+    button:last-child {
+      margin-left: 0.5rem;
+    }
+  }
+}

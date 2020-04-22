@@ -1,0 +1,33 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-select-theme {
+  display: inline-block;
+  width: 100px;
+  outline: 0;
+}
+
+.mat-select-arrow {
+  visibility: hidden;
+}
+
+.mat-select-language {
+  display: inline-block;
+  width: 50px;
+  outline: 0;
+}
+.logo {
+  width: auto;
+  height: 30px;
+  display: inline-block;
+}
+
+.vi{
+  background:  url("../../../assets/Flags/vi.ico")  center / contain no-repeat;
+  white-space: nowrap;
+}
+.en{
+  background:  url("../../../assets/Flags/en.ico")  center / contain no-repeat;
+  white-space: nowrap;
+}

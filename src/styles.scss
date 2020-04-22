@@ -1,0 +1,41 @@
+@import '~@angular/material/theming';
+@import 'themes/default_theme';
+@import 'themes/zeus_theme';
+@import 'themes/poseidon_theme';
+@import 'themes/athena_theme';
+
+// Include the base styles for Angular Material core. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component that you are using.
+// @include angular-material-theme($app-theme);
+
+body {
+  margin: 0;
+}
+
+////////////////////////////////////////////////////////////////////
+// CORE NOT CHANGE :(
+////////////////////////////////////////////////////////////////////
+@include mat-core();
+
+////////////////////////////////////////////////////////////////////
+// Cái loại này là cái loại mà theme nào cũng như nhau ^^
+////////////////////////////////////////////////////////////////////
+.TopToHome {
+  cursor: pointer;
+};
+.mat-select-arrow {
+  visibility: hidden;
+}
+.mat-form-field-flex .mat-form-field-infix {
+  width: 100%;
+}
+//.mat-list-base {
+//  .mat-list-item g {
+    //    font-size: 2px;
+    //    transform: translate(20, 15);
+    //  }
+//}

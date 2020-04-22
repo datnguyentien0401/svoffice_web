@@ -1,0 +1,39 @@
+[
+  {
+    "displayName": "menu.employee",
+    "iconName": "face",
+    "roleMenu": "QLNV",
+    "route": "employee"
+  },
+  {
+    "displayName": "menu.organization",
+    "iconName": "security",
+    "roleMenu": "QLDV",
+    "route": "organization"
+  },
+  {
+    "displayName": "menu.document.",
+    "iconName": "book",
+    "roleMenu": "QLVB",
+    "children": [
+      {
+        "displayName": "menu.document.requisition",
+        "iconName": "book",
+        "route": "requisition",
+        "roleMenu": "VBTK"
+      },
+      {
+        "displayName": "menu.document.sign-document",
+        "iconName": "book",
+        "route": "sign-document",
+        "roleMenu": "VBKD"
+      }
+    ]
+  },
+  {
+    "displayName": "menu.logout",
+    "iconName": "security",
+    "roleMenu": "LOGOUT",
+    "route": "logout"
+  }
+]

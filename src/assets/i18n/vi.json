@@ -1,0 +1,290 @@
+{
+  "common": {
+    "OK": "Đồng ý",
+    "Cancel": "Từ chối"
+  },
+  "MatPaginator": {
+    "itemsPerPageLabel": "Số bản ghi trên trang",
+    "nextPageLabel": "Trang tiếp",
+    "previousPageLabel": "Trang trước",
+    "range": "của"
+  },
+  "menu": {
+    "employee": "Quản lý nhân viên",
+    "organization": "Quản lý đơn vị",
+    "document": {
+      "": "Quản lý văn bản",
+      "requisition": "Văn bản trình ký",
+      "sign-document": "Văn bản ký duyệt"
+    },
+    "logout": "Đăng xuất"
+  },
+  "user": {
+    "management": {
+      "": "Quản lý nhân viên",
+      "search": {
+        "": "Tìm kiếm",
+        "username": "Tài khoản",
+        "firstName": "Họ & Đệm",
+        "lastName": "Tên",
+        "tel": "Số điện thoại",
+        "email": "Email",
+        "status": "Trạng thái",
+        "type": "Vai trò",
+        "organization": "Đơn vị",
+        "hint": {
+          "username": "Tài khoản",
+          "firstName": "Họ & Đệm",
+          "lastName": "Tên",
+          "tel": "Số điện thoại",
+          "email": "Email",
+          "type": "Vai trò",
+          "organization": "Đơn vị"
+        }
+      }
+    },
+    "status": {
+      "all": "Tất cả",
+      "active": "Hoạt động",
+      "deactivate": "Không hoạt động"
+    },
+    "type": {
+      "": "Tất cả",
+      "admin": "Quản lý hệ thống",
+      "employee": "Nhân viên",
+      "leader": "Lãnh đạo"
+    },
+    "table": {
+      "header": {
+        "stt": "STT",
+        "username": "Tài khoản",
+        "firstName": "Họ và đệm",
+        "lastName": "Tên",
+        "tel": "Số điện thoại",
+        "email": "Email",
+        "type": "Vai trò",
+        "organization": "Đơn vị",
+        "status": "Trạng thái",
+        "file": "Chữ ký mẫu"
+      }
+    },
+    "confirm": {
+      "reset-pass": "Gán mật khẩu mặc định",
+      "deactivate": "Khóa tài khoản",
+      "active": "Kích hoạt tài khoản"
+    },
+    "success": {
+      "reset-pass": "Gán mật khẩu mặc định thành công",
+      "deactivate": "Khóa tài khoản thành công",
+      "active": "Kích hoạt tài khoản thành công"
+    },
+    "ae": {
+      "": "Tìm kiếm",
+      "username": "Tài khoản",
+      "firstName": "Họ & Đệm",
+      "lastName": "Tên",
+      "tel": "Số điện thoại",
+      "email": "Email",
+      "status": "Trạng thái",
+      "type": "Vai trò",
+      "organization": "Đơn vị",
+      "file": "File chữ ký mẫu",
+      "hint": {
+        "username": "Tài khoản",
+        "firstName": "Họ & Đệm",
+        "lastName": "Tên",
+        "tel": "Số điện thoại",
+        "email": "Email",
+        "type": "Vai trò",
+        "organization": "Đơn vị",
+        "file": "File chữ ký mẫu"
+      },
+      "edit": {
+        "confirm": "Cập nhật nhân viên",
+        "success": "Cập nhật nhân viên thành công"
+      },
+      "add": {
+        "confirm": "Thêm mới nhân viên",
+        "success": "Cập nhật nhân viên thành công"
+      },
+      "detail": {
+        "title": {
+          "general": "Thông tin chung",
+          "contact": "Thông tin liên hệ",
+          "other": "Khác",
+          "signature": "Ảnh chữ ký mẫu"
+        }
+      }
+    }
+  },
+  "login": {
+    "username": "Tên đăng nhập",
+    "password": "Mật khẩu",
+    "login": "Đăng nhập",
+    "error": "Tên đăng nhập hoặc mật khẩu không chính xác"
+  },
+  "btnAddEdit": "Lưu",
+  "btnCancel": "Hủy",
+  "btnBack": "Quay lại",
+  "organization": {
+    "management": {
+      "": "Quản lý đơn vị",
+      "search": {
+        "": "Tìm kiếm",
+        "code": "Mã",
+        "name": "Tên",
+        "status": "Trạng thái",
+        "hint": {
+          "code": "Mã",
+          "name": "Tên",
+          "status": "Trạng thái"
+        }
+      }
+    },
+    "status": {
+      "all": "Tất cả",
+      "active": "Hoạt động",
+      "deactivate": "Không hoạt động"
+    },
+    "table": {
+      "header": {
+        "stt": "STT",
+        "code": "Mã",
+        "name": "Tên",
+        "status": "Trạng thái"
+      }
+    },
+    "confirm": {
+      "deactivate": "Khóa đơn vị",
+      "active": "Kích hoạt đơn vị"
+    },
+    "success": {
+      "deactivate": "Khóa đơn vị thành công",
+      "active": "Kích hoạt đơn vị thành công"
+    },
+    "ae": {
+      "code": "Mã",
+      "name": "Tên",
+      "status": "Trạng thái",
+      "hint": {
+        "code": "Mã",
+        "name": "Tên",
+        "status": "Trạng thái"
+      },
+      "edit": {
+        "confirm": "Cập nhật đơn vị",
+        "success": "Cập nhật đơn vị thành công"
+      },
+      "add": {
+        "confirm": "Thêm mới đơn vị",
+        "success": "Thêm mới đơn vị thành công"
+      }
+    }
+  },
+  "requisition": {
+    "management": {
+      "": "Văn bản trình ký",
+      "search": {
+        "": "Tìm kiếm",
+        "code": "Mã",
+        "title": "Tiêu đề văn bản",
+        "status": "Trạng thái",
+        "type": "Hình thức văn bản",
+        "fromDate": "Từ ngày",
+        "toDate": "Đến ngày",
+        "hint": {
+          "code": "Mã",
+          "title": "Tiêu đề văn bản",
+          "status": "Trạng thái",
+          "type": "Hình thức văn bản",
+          "fromDate": "Từ ngày",
+          "toDate": "Đến ngày"
+        }
+      }
+    },
+    "type": {
+      "all": "Tất cả",
+      "record": "Biên bản",
+      "decided": "Quyết định",
+      "notice": "Thông báo",
+      "report": "Báo cáo",
+      "plan": "Kế hoạch",
+      "rule": "Quy định",
+      "guideline": "Hướng dẫn"
+    },
+    "status": {
+      "all": "Tất cả",
+      "new": "Chưa trình ký",
+      "waiting": "Chờ ký duyệt",
+      "approved": "Đã ký duyệt",
+      "rejected": "Đã từ chối"
+    },
+    "table": {
+      "header": {
+        "stt": "STT",
+        "id": "ID",
+        "code": "Mã",
+        "title": "Tiêu đề",
+        "status": "Trạng thái",
+        "type": "Hình thức",
+        "createdDate": "Ngày tạo",
+        "file": "File đính kèm",
+        "signer": "Người ký",
+        "reason": "Ý kiến"
+      }
+    },
+    "confirm": {
+      "process": "Trình ký",
+      "cancelProcess": "Hủy trình ký",
+      "approve": "Ký duyệt",
+      "reject": "Từ chối",
+      "remove": "Xóa văn bản",
+      "reason": "Ý kiến"
+    },
+    "success": {
+      "process": "Trình ký thành công",
+      "cancelProcess": "Hủy trình ký thành công",
+      "approve": "Ký duyệt thành công",
+      "reject": "Từ chối thành công",
+      "remove": "Xóa văn bản thành công"
+    },
+    "ae": {
+      "code": "Ký hiệu văn bản",
+      "title": "Tiêu đề văn bản",
+      "type": "Hình thức văn bản",
+      "signer": "Người ký",
+      "file": "File đính kèm",
+      "createUser": "Người tạo",
+      "createDate": "Ngày tạo",
+      "reason": "Ý kiến",
+      "status": "Trạng thái",
+      "organization": "Đơn vị",
+      "hint": {
+        "code": "Ký hiệu văn bản",
+        "title": "Tiêu đề văn bản",
+        "type": "Hình thức văn bản",
+        "signer": "Người ký",
+        "file": "File đính kèm"
+      },
+      "edit": {
+        "confirm": "Cập nhật văn bản",
+        "success": "Cập nhật văn bản thành công"
+      },
+      "add": {
+        "confirm": "Thêm mới văn bản",
+        "success": "Thêm mới văn bản thành công"
+      },
+      "detail": {
+        "title": {
+          "general": "Thông tin chung",
+          "contact": "Thông tin liên hệ",
+          "other": "Khác",
+          "signature": "Ảnh chũ ký mẫu"
+        }
+      }
+    }
+
+  },
+  "btnCancelProcess": "Hủy trình ký",
+  "btnProcess": "Trình ký"
+}

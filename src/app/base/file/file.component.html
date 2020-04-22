@@ -1,0 +1,7 @@
+<input
+  placeholder="{{placeholder|translate}}"
+  type="file"
+  [(ngModel)]="fileValue"
+  (ngModelChange)="onChange($event)"
+  required="{{required}}"
+  disabled="{{disabled}}">

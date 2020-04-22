@@ -1,0 +1,154 @@
+@import '../../node_modules/@angular/material/theming';
+
+////////////////////////////////////////////////////////////////////
+// POSEIDON THEME
+////////////////////////////////////////////////////////////////////
+
+$poseidon-typography: mat-typography-config(
+  $font-family:   'Roboto, "Helvetica Neue", sans-serif',
+  $display-4:     mat-typography-level(112px, 112px, 300),
+  $display-3:     mat-typography-level(66px, 56px, 400),
+  $display-2:     mat-typography-level(55px, 48px, 400),
+  $display-1:     mat-typography-level(44px, 40px, 400),
+  $headline:      mat-typography-level(34px, 32px, 400),
+  $title:         mat-typography-level(10px, 32px, 500),
+  $subheading-2:  mat-typography-level(16px, 22px, 500),
+  $subheading-1:  mat-typography-level(15px, 24px, 400),
+  $body-2:        mat-typography-level(14px, 24px, 500),
+  $body-1:        mat-typography-level(14px, 30px, 400),
+  $caption:       mat-typography-level(12px, 20px, 400),
+  $button:        mat-typography-level(14px, 14px, 500),
+    // Line-height must be unit-less fraction of the font-size.
+  $input:         mat-typography-level(inherit, 1.125, 400)
+
+);
+$poseidon-primary-color: (
+  // Backgrounds
+  50: #aec4c7,
+  100: #8bb7be,
+  200: #57a2ae,
+  300: #3e96a7,
+  400: #1e8b9d,
+  500: #0090a8,
+  600: #007a8d,
+  700: #006a7a,
+  800: #00616d,
+  900: #004f53,
+  A100: #73d7d7,
+  A200: #12b1b1,
+  A400: #008b9a,
+  A700: #00667a,
+  contrast: (
+    // Texts
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $light-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$poseidon-theme: mat-light-theme(
+    mat-palette($poseidon-primary-color, A200, A100, A400),
+    mat-palette($mat-orange),
+    mat-palette($mat-purple)
+);
+
+.poseidon {
+  @include angular-material-theme($poseidon-theme);
+  @include angular-material-typography($poseidon-typography);
+  $background: #F0F0F0;
+  $primary: mat-color($poseidon-primary-color, A200);
+  $accent: mat-color($mat-orange, 500);
+  $warn: mat-color($mat-purple, 500);
+  main {
+    background-color: $background;
+  }
+  mat-sidenav-content {
+    background-color: $background;
+  }
+  a, a:hover, a:hover span {
+    color: $primary;
+    text-decoration: none;
+    outline: none;
+  }
+  h1, h2, h3, h4, h5, h6, h7 {
+    color: $primary;
+  }
+
+  .mat-raised-button:not([class*="mat-elevation-z"]),
+  .mat-button:not([class*="mat-elevation-z"]),
+  .mat-fab:not([class*="mat-elevation-z"]),
+  .mat-mini-fab:not([class*="mat-elevation-z"]),
+  .mat-icon-button {
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.12);
+    box-shadow: none;
+  }
+  .mat-chip {
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+  }
+
+  .mat-raised-button.back {
+    color: $light-primary-text;
+    background-color: mat-color($mat-grey, A700);
+  }
+
+  .mat-card {
+    margin: 10px 10px 0 10px;
+  }
+  .mat-checkbox-inner-container {
+    height: 40px;
+    width: 40px;
+  }
+  .mat-checkbox-layout .mat-checkbox-label {
+    line-height: 40px;
+  }
+
+  .mat-list .mat-list-item .mat-list-text h4.mat-line {
+    font-weight: 800;
+    color: $primary;
+  }
+  .mat-list .mat-list-item .mat-list-text p.mat-line {
+    color: mat-color($poseidon-primary-color, A100);
+  }
+
+  .mat-card:not([class*="mat-elevation-z"]) {
+    box-sizing: border-box;
+    flex: 1;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.12);
+    box-shadow: none;
+  }
+  .mat-toolbar {
+    background-color: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.12);
+    box-shadow: none;
+  }
+  .mat-card.mat-card-accent {
+    background-color: $accent;
+    color: $dark-primary-text;
+  }
+  .mat-card.mat-card-warn {
+    background-color: $warn;
+    color: $light-primary-text;
+  }
+}

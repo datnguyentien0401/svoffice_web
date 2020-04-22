@@ -1,0 +1,19 @@
+<div style="width: 100%;">
+  <mat-form-field style="width: calc(100% - 30px);">
+    <mat-label>{{label|translate}}</mat-label>
+    <input type="text" placeholder="{{placeholder|translate}}" aria-label="Number" matInput
+           (focus)="clearFilterValue()" [matAutocomplete]="matAutocomplete" [readonly]="readonly"
+           [required]="required" [(ngModel)]="selectedValue" (ngModelChange)="doFilter($event)"/>
+    <mat-hint align="center">{{hint|translate}}</mat-hint>
+    <mat-autocomplete #matAutocomplete="matAutocomplete" [displayWith]="displayFn.bind(this)">
+      <mat-option *ngFor="let option of filteredOptions" [value]="option.value">
+        {{option.displayValue}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <button mat-button color="primary" style="width: 30px;"
+          matSuffix mat-icon-button aria-label="Clear"
+          (click)="setSelectedValue('')">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>

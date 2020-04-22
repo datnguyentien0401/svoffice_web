@@ -1,0 +1,68 @@
+<div class="btn-sec" style="text-align: center">
+  <h2 style="width: 100%;">{{title|translate}}</h2>
+</div>
+<form [formGroup]="addEditForm" class="form" style="margin: 0px 1rem">
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="1rem">
+    <app-input name="code" formControlName="code"
+               [placeholder]="moduleName + 'code'"
+               style="width: calc(50% - 1rem);"
+               [readonly]="true">
+    </app-input>
+    <app-input [placeholder]="moduleName + 'type'"
+               name="type" formControlName="type"
+               style="width: calc(50% - 1rem);"
+               [readonly]="true">
+    </app-input>
+    <app-input name="signerId" formControlName="signerId"
+               [placeholder]="moduleName + 'signer'"
+               [readonly]="true"
+               style="width: calc(50% - 1rem);">
+    </app-input>
+    <app-input name="organization" formControlName="organization"
+               [placeholder]="moduleName + 'organization'"
+               [hint]="moduleName + 'hint.organization'"
+               style="width: calc(50% - 1rem);"
+               [readonly]="true">
+    </app-input>
+    <app-input name="createUser" formControlName="createUser"
+               [placeholder]="moduleName + 'createUser'"
+               style="width: calc(50% - 1rem);"
+               [readonly]="true">
+    </app-input>
+    <app-input name="createDate" formControlName="createDate"
+               [placeholder]="moduleName + 'createDate'"
+               style="width: calc(50% - 1rem);"
+               [readonly]="true">
+    </app-input>
+    <app-input name="status" formControlName="status"
+               [placeholder]="moduleName + 'status'"
+               style="width: calc(50% - 1rem);"
+               [readonly]="true">
+    </app-input>
+    <app-input name="reason" formControlName="reason"
+               [placeholder]="moduleName + 'reason'"
+               style="width: calc(50% - 1rem);"
+               [readonly]="true">
+    </app-input>
+    <label>{{ moduleName + 'file' | translate}}</label>
+    <a href="#">{{ fileName }}</a>
+  </div>
+  <div class="btn-sec">
+    <button mat-raised-button type="submit" color="primary" class="Update-btn"
+            (click)="process()"
+            [disabled]="this.data.status != 0"
+            *ngIf="hasAuthority()">
+      {{'btnProcess'|translate}}
+    </button>
+    <button mat-raised-button type="submit" color="primary" class="Update-btn"
+            (click)="cancelProcess()"
+            [disabled]="this.data.status != 1"
+            *ngIf="hasAuthority()">
+      {{'btnCancelProcess'|translate}}
+    </button>
+    <button mat-raised-button type="submit" color="primary" class="Update-btn"
+            (click)="onCloseDialog()">
+      {{'btnBack'|translate}}
+    </button>
+  </div>
+</form>

@@ -1,0 +1,47 @@
+<div>
+  <mat-table #table [dataSource]="results" class="mat-elevation-z8">
+
+    <ng-container *ngFor="let column of columns" matColumnDef="{{column.columnDef}}">
+      <mat-header-cell *matHeaderCellDef class="{{column.className}}">
+        {{moduleName + '.table.header.' + column.header|translate}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let result;" [ngClass]="column.className">
+        <div title="{{column.title(result)}}" *ngIf="column.dataType?false:true"
+             class="{{getClassName(column, result)}}">
+          {{column.cell(result)}}
+        </div>
+        <img [src]="'data:image/png;base64,'+column.cell(result)" *ngIf="column.dataType==='base64'"
+             style="height: 4rem; width: 4rem;"/>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container *ngFor="let button of buttons" matColumnDef="{{button.columnDef}}">
+      <mat-header-cell *matHeaderCellDef="let header" [ngClass]="button.className" fxFlex="50px">
+        <button mat-icon-button color="{{button.header.color}}" (click)="onClick(button.header.click, null)"
+                *ngIf="(button.header && button.header.display) ? button.header.display(header) : false">
+          <mat-icon>{{button.header.icon}}</mat-icon>
+        </button>
+      </mat-header-cell>
+      <ng-container *matCellDef="let cell">
+        <mat-cell [ngClass]="button.className" fxFlex="50px"
+                  *ngIf="button.display ? button.display(cell) : false">
+          <button mat-icon-button color="{{button.color}}" (click)="onClick(button.click, cell)"
+                  disabled="{{button.disabled ? button.disabled(cell) : false}}">
+            <mat-icon>{{button.icon}}</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let result; columns: displayedColumns;" [ngClass]="result.className"></mat-row>
+  </mat-table>
+
+  <mat-paginator *ngIf="varPaging ? true : false"
+                 (page)="getPage($event)"
+                 [length]="varPaging.totalElements"
+                 [pageSize]="varPaging.pageSize"
+                 [pageSizeOptions]="pageSizeOptions"
+                 [pageIndex]="varPaging.pageNumber - 1">
+  </mat-paginator>
+</div>

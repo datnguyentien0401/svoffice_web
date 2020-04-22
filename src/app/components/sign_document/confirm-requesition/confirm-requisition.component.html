@@ -1,0 +1,24 @@
+<div style="text-align: center">
+  <h2 style="width: 100%">{{moduleName + (data.isReject ? '.reject' : '.approve') | translate}}</h2>
+</div>
+<form [formGroup]="addEditForm" class="form" style="margin: 0px 1rem">
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="1rem">
+      <textarea name="reason" formControlName="reason"
+                rows="5" cols="50"
+                required="{{data.isReject}}"
+                placeholder="{{moduleName + '.reason'|translate}}"
+             style="width: calc(100% - 1rem);">
+      </textarea>
+  </div>
+  <div class="btn-sec">
+    <div class="btn-sec">
+      <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onSubmit()"
+              *ngIf="hasAuthority()" [disabled]="addEditForm.invalid">
+        {{'btnAddEdit'|translate}}
+      </button>
+      <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onCloseDialog()">
+        {{'btnCancel'|translate}}
+      </button>
+    </div>
+  </div>
+</form>

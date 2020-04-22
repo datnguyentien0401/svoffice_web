@@ -1,0 +1,122 @@
+{
+  "common": {
+    "OK": "Ok",
+    "Cancel": "Cancel"
+  },
+  "MatPaginator": {
+    "itemsPerPageLabel": "The number of records on the page",
+    "nextPageLabel": "Next page",
+    "previousPageLabel": "Previous page",
+    "range": "of"
+  },
+  "menu": {
+    "employee": "Employee management",
+    "organization": "Organization management",
+    "document": {
+      "": "Document management",
+      "requisition": "Requisition",
+      "sign-document": "Sign Document"
+    },
+    "logout": "Logout"
+  },
+  "user": {
+    "management": {
+      "": "User management",
+      "search": {
+        "": "Search",
+        "username": "Username",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "tel": "Telephone number",
+        "email": "Email",
+        "status": "Status",
+        "type": "User type",
+        "organization": "Organization",
+        "hint": {
+          "username": "Username",
+          "firstName": "First name",
+          "lastName": "Last name",
+          "tel": "Telephone number",
+          "email": "Email",
+          "status": "Status",
+          "type": "User type",
+          "organization": "Organization"
+        }
+      }
+    },
+    "status": {
+      "all": "All",
+      "active": "Active",
+      "deactivate": "Inactive"
+    },
+    "type": {
+      "": "All",
+      "admin": "Admin",
+      "family": "warehouse control person",
+      "organization": "Warehouse lessor",
+      "storekeeper": "Store keeper"
+    },
+    "table": {
+      "header": {
+        "stt": "No.",
+        "username": "Username",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "tel": "Telephone number",
+        "email": "Email",
+        "status": "Status",
+        "type": "User type",
+        "organization": "Organization"
+      }
+    },
+    "confirm": {
+      "process": "Submit",
+      "cancelProcess": "Cancel",
+      "approve": "Approve",
+      "reject": "Reject",
+      "remove": "Delete"
+    },
+    "success": {
+      "reset-pass": "Assign default password success",
+      "deactivate": "Deactivate account success",
+      "active": "Active account success",
+      "remove": "Delete success"
+    },
+    "ae": {
+      "": "Search",
+      "username": "Username",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "tel": "Telephone number",
+      "email": "Email",
+      "status": "Status",
+      "type": "User type",
+      "organization": "Organization",
+      "hint": {
+        "username": "Username",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "tel": "Telephone number",
+        "email": "Email",
+        "status": "Status",
+        "type": "User type",
+        "organization": "Organization"
+      },
+      "edit": {
+        "confirm": "Update user"
+      },
+      "add": {
+        "confirm": "Add user"
+      }
+    }
+  },
+  "login": {
+    "username": "Username",
+    "password": "Password",
+    "login": "Login",
+    "error": "Username or password is invalid"
+  },
+  "btnAddEdit": "Save",
+  "btnCancel": "Cancel",
+  "btnBack": "Back"
+}

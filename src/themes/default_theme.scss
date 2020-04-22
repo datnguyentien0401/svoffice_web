@@ -1,0 +1,12 @@
+@import '../../node_modules/@angular/material/theming';
+
+////////////////////////////////////////////////////////////////////
+// DEFAULT THEME
+////////////////////////////////////////////////////////////////////
+$default-primary: mat-palette($mat-orange);
+$default-accent:  mat-palette($mat-amber, A200, A100, A400);
+$default-warn:    mat-palette($mat-deep-orange);
+$default-theme:   mat-light-theme($default-primary, $default-accent, $default-warn);
+.default {
+  @include angular-material-theme($default-theme);
+}

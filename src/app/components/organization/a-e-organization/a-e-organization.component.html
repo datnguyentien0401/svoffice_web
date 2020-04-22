@@ -1,0 +1,31 @@
+<form [formGroup]="addEditForm" class="form" style="margin: 0px 1rem">
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="1rem">
+    <app-input name="code" formControlName="code"
+              [placeholder]="moduleName + 'code'"
+              [hint]="moduleName + 'hint.code'"
+              style="width: calc(33% - 1rem);"
+              [required]="true" [disabled]="isEdit">
+    </app-input>
+    <app-input name="name" formControlName="name"
+              [placeholder]="moduleName + 'name'"
+              [hint]="moduleName + 'hint.name'"
+              style="width: calc(33% - 1rem);"
+              [required]="true" [disabled]="isEdit && !isExists">
+    </app-input>
+    <app-select [label]="moduleName + 'status'"
+                [data]="statusValues"
+                name="status" formControlName="status"
+                style="width: calc(33% - 1rem);"
+                [disabled]="true" [required]="true">
+    </app-select>
+  </div>
+  <div class="btn-sec">
+    <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onSubmit()"
+            [disabled]="addEditForm.invalid || (isEdit && !isExists)"
+            *ngIf="hasAuthority()">{{'btnAddEdit'|translate}}
+    </button>
+    <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="back()">
+      {{'btnCancel'|translate}}
+    </button>
+  </div>
+</form>

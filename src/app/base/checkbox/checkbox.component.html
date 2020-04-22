@@ -1,0 +1,3 @@
+<div *ngFor="let data of listData">
+  <mat-checkbox [(ngModel)]="data.checked" [disabled]="data.disabled">{{data.viewValue}}</mat-checkbox>
+</div>

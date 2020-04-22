@@ -1,0 +1,42 @@
+<form [formGroup]="addEditForm" class="form" style="margin: 0px 1rem">
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="1rem">
+    <h4 style="width: 100%;">{{moduleName + 'detail.title.general'|translate}}</h4>
+    <app-input name="username" formControlName="username"
+               [placeholder]="moduleName + 'username'|translate"
+               [hint]="moduleName + 'hint.username'|translate"
+               style="width: calc(33% - 1rem);" [readonly]="true"></app-input>
+    <app-input name="firstName" formControlName="firstName"
+               [placeholder]="moduleName + 'firstName'|translate"
+               [hint]="moduleName + 'hint.firstName'|translate"
+               style="width: calc(33% - 1rem);" [readonly]="true"></app-input>
+    <app-select formControlName="organization"
+                      [data]="organizationValues"
+                      [label]="moduleName + 'organization'"
+                      [disabled]="true"
+                      style="width: calc(33% - 1rem);"></app-select>
+    <app-select [label]="moduleName + 'type'" [data]="typeValues"
+                formControlName="type" [disabled]="true"
+                (onSelectedChange)="onTypeChange()"
+                style="width: calc(33% - 1rem);"></app-select>
+    <h4 style="width: 100%;">{{moduleName + 'detail.title.contact'|translate}}</h4>
+    <app-input name="tel" formControlName="tel"
+               [placeholder]="moduleName + 'tel'|translate"
+               [hint]="moduleName + 'hint.tel'|translate"
+               style="width: calc(33% - 1rem);" [readonly]="true"></app-input>
+    <app-input name="email" formControlName="email"
+               [placeholder]="moduleName + 'email'|translate"
+               [hint]="moduleName + 'hint.email'|translate"
+               style="width: calc(33% - 1rem);" [readonly]="true"></app-input>
+    <h4 style="width: 100%;">{{moduleName + 'detail.title.other'|translate}}</h4>
+    <app-select [label]="moduleName + 'status'" [data]="statusValues"
+                formControlName="status" [disabled]="true"
+                style="width: calc(33% - 1rem);" ></app-select>
+    <h4 style="width: 100%;">{{moduleName + 'detail.title.signature'|translate}}</h4>
+    <img src="../../../../signature/file-anh.png" alt="{{moduleName + 'detail.title.signature'|translate}}" style="width: 100%" height="280"/>
+  </div>
+  <div class="btn-sec">
+    <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onCloseDialog()">
+      {{'btnBack'|translate}}
+    </button>
+  </div>
+</form>

@@ -1,0 +1,145 @@
+@import '../../node_modules/@angular/material/theming';
+
+////////////////////////////////////////////////////////////////////
+// ZEUS THEME
+////////////////////////////////////////////////////////////////////
+$zeus-typography: mat-typography-config(
+  $font-family:   '"Helvetica Neue", sans-serif',
+  $display-4:     mat-typography-level(112px, 112px, 300),
+  $display-3:     mat-typography-level(56px, 56px, 600),
+  $display-2:     mat-typography-level(45px, 48px, 400),
+  $display-1:     mat-typography-level(34px, 40px, 600),
+  $headline:      mat-typography-level(24px, 32px, 600),
+  $title:         mat-typography-level(20px, 32px, 600),
+  $subheading-2:  mat-typography-level(16px, 22px, 600),
+  $subheading-1:  mat-typography-level(15px, 24px, 600),
+  $body-2:        mat-typography-level(14px, 24px, 600),
+  $body-1:        mat-typography-level(14px, 30px, 600),
+  $caption:       mat-typography-level(12px, 20px, 600),
+  $button:        mat-typography-level(10px, 14px, 800),
+    // Line-height must be unit-less fraction of the font-size.
+  $input:         mat-typography-level(inherit, 1.125, 400)
+
+);
+$zeus-primary-color: (
+  50: #e3f2fd,    // Most far away
+  100: #bbdefb,   // Far far away
+  200: #90caf9,   // Far away
+  300: #64b5f6,   // Middle far
+  400: #42a5f5,   // Middle
+  500: #2196f3,   // Middle close
+  600: #1e88e5,   // Close
+  700: #1976d2,   // Very close
+  800: #1565c0,   // Very very Close
+  900: #0d47a1,   // Closest
+  A100: #82b1ff,  // Most far away
+  A200: #448aff,  // Middle
+  A400: #2979ff,  // Close
+  A700: #2962ff,  // Closest
+  contrast: (
+    50: $dark-primary-text,     // Most far away
+    100: $dark-primary-text,    // Far far away
+    200: $dark-primary-text,    // Far away
+    300: $dark-primary-text,    // Middle far
+    400: $dark-primary-text,    // Middle
+    500: $light-primary-text,   // Middle close
+    600: $light-primary-text,   // Close
+    700: $light-primary-text,   // Very close
+    800: $light-primary-text,   // Very very Close
+    900: $light-primary-text,   // Closest
+    A100: $dark-primary-text,   // Most far away
+    A200: $light-primary-text,  // Middle
+    A400: $light-primary-text,  // Close
+    A700: $light-primary-text,  // Closest
+  )
+);
+$zeus-theme: mat-light-theme(
+    mat-palette($zeus-primary-color),
+    mat-palette($mat-yellow),
+    mat-palette($mat-red)
+);
+.zeus {
+  @include angular-material-theme($zeus-theme);
+  @include angular-material-typography($zeus-typography);
+
+  $background: mat-color($zeus-primary-color, 50);
+  $primary: mat-color($zeus-primary-color, 500);
+  $accent: mat-color($mat-yellow, 500);
+  $warn: mat-color($mat-red, 500);
+
+  main {
+    background-color: $background;
+  }
+  mat-sidenav-content {
+    background-color: $background;
+  }
+  a, a:hover, a:hover span {
+    color: $primary;
+    text-decoration: none;
+    outline: none;
+  }
+  h1, h2, h3, h4, h5, h6, h7 {
+    color: $primary;
+  }
+  .mat-raised-button, .mat-button {
+    border-radius: 19px;
+  }
+  .mat-raised-button {
+    @include mat-elevation(5);
+  }
+
+  .mat-raised-button.back {
+    color: $light-primary-text;
+    background-color: mat-color($mat-grey, A700);
+  }
+  .mat-checkbox.mat-checkbox-checked {
+    color: $light-primary-text;
+    background-color: $accent;
+  }
+  .mat-checkbox .mat-checkbox-inner-container {
+    display: none;
+  }
+  .mat-checkbox {
+    color: $light-primary-text;
+    background-color: $primary;
+    border-radius: 19px;
+    box-sizing: border-box;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: 0;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: baseline;
+    text-align: center;
+    margin: 0;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    min-width: 88px;
+    line-height: 36px;
+    padding: 0 16px;
+    overflow: visible;
+  }
+  .mat-card {
+    margin: 10px 10px 0 10px;
+    border-radius: 19px;
+  }
+  .mat-card.mat-card-accent {
+    background-color: $accent;
+    color: $dark-primary-text;
+  }
+  .mat-card.mat-card-warn {
+    background-color: $warn;
+    color: $light-primary-text;
+  }
+  .mat-toolbar {
+    @extend .mat-primary;
+    @include mat-elevation(2);
+  }
+}
