@@ -112,7 +112,7 @@ export class ReceiveRequisitionComponent extends BaseSearchLayout {
         tooltip: 'transfer',
         click: 'transfer',
         display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('put/requisitions/{id}/transfer'),
-        disabled: (o: RequisitionModel) => o.status != 2
+        disabled: (o: RequisitionModel) => o.status != 2 && o.status !=5
       },
     );
   }
