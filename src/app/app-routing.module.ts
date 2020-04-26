@@ -11,6 +11,7 @@ import {AddEditUserComponent} from "./components/user/a-e-user/add.edit.user.com
 import {SignDocumentComponent} from "./components/sign_document/sign_document.component";
 import {UserDetailComponent} from "./components/user/user-detail/user-detail.component";
 import {RequisitionDetailComponent} from "./components/requisition/requisition-detail/requisition-detail.component";
+import {ReceiveRequisitionComponent} from "./components/receive-requisition/receive-requisition.component";
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
 
 
   {path: 'sign-document', component: SignDocumentComponent},
+  {path: 'receive-document', component: ReceiveRequisitionComponent},
 
 
 ];

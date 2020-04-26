@@ -59,6 +59,9 @@ import {SignDocumentComponent} from "./components/sign_document/sign_document.co
 import {ConfirmRequisitionComponent} from "./components/sign_document/confirm-requesition/confirm-requisition.component";
 import {UserDetailComponent} from "./components/user/user-detail/user-detail.component";
 import {RequisitionDetailComponent} from "./components/requisition/requisition-detail/requisition-detail.component";
+import {TransferRequisitionComponent} from "./components/requisition/transfer-requisition/transfer-requisition.component";
+import {MultiSelectAutocompleteComponent} from "./base/multi-select-autocomplete/multi.select.autocomplete.component";
+import {ReceiveRequisitionComponent} from "./components/receive-requisition/receive-requisition.component";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -86,6 +89,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     DashboardComponent,
     TableComponent,
     AutocompleteComponent,
+    MultiSelectAutocompleteComponent,
     SelectComponent,
     InputComponent,
     CheckboxComponent,
@@ -101,14 +105,17 @@ export function HttpLoaderFactory(http: HttpClient) {
     SignDocumentComponent,
     ConfirmRequisitionComponent,
     UserDetailComponent,
-    RequisitionDetailComponent
+    RequisitionDetailComponent,
+    TransferRequisitionComponent,
+    ReceiveRequisitionComponent
   ],
   // Mấy ông mà gọi Modal là phải cho vào đây nhé @@
   entryComponents: [
     LoginComponent,
     ConfirmRequisitionComponent,
     RequisitionDetailComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    TransferRequisitionComponent
   ],
   imports: [
     BrowserModule,

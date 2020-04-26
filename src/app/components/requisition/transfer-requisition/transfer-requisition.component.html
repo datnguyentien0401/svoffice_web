@@ -1,0 +1,42 @@
+<div class="btn-sec" style="text-align: center">
+  <h2 style="width: 100%;">{{moduleName|translate}}</h2>
+</div>
+<form [formGroup]="addEditForm" class="form" style="margin: 0px 1rem">
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="1rem">
+    <label style="width: 100%">{{moduleName + 'comment'|translate}}</label>
+    <textarea name="comment" formControlName="comment"
+              rows="5" cols="50"
+              required="true"
+              placeholder="{{moduleName + 'comment-maxlength'|translate}}"
+              style="width: calc(100% - 1rem);">
+    </textarea>
+    <label style="width: calc(40% - 1rem);">{{moduleName + 'organization'|translate}}</label>
+    <app-multi-select-autocomplete [multiple]="true"
+                                   [options]="organizationValues"
+                                   [label]="moduleName + 'organization'"
+                                   formControlName="receiveOrgIds"
+                                   style="width: calc(40% - 1rem);">
+    </app-multi-select-autocomplete>
+    <hr>
+    <label style="width: calc(40% - 1rem);">{{moduleName + 'receiveUser'|translate}}</label>
+    <app-multi-select-autocomplete [multiple]="true"
+                                   [options]="recvUserValues"
+                                   [label]="moduleName + 'receiveUser'"
+                                   formControlName="receiveUserIds"
+                                   style="width: calc(40% - 1rem);">
+    </app-multi-select-autocomplete>
+
+  </div>
+  <div class="btn-sec">
+    <button mat-raised-button type="submit" color="primary" class="Update-btn"
+            (click)="onSubmit()"
+            [disabled]="addEditForm.invalid || isNotTranferBtnPermission()"
+            *ngIf="hasAuthority()">
+      {{'btnTransfer'|translate}}
+    </button>
+    <button mat-raised-button type="submit" color="primary" class="Update-btn"
+            (click)="onCloseDialog()">
+      {{'btnBack'|translate}}
+    </button>
+  </div>
+</form>

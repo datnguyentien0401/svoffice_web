@@ -15,7 +15,8 @@
     "document": {
       "": "Quản lý văn bản",
       "requisition": "Văn bản trình ký",
-      "sign-document": "Văn bản ký duyệt"
+      "sign-document": "Văn bản ký duyệt",
+      "receive-document": "Văn bản đến"
     },
     "logout": "Đăng xuất"
   },
@@ -123,9 +124,6 @@
     "login": "Đăng nhập",
     "error": "Tên đăng nhập hoặc mật khẩu không chính xác"
   },
-  "btnAddEdit": "Lưu",
-  "btnCancel": "Hủy",
-  "btnBack": "Quay lại",
   "organization": {
     "management": {
       "": "Quản lý đơn vị",
@@ -239,14 +237,17 @@
       "approve": "Ký duyệt",
       "reject": "Từ chối",
       "remove": "Xóa văn bản",
-      "reason": "Ý kiến"
+      "reason": "Ý kiến",
+      "transfer": "Chuyển văn bản"
     },
     "success": {
       "process": "Trình ký thành công",
       "cancelProcess": "Hủy trình ký thành công",
       "approve": "Ký duyệt thành công",
       "reject": "Từ chối thành công",
-      "remove": "Xóa văn bản thành công"
+      "remove": "Xóa văn bản thành công",
+      "transfer": "Chuyển văn bản thành công"
+
     },
     "ae": {
       "code": "Ký hiệu văn bản",
@@ -282,9 +283,22 @@
           "signature": "Ảnh chũ ký mẫu"
         }
       }
+    },
+    "transfer": {
+      "": "Chuyển văn vản",
+      "comment": "Chỉ đạo văn bản ",
+      "comment-maxlength": "2000 ký tự",
+      "organization": "Đơn vị nhận văn bản",
+      "receiveUser": "Cá nhân nhận văn bản"
+    },
+    "receive": {
+      "": "Văn bản đến"
     }
-
   },
+  "btnAddEdit": "Lưu",
+  "btnCancel": "Hủy",
+  "btnBack": "Quay lại",
   "btnCancelProcess": "Hủy trình ký",
-  "btnProcess": "Trình ký"
+  "btnProcess": "Trình ký",
+  "btnTransfer": "Chuyển văn bản"
 }

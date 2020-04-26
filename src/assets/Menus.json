@@ -27,6 +27,12 @@
         "iconName": "book",
         "route": "sign-document",
         "roleMenu": "VBKD"
+      },
+      {
+        "displayName": "menu.document.receive-document",
+        "iconName": "book",
+        "route": "receive-document",
+        "roleMenu": "VBD"
       }
     ]
   },

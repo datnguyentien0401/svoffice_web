@@ -17,18 +17,17 @@ import {DatePipe} from "@angular/common";
 import {AppSettings} from "../../app.settings";
 import {User} from "../../_models/user.model";
 import {Observable} from "rxjs";
-import {ConfirmRequisitionComponent} from "../sign_document/confirm-requesition/confirm-requisition.component";
 import {MatDialog} from "@angular/material";
-import {RequisitionDetailComponent} from "./requisition-detail/requisition-detail.component";
-import {TransferRequisitionComponent} from "./transfer-requisition/transfer-requisition.component";
+import {RequisitionDetailComponent} from "../requisition/requisition-detail/requisition-detail.component";
+import {TransferRequisitionComponent} from "../requisition/transfer-requisition/transfer-requisition.component";
 
 @Component({
   selector: 'app-user',
-  templateUrl: './requisition.component.html',
-  styleUrls: ['./requisition.component.scss'],
+  templateUrl: './receive-requisition.component.html',
+  styleUrls: ['./receive-requisition.component.scss'],
   providers: [DatePipe]
 })
-export class RequisitionComponent extends BaseSearchLayout {
+export class ReceiveRequisitionComponent extends BaseSearchLayout {
 
   moduleName = 'requisition';
 
@@ -50,6 +49,11 @@ export class RequisitionComponent extends BaseSearchLayout {
         title: (e: any) => `${Utils.calcPosition(e, this.results, this.paging)}`,
         cell: (e: any) => `${Utils.calcPosition(e, this.results, this.paging)}`,
         className: 'mat-column-stt'
+      },
+      {
+        columnDef: 'id', header: 'id', title: (e: RequisitionModel) => `${e.id}`,
+        cell: (e: RequisitionModel) => `${e.id}`,
+        className: 'mat-column-id'
       },
       {
         columnDef: 'code', header: 'code', title: (e: RequisitionModel) => `${e.code}`,
@@ -80,13 +84,6 @@ export class RequisitionComponent extends BaseSearchLayout {
         className: 'mat-column-email'
       },
       {
-        columnDef: 'status',
-        header: 'status',
-        title: (e: RequisitionModel) => `${this.utils.getEnumValueTranslated(RequisitionStatusEnum, e.status.toString())}`,
-        cell: (e: RequisitionModel) => `${this.utils.getEnumValueTranslated(RequisitionStatusEnum, e.status.toString())}`,
-        className: 'mat-column-status'
-      },
-      {
         columnDef: 'file', header: 'file',
         title: (e: RequisitionModel) => `${e.file.fileName}`,
         cell: (e: RequisitionModel) => `${e.file.fileName}`,
@@ -98,7 +95,7 @@ export class RequisitionComponent extends BaseSearchLayout {
         cell: (e: RequisitionModel) => `${e.reason ? e.reason : ''}`,
         className: 'mat-column-reason'
       },
-    )
+    );
 
     this.buttons.push(
       {
@@ -109,47 +106,6 @@ export class RequisitionComponent extends BaseSearchLayout {
         display: (e: User) => e && AuthoritiesUtils.hasAuthority('get/requisitions/{id}'),
       },
       {
-        columnDef: 'remove',
-        color: 'warn',
-        icon: 'delete',
-        tooltip: 'remove',
-        click: 'remove',
-        display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('delete/requisitions/{id}'),
-      },
-      {
-        columnDef: 'edit',
-        color: 'warn',
-        icon: 'edit',
-        click: 'addOrEdit',
-        display: (o: RequisitionModel) =>  AuthoritiesUtils.hasAuthority('put/requisitions'),
-        disabled: (o: RequisitionModel) => o.status != 0,
-        header: {
-          columnDef: 'add',
-          icon: 'add',
-          color: 'warn',
-          click: 'addOrEdit',
-          display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('post/requisitions'),
-        },
-      },
-      {
-        columnDef: 'process',
-        color: 'warn',
-        icon: 'call_made',
-        tooltip: 'process',
-        click: 'process',
-        display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('put/requisitions/{id}/process'),
-        disabled: (o: RequisitionModel) => o.status != 0
-      },
-      {
-        columnDef: 'cancelProcess',
-        color: 'warn',
-        icon: 'cancel',
-        tooltip: 'cancelProcess',
-        click: 'cancelProcess',
-        display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('put/requisitions/{id}/cancel'),
-        disabled: (o: RequisitionModel) => o.status != 1
-      },
-      {
         columnDef: 'transfer',
         color: 'warn',
         icon: 'send',
@@ -158,7 +114,6 @@ export class RequisitionComponent extends BaseSearchLayout {
         display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('put/requisitions/{id}/transfer'),
         disabled: (o: RequisitionModel) => o.status != 2
       },
-
     );
   }
 
@@ -168,7 +123,6 @@ export class RequisitionComponent extends BaseSearchLayout {
       title: [''],
       fromDate: [''],
       toDate: [''],
-      status: [''],
       type: [''],
     });
 
@@ -195,7 +149,6 @@ export class RequisitionComponent extends BaseSearchLayout {
   };
 
   search() {
-    const status = this.searchForm.get('status').value;
     const type = this.searchForm.get('type').value;
     const fromDate = this.searchForm.get('fromDate').value;
     const toDate = this.searchForm.get('toDate').value;
@@ -207,38 +160,9 @@ export class RequisitionComponent extends BaseSearchLayout {
       .set('code', this.searchForm.get('code').value)
       .set('fromDate', `${fromDateFormat ? fromDateFormat : ''}`)
       .set('toDate', `${toDateFormat ? toDateFormat : ''}`)
-      .set('status', `${status ? status : ''}`)
-      .set('type', `${type ? type : ''}`)
-      .set('isSignDoc', `${false}`);
-    this._fillData('/requisitions', params);
+      .set('type', `${type ? type : ''}`);
+    this._fillData('/requisitions/receive-document', params);
 
-  }
-
-  addOrEdit(req: RequisitionModel) {
-    if (req) {
-      this.router.navigate([this.router.url, 'edit', req.id]);
-    } else {
-      this.router.navigate([this.router.url, 'add']);
-    }
-    this.search();
-  }
-
-  process(row: RequisitionModel) {
-    this.serviceUtils.execute(this.apiService.put('/requisitions/' + row.id + '/process', row),
-      this.onSuccessFunc, this.moduleName + '.success.process',
-      this.moduleName + '.confirm.process');
-  }
-
-  cancelProcess(row: RequisitionModel) {
-    this.serviceUtils.execute(this.apiService.put('/requisitions/' + row.id + '/cancel', row),
-      this.onSuccessFunc, this.moduleName + '.success.cancelProcess',
-      this.moduleName + '.confirm.cancelProcess');
-  }
-
-  remove(row: RequisitionModel) {
-    this.serviceUtils.execute(this.apiService.delete('/requisitions/' + row.id),
-      this.onSuccessFunc, this.moduleName + '.success.remove',
-      this.moduleName + '.confirm.remove');
   }
 
   transfer(req: RequisitionModel): void{

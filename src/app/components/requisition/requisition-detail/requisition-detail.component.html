@@ -61,6 +61,12 @@
       {{'btnCancelProcess'|translate}}
     </button>
     <button mat-raised-button type="submit" color="primary" class="Update-btn"
+            (click)="transfer()"
+            [disabled]="this.data.status != 2"
+            *ngIf="hasAuthority()">
+      {{'btnTransfer'|translate}}
+    </button>
+    <button mat-raised-button type="submit" color="primary" class="Update-btn"
             (click)="onCloseDialog()">
       {{'btnBack'|translate}}
     </button>

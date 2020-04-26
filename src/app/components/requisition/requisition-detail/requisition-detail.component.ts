@@ -18,8 +18,11 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {FileModel} from "../../../_models/file.model";
 import {AppSettings} from "../../../app.settings";
 import {RequisitionStatusEnum} from "../../../_models/enums/RequisitionStatusEnum";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 import {SignDocumentComponent} from "../../sign_document/sign_document.component";
+import {TransferModel} from "../../../_models/transfer.model";
+import {Observable} from "rxjs";
+import {TransferRequisitionComponent} from "../transfer-requisition/transfer-requisition.component";
 
 @Component({
   selector: 'app-a-e-organization',
@@ -35,7 +38,8 @@ export class RequisitionDetailComponent extends BaseAddEditLayout {
 
   constructor(protected activatedRoute: ActivatedRoute, protected formBuilder: FormBuilder, protected location: Location, private http: HttpClient,
               protected translateService: TranslateService, protected apiService: ApiService, protected serviceUtils: ServiceUtils,
-              private datePipe: DatePipe, public dialogRef: MatDialogRef<SignDocumentComponent>, @Inject(MAT_DIALOG_DATA) public data: RequisitionModel) {
+              private datePipe: DatePipe, public dialogRef: MatDialogRef<SignDocumentComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: RequisitionModel, public dialog: MatDialog) {
     super(activatedRoute, location, translateService, serviceUtils);
   }
 
@@ -99,6 +103,17 @@ export class RequisitionDetailComponent extends BaseAddEditLayout {
     this.serviceUtils.execute(this.apiService.put('/requisitions/' + this.data.id + '/cancel', this.data),
       this.onSuccessFunc, 'requisition.success.cancelProcess',
       'requisition.confirm.cancelProcess');
+  }
+
+  transfer():void {
+    const dialogRef = this.dialog.open(TransferRequisitionComponent, {
+      width: '60%',
+      maxWidth: '60%',
+      height: '80%',
+      maxHeight: '80%',
+      data: this.data,
+    });
+    this.onCloseDialog();
   }
 
   hasAuthority(): boolean {
