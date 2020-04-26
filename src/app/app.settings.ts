@@ -23,6 +23,8 @@ export class AppSettings {
   public static UPLOAD_FILE_CONTROL = '_upload_files';
   public static API_DATE_FORMAT = 'yyyy-MM-dd HH:mm:ss.SSS\'Z\'';
   public static DIS_DATE_FORMAT = 'dd/MM/yyyy';
+  public static DOWNLOAD_DATE_FORMAT = 'yyyyMMddHHmmss';
+
   public static APP_DATE_FORMATS =
     {
       parse: {

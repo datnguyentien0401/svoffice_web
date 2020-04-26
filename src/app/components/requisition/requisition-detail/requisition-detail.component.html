@@ -45,7 +45,7 @@
                [readonly]="true">
     </app-input>
     <label>{{ moduleName + 'file' | translate}}</label>
-    <a href="#">{{ fileName }}</a>
+    <a (click)="download()">{{ fileName }}</a>
   </div>
   <div class="btn-sec">
     <button mat-raised-button type="submit" color="primary" class="Update-btn"

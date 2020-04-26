@@ -36,6 +36,8 @@ export class RequisitionDetailComponent extends BaseAddEditLayout {
   title: string;
   fileName: string;
 
+  urlDownload: string;
+
   constructor(protected activatedRoute: ActivatedRoute, protected formBuilder: FormBuilder, protected location: Location, private http: HttpClient,
               protected translateService: TranslateService, protected apiService: ApiService, protected serviceUtils: ServiceUtils,
               private datePipe: DatePipe, public dialogRef: MatDialogRef<SignDocumentComponent>,
@@ -57,6 +59,8 @@ export class RequisitionDetailComponent extends BaseAddEditLayout {
       createUser: [''],
     });
 
+    this.urlDownload = AppSettings.BASE_URL + '/requisitions/download/' + this.data.fileId;
+
     const requisition = await this.apiService.get('/requisitions/' + this.data.id, null).toPromise() as RequisitionModel;
     console.log(requisition);
     this.title = requisition.title;
@@ -68,6 +72,22 @@ export class RequisitionDetailComponent extends BaseAddEditLayout {
 
     this.selectModelInit(requisition);
   };
+
+  download(){
+    console.log(this.urlDownload);
+    let headers = new HttpHeaders();
+    headers = headers.append('Accept', 'application/pdf; charset=utf-8');
+     this.http.get(this.urlDownload, {
+      headers,
+      responseType: 'blob',
+    }).subscribe(data => {
+       let downloadURL = window.URL.createObjectURL(data);
+       let link = document.createElement('a');
+       link.href = downloadURL;
+       link.download = this.data.title + "_" + this.datePipe.transform(new Date(), AppSettings.DOWNLOAD_DATE_FORMAT, '-0') + ".pdf" ;
+       link.click();
+     });
+  }
 
   async selectModelInit(requisition: RequisitionModel) {
 
