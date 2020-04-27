@@ -32,8 +32,8 @@
                 formControlName="status" [disabled]="true"
                 style="width: calc(33% - 1rem);" ></app-select>
     <h4 style="width: 100%;">{{moduleName + 'detail.title.signature'|translate}}</h4>
-    <img src="../../../../signature/file-anh.png" alt="{{moduleName + 'detail.title.signature'|translate}}" style="width: 100%" height="280"/>
-  </div>
+
+    <a (click)="download()">{{ fileName }}</a>  </div>
   <div class="btn-sec">
     <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onCloseDialog()">
       {{'btnBack'|translate}}
