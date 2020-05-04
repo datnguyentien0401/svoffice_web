@@ -96,7 +96,7 @@ export class SignDocumentComponent extends BaseSearchLayout {
         cell: (e: RequisitionModel) => `${e.reason ? e.reason : ''}`,
         className: 'mat-column-reason'
       },
-    )
+    );
 
     this.buttons.push(
       {
@@ -151,7 +151,7 @@ export class SignDocumentComponent extends BaseSearchLayout {
 
     this.onSubmit();
 
-  }
+  };
 
   search() {
     const status = this.searchForm.get('status').value;
@@ -159,7 +159,7 @@ export class SignDocumentComponent extends BaseSearchLayout {
     const fromDate = this.searchForm.get('fromDate').value;
     const toDate = this.searchForm.get('toDate').value;
     const fromDateFormat = this.datePipe.transform(fromDate, AppSettings.API_DATE_FORMAT, '+7');
-    const toDateFormat = this.datePipe.transform(toDate, AppSettings.API_DATE_FORMAT, '+7')
+    const toDateFormat = this.datePipe.transform(toDate, AppSettings.API_DATE_FORMAT, '+7');
 
     const params = new HttpParams()
       .set('title', this.searchForm.get('title').value)

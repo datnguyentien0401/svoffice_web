@@ -39,7 +39,7 @@ export class ConfirmRequisitionComponent extends BaseAddEditLayout {
     this.data.reason = this.addEditForm.get('reason').value;
 
     this.serviceUtils.execute(this.apiService.put('/requisitions/' + this.data.id + (this.data.isReject ? '/reject' : '/approve'), this.data),
-      this.onSuccessFunc, this.moduleName + (this.data.isReject ? '.reject' : '.approve'), null);
+      this.onSuccessFunc, this.moduleName + (this.data.isReject ? '.reject' : '.approve') + '.success', null);
   }
 
   onCloseDialog() {

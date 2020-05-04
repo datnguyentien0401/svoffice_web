@@ -1,21 +1,44 @@
 <div flex layout="row" layout-align="start center">
-  <h2>DASHBOARD</h2>
+  <h2>SVOFFICE</h2>
   <div fxFlex></div>
-  <div [style.width.px]="100" layout="row">
-    <mat-form-field floatPlaceholder="never">
-      <input matInput readonly [matDatepicker]="pickerFrom" [ngModel]="dateFrom">
-      <mat-datepicker-toggle matSuffix matTooltip="Start date" [for]="pickerFrom"></mat-datepicker-toggle>
-      <mat-datepicker #pickerFrom [startAt]="dateFrom"></mat-datepicker>
-    </mat-form-field>
+<!--  <div [style.width.px]="100" layout="row">-->
+<!--    <mat-form-field floatPlaceholder="never">-->
+<!--      <input matInput readonly [matDatepicker]="pickerFrom" [ngModel]="dateFrom">-->
+<!--      <mat-datepicker-toggle matSuffix matTooltip="Start date" [for]="pickerFrom"></mat-datepicker-toggle>-->
+<!--      <mat-datepicker #pickerFrom [startAt]="dateFrom"></mat-datepicker>-->
+<!--    </mat-form-field>-->
+
+<!--  </div>-->
+<!--  <div style="padding: 21px;"> to</div>-->
+<!--  <div [style.width.px]="100" layout="row">-->
+<!--    <mat-form-field floatPlaceholder="never" flex>-->
+<!--      <input matInput readonly [(ngModel)]="dateTo" [matDatepicker]="pickerTo">-->
+<!--      <mat-datepicker-toggle matSuffix matTooltip="End date" [for]="pickerTo"></mat-datepicker-toggle>-->
+<!--      <mat-datepicker #pickerTo [startAt]="dateTo"></mat-datepicker>-->
+<!--    </mat-form-field>-->
+
+<!--  </div>-->
+</div>
+<div class="statistic">
+  <div style=" background: dodgerblue">
+    <h3>Chưa ký duyệt</h3>
+    <h3 style="font-size: 28px">{{statistic ? statistic.signDoc : 0}}</h3>
+  </div>
+  <div style=" background: red">
+    <h3>Văn bản đến</h3>
+    <h3 style="font-size: 28px">{{statistic ? statistic.recvDoc : 0}}</h3>
 
   </div>
-  <div style="padding: 21px;"> to</div>
-  <div [style.width.px]="100" layout="row">
-    <mat-form-field floatPlaceholder="never" flex>
-      <input matInput readonly [(ngModel)]="dateTo" [matDatepicker]="pickerTo">
-      <mat-datepicker-toggle matSuffix matTooltip="End date" [for]="pickerTo"></mat-datepicker-toggle>
-      <mat-datepicker #pickerTo [startAt]="dateTo"></mat-datepicker>
-    </mat-form-field>
+</div>
+<div class="statistic">
+  <div style="background: greenyellow">
+    <h3>Văn bản tôi tạo</h3>
+    <h3 style="font-size: 28px">{{statistic ? statistic.createDoc : 0}}</h3>
+
+  </div>
+  <div style="background: slategrey">
+    <h3>Văn bản đi</h3>
+    <h3 style="font-size: 28px">{{statistic ? statistic.sendDoc : 0}}</h3>
 
   </div>
 </div>

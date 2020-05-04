@@ -16,7 +16,6 @@ import {User} from "../../../_models/user.model";
 import {AuthoritiesUtils} from "../../../base/utils/authorities.utils";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {FileModel} from "../../../_models/file.model";
-import {RequisitionModel} from "../../../_models/requisition.model";
 
 @Component({
   selector: 'app-add-edit-user',
@@ -89,12 +88,11 @@ export class AddEditUserComponent extends BaseAddEditLayout {
       this.addEditForm.get('status').setValue('0');
     }
 
-  }
+  };
 
   onChangeFileUpload(event: any): void {
     console.log(event);
-    let fileInput = <File>event.target.files[0];
-    this.signatureFileUpload = fileInput;
+    this.signatureFileUpload  = <File>event.target.files[0];
   }
 
   onSubmit(): void {
@@ -108,7 +106,7 @@ export class AddEditUserComponent extends BaseAddEditLayout {
         'Accept': 'application/json'
       }),
       reportProgress: true
-    }
+    };
 
     let formData: FormData = new FormData();
     formData.append("file", this.signatureFileUpload, this.signatureFileUpload.name);
@@ -136,16 +134,12 @@ export class AddEditUserComponent extends BaseAddEditLayout {
       action = 'edit';
       this.serviceUtils.execute(apiCall, this.onSuccessFunc, this.moduleName + action + '.success', this.moduleName + action + '.confirm');
     }
-
-
   }
 
   hasAuthority(): boolean {
-    if ((this.isEdit && AuthoritiesUtils.hasAuthority('patch/users'))
-      || (!this.isEdit && AuthoritiesUtils.hasAuthority('post/users'))) {
-      return true;
-    }
-    return false;
+    return (this.isEdit && AuthoritiesUtils.hasAuthority('patch/users'))
+      || (!this.isEdit && AuthoritiesUtils.hasAuthority('post/users'));
+
   }
 
   isExists(): boolean {

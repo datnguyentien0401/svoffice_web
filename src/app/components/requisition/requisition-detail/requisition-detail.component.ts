@@ -137,8 +137,10 @@ export class RequisitionDetailComponent extends BaseAddEditLayout {
   }
 
   hasAuthority(): boolean {
-    return (this.isEdit && AuthoritiesUtils.hasAuthority('put/requisitions/{id}/process'))
-      || (!this.isEdit && AuthoritiesUtils.hasAuthority('put/requisitions/{id}/cancel'));
+    return (AuthoritiesUtils.hasAuthority('put/requisitions/{id}/process')
+      || AuthoritiesUtils.hasAuthority('put/requisitions/{id}/cancel')
+      || AuthoritiesUtils.hasAuthority('put/requisitions/{id}/transfer')
+    );
   }
 
   onCloseDialog() {

@@ -2,7 +2,7 @@ import {Component, Injectable, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../_services/authentication.service';
-import {HttpParams} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
 import {Location} from '@angular/common';
 import {TranslateService} from '@ngx-translate/core';
@@ -13,6 +13,9 @@ import {Menu} from '../_models/base/menu';
 import {NavService} from '../_services/nav.service';
 import {AppSettings} from '../app.settings';
 import {NavItem} from "../_models/base/nav.item";
+import {ServiceUtils} from "../base/utils/service.utils";
+import {StatisticModel} from "../_models/statistic.model";
+import {Page} from "../_models/base/Page";
 
 @Component({
   selector: 'app-login',
@@ -31,7 +34,7 @@ export class LoginComponent implements OnInit {
   constructor(public dialog: MatDialog, private formBuilder: FormBuilder, private router: Router,
               private authenticationService: AuthenticationService, private apiService: ApiService,
               private cookieService: CookieService, private location: Location, private translateService: TranslateService,
-              private navService: NavService) {
+              private navService: NavService, protected serviceUtils: ServiceUtils, private http: HttpClient) {
   }
 
   submit() {
@@ -46,7 +49,8 @@ export class LoginComponent implements OnInit {
         this.cookieService.set('remember', this.form.controls.remember.value.toString());
         this.getMenu();
         this.hideLoginModal();
-        if (AuthenticationService.requests) {
+
+      if (AuthenticationService.requests) {
           AuthenticationService.requests.forEach(request => {
             console.log(request.url);
           });
@@ -64,8 +68,10 @@ export class LoginComponent implements OnInit {
           this.error = e;
         });
       });
+
     }
   }
+
 
   getMenu() {
     this.apiService.getJSON('assets/Menus.json').subscribe((data: NavItem[]) => {
@@ -106,6 +112,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     window.sessionStorage.removeItem('token');
     this.cookieService.delete('username');
+
   }
 
   showLoginModal() {

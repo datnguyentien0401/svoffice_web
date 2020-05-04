@@ -19,6 +19,9 @@ export class RequisitionModel {
   isReject: boolean;
   organization: OrganizationModel;
   organizationId: number;
+  transferComment: string;
+  transferUser: string;
+  transferDate: string;
 
   constructor(form: FormGroup | number) {
     if (form instanceof FormGroup) {
@@ -64,6 +67,15 @@ export class RequisitionModel {
       }
       if (form.get('organizationId')) {
         this.organizationId = form.get('organizationId').value;
+      }
+      if (form.get('transferComment')) {
+        this.transferComment = form.get('transferComment').value;
+      }
+      if (form.get('transferUser')) {
+        this.transferUser = form.get('transferUser').value;
+      }
+      if (form.get('transferDate')) {
+        this.transferDate = form.get('transferDate').value;
       }
 
     } else {

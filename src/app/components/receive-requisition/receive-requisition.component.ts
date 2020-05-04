@@ -75,13 +75,25 @@ export class ReceiveRequisitionComponent extends BaseSearchLayout {
         columnDef: 'signer', header: 'signer',
         title: (e: RequisitionModel) => `${e.signer.lastName + ' ' + e.signer.firstName}`,
         cell: (e: RequisitionModel) => `${e.signer.lastName + ' ' + e.signer.firstName}`,
-        className: 'mat-column-tel'
+        className: 'mat-column-signer'
       },
       {
-        columnDef: 'createdDate', header: 'createdDate',
-        title: (e: RequisitionModel) => `${this.datePipe.transform(e.createDate, AppSettings.DIS_DATE_FORMAT, '-0')}`,
-        cell: (e: RequisitionModel) => `${this.datePipe.transform(e.createDate, AppSettings.DIS_DATE_FORMAT, '-0')}`,
-        className: 'mat-column-email'
+        columnDef: 'transferUser', header: 'transferUser',
+        title: (e: RequisitionModel) => `${e.transferUser}`,
+        cell: (e: RequisitionModel) => `${e.transferUser}`,
+        className: 'mat-column-transferUser'
+      },
+      {
+        columnDef: 'transferDate', header: 'transferDate',
+        title: (e: RequisitionModel) => `${this.datePipe.transform(e.transferDate, AppSettings.DIS_DATE_FORMAT, '-0')}`,
+        cell: (e: RequisitionModel) => `${this.datePipe.transform(e.transferDate, AppSettings.DIS_DATE_FORMAT, '-0')}`,
+        className: 'mat-column-transferDate'
+      },
+      {
+        columnDef: 'transferComment', header: 'transferComment',
+        title: (e: RequisitionModel) => `${e.transferComment }`,
+        cell: (e: RequisitionModel) => `${e.transferComment }`,
+        className: 'mat-column-reason'
       },
       {
         columnDef: 'file', header: 'file',
@@ -89,12 +101,7 @@ export class ReceiveRequisitionComponent extends BaseSearchLayout {
         cell: (e: RequisitionModel) => `${e.file.fileName}`,
         className: 'mat-column-file'
       },
-      {
-        columnDef: 'reason', header: 'reason',
-        title: (e: RequisitionModel) => `${e.reason ? e.reason : ''}`,
-        cell: (e: RequisitionModel) => `${e.reason ? e.reason : ''}`,
-        className: 'mat-column-reason'
-      },
+
     );
 
     this.buttons.push(

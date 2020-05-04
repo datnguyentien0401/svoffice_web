@@ -1,0 +1,16 @@
+.statistic {
+  display: flex;
+  width: 100%;
+  place-content: center;
+  margin: 0.5rem;
+
+  div {
+    margin-left: 0.5rem;
+    padding: 30px 50px 50px 30px; width: 150px; border: 2px solid #8bb7be ; border-radius: 5%;
+
+    h3, h2 {
+      text-align: center;
+      color: white;
+    }
+  }
+}

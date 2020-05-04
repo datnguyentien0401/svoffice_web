@@ -20,7 +20,6 @@
     </app-input>
     <app-input name="organization" formControlName="organization"
                [placeholder]="moduleName + 'organization'"
-               [hint]="moduleName + 'hint.organization'"
                style="width: calc(50% - 1rem);"
                [readonly]="true">
     </app-input>
@@ -62,7 +61,7 @@
     </button>
     <button mat-raised-button type="submit" color="primary" class="Update-btn"
             (click)="transfer()"
-            [disabled]="this.data.status != 2"
+            [disabled]="this.data.status != 2 && this.data.status != 5"
             *ngIf="hasAuthority()">
       {{'btnTransfer'|translate}}
     </button>

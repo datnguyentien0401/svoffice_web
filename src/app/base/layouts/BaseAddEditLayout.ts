@@ -35,7 +35,7 @@ export class BaseAddEditLayout implements OnInit {
     setTimeout(() => {
       this.back();
     }, 1500);
-  }
+  };
 
   hasAuthority() {
     return false;

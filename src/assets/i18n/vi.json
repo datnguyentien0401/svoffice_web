@@ -184,7 +184,7 @@
       "": "Văn bản trình ký",
       "search": {
         "": "Tìm kiếm",
-        "code": "Mã",
+        "code": "Ký hiệu văn bản",
         "title": "Tiêu đề văn bản",
         "status": "Trạng thái",
         "type": "Hình thức văn bản",
@@ -221,14 +221,17 @@
       "header": {
         "stt": "STT",
         "id": "ID",
-        "code": "Mã",
+        "code": "Ký hiệu văn bản",
         "title": "Tiêu đề",
         "status": "Trạng thái",
         "type": "Hình thức",
         "createdDate": "Ngày tạo",
         "file": "File đính kèm",
         "signer": "Người ký",
-        "reason": "Ý kiến"
+        "reason": "Ý kiến",
+        "transferDate": "Ngày đến",
+        "transferUser": "Người gửi",
+        "transferComment": "Chỉ thị chuyển"
       }
     },
     "confirm": {
@@ -300,5 +303,7 @@
   "btnBack": "Quay lại",
   "btnCancelProcess": "Hủy trình ký",
   "btnProcess": "Trình ký",
-  "btnTransfer": "Chuyển văn bản"
+  "btnTransfer": "Chuyển văn bản",
+  "signDocNotification": "Văn bản cần ký duyệt",
+  "recvDocNotification": "Văn bản đến"
 }
