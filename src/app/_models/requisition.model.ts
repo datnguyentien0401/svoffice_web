@@ -23,6 +23,7 @@ export class RequisitionModel {
   transferUser: string;
   transferDate: string;
 
+  isTransferMenu: boolean;
   constructor(form: FormGroup | number) {
     if (form instanceof FormGroup) {
       console.log(form);

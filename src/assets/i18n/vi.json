@@ -263,6 +263,9 @@
       "reason": "Ý kiến",
       "status": "Trạng thái",
       "organization": "Đơn vị",
+      "transferDate": "Ngày đến",
+      "transferUser": "Người gửi",
+      "transferComment": "Chỉ thị chuyển",
       "hint": {
         "code": "Ký hiệu văn bản",
         "title": "Tiêu đề văn bản",

@@ -184,6 +184,7 @@ export class ReceiveRequisitionComponent extends BaseSearchLayout {
   }
 
   viewDetail(req: RequisitionModel):  Observable<any> {
+    req.isTransferMenu = true;
     const dialogRef = this.dialog.open(RequisitionDetailComponent, {
       width: '80%',
       maxWidth: '80%',

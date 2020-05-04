@@ -57,6 +57,9 @@ export class RequisitionDetailComponent extends BaseAddEditLayout {
       reason: [''],
       createDate: [''],
       createUser: [''],
+      transferComment: [''],
+      transferDate: [''],
+      transferUser: [''],
     });
 
     this.urlDownload = AppSettings.BASE_URL + '/files/download/' + this.data.fileId;
@@ -68,6 +71,7 @@ export class RequisitionDetailComponent extends BaseAddEditLayout {
 
     this.addEditForm.setValue(Utils.reduceEntityAttributeForFormControl(this.addEditForm, requisition));
     this.addEditForm.get('createDate').setValue(this.datePipe.transform(requisition.createDate, AppSettings.DIS_DATE_FORMAT, '-0'));
+    this.addEditForm.get('transferDate').setValue(this.datePipe.transform(requisition.transferDate, AppSettings.DIS_DATE_FORMAT, '-0'));
     this.addEditForm.get('organization').setValue(requisition.organization.name);
 
     this.selectModelInit(requisition);
