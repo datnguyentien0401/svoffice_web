@@ -85,7 +85,7 @@ export class AddEditUserComponent extends BaseAddEditLayout {
       this.signatureFileUpload = new File([""], user.signatureFile.filePath);
       console.log(this.signatureFileUpload);
     } else {
-      this.addEditForm.get('status').setValue('0');
+      this.addEditForm.get('status').setValue('1');
     }
 
   };

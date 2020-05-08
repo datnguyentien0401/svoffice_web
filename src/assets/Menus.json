@@ -7,7 +7,7 @@
   },
   {
     "displayName": "menu.organization",
-    "iconName": "security",
+    "iconName": "group",
     "roleMenu": "QLDV",
     "route": "organization"
   },

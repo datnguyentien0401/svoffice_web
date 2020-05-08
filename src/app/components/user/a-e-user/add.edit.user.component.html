@@ -2,23 +2,18 @@
   <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="1rem">
     <app-input name="username" formControlName="username"
               [placeholder]="moduleName + 'username'|translate"
-              [hint]="moduleName + 'hint.username'|translate"
               style="width: calc(33% - 1rem);" [required]="true" [disabled]="isEdit"></app-input>
     <app-input name="firstName" formControlName="firstName"
               [placeholder]="moduleName + 'firstName'|translate"
-              [hint]="moduleName + 'hint.firstName'|translate"
               style="width: calc(33% - 1rem);" [required]="true" [disabled]="isEdit && !isExists"></app-input>
     <app-input name="lastName" formControlName="lastName"
               [placeholder]="moduleName + 'lastName'|translate"
-              [hint]="moduleName + 'hint.lastName'|translate"
               style="width: calc(33% - 1rem);" [required]="true" [disabled]="isEdit && !isExists"></app-input>
     <app-input name="tel" formControlName="tel"
               [placeholder]="moduleName + 'tel'|translate"
-              [hint]="moduleName + 'hint.tel'|translate"
               style="width: calc(33% - 1rem);" [required]="true" [disabled]="isEdit && !isExists"></app-input>
     <app-input name="email" formControlName="email"
               [placeholder]="moduleName + 'email'|translate"
-              [hint]="moduleName + 'hint.email'|translate"
               style="width: calc(33% - 1rem);" [required]="true" [disabled]="isEdit && !isExists"></app-input>
     <app-select [label]="moduleName + 'status'" [data]="statusValues"
                 name="status" formControlName="status" [disabled]="true"
@@ -31,7 +26,6 @@
                       [data]="organizationValues"
                       [placeholder]="moduleName + 'organization'"
                       [label]="moduleName + 'organization'"
-                      [hint]="moduleName + 'hint.organization'"
                       [required]="false"
                       style="width: calc(33% - 1rem);"></app-autocomplete>
     <label for="file">{{ moduleName + 'file' | translate}}</label>

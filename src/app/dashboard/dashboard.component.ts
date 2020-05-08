@@ -49,8 +49,5 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     if (this.statistic.signDoc != 0) {
       this.serviceUtils.onSuccessFunc(this.statistic.signDoc + ' ' + this.transService.instant('signDocNotification'));
     }
-    if (this.statistic.recvDoc != 0) {
-      this.serviceUtils.onSuccessFunc(this.statistic.recvDoc + ' ' + this.transService.instant('recvDocNotification'));
-    }
   }
 }

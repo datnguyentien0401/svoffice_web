@@ -17,6 +17,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {SignDocumentComponent} from "../../sign_document/sign_document.component";
 import {AppSettings} from "../../../app.settings";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {RequisitionTypeEnum} from "../../../_models/enums/RequisitionTypeEnum";
 
 @Component({
   selector: 'app-warehouse-detail',
@@ -52,37 +53,36 @@ export class UserDetailComponent extends BaseAddEditLayout {
       organization: [''],
     });
 
-    Object.keys(UserStatusEnum).forEach(key => {
-      if (key === '_') {
-        return;
-      }
-      const value = Utils.getEnumValue(UserStatusEnum, key.replace('_', ''));
-      this.translateService.get(value).subscribe(res => {
-        this.statusValues.push(new SelectModel(key.replace('_', ''), res));
-      });
-    });
-    Object.keys(UserTypeEnum).forEach(key => {
-      if (key === '_') {
-        return;
-      }
-      const value = Utils.getEnumValue(UserTypeEnum, key.replace('_', ''));
-      this.translateService.get(value).subscribe(res => {
-        this.typeValues.push(new SelectModel(key.replace('_', ''), res));
-      });
-    });
-    const organizations = await this.apiService.get('/organizations/all', null).toPromise() as OrganizationModel[];
-    const tempOrg = [];
-    organizations.forEach((organization: OrganizationModel) => {
-      tempOrg.push(new SelectModel(organization.id, organization.code + ' - ' + organization.name));
-    });
-    this.organizationValues = tempOrg;
-
     const user = await this.apiService.get('/users/' + this.data.username, null).toPromise() as User;
+
     this.addEditForm.setValue(Utils.reduceEntityAttributeForFormControl(this.addEditForm, user));
+    this.addEditForm.get('organization').setValue(user.organization.name);
+
+    this.selectModelInit(user);
 
     this.signatureFileUrl = AppSettings.BASE_URL + '/files/download/' + user.signatureFileId;
     this.fileName = user.signatureFile.fileName;
   };
+
+  async selectModelInit (user: User) {
+    Object.keys(UserTypeEnum).forEach(key => {
+      if (key.replace('_', '') === user.type) {
+        const type = Utils.getEnumValue(UserTypeEnum, key.replace('_', ''));
+        this.translateService.get(type).subscribe(res => {
+          this.addEditForm.get('type').setValue(res);
+        });
+      }
+    });
+    Object.keys(UserStatusEnum).forEach(key => {
+      let statusInt = user.status ? 1: 0;
+      if (key.replace('_', '') === statusInt.toString() ) {
+        const status = Utils.getEnumValue(UserStatusEnum, key.replace('_', ''));
+        this.translateService.get(status).subscribe(res => {
+          this.addEditForm.get('status').setValue(res);
+        });
+      }
+    });
+  }
 
   download() {
     console.log(this.signatureFileUrl);

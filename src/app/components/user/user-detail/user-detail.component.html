@@ -3,37 +3,38 @@
     <h4 style="width: 100%;">{{moduleName + 'detail.title.general'|translate}}</h4>
     <app-input name="username" formControlName="username"
                [placeholder]="moduleName + 'username'|translate"
-               [hint]="moduleName + 'hint.username'|translate"
-               style="width: calc(33% - 1rem);" [readonly]="true"></app-input>
+               style="width: calc(33% - 1rem);"
+               [readonly]="true"></app-input>
     <app-input name="firstName" formControlName="firstName"
                [placeholder]="moduleName + 'firstName'|translate"
-               [hint]="moduleName + 'hint.firstName'|translate"
-               style="width: calc(33% - 1rem);" [readonly]="true"></app-input>
-    <app-select formControlName="organization"
-                      [data]="organizationValues"
-                      [label]="moduleName + 'organization'"
-                      [disabled]="true"
-                      style="width: calc(33% - 1rem);"></app-select>
-    <app-select [label]="moduleName + 'type'" [data]="typeValues"
-                formControlName="type" [disabled]="true"
-                (onSelectedChange)="onTypeChange()"
-                style="width: calc(33% - 1rem);"></app-select>
+               style="width: calc(33% - 1rem);"
+               [readonly]="true"></app-input>
+    <div style="width: calc(33% - 1rem);" ></div>
+    <app-input formControlName="organization"
+               [placeholder]="moduleName + 'organization'"
+               [readonly]="true"
+               style="width: calc(33% - 1rem);"></app-input>
+    <app-input [placeholder]="moduleName + 'type'"
+               formControlName="type"
+               [readonly]="true"
+               style="width: calc(33% - 1rem);"></app-input>
     <h4 style="width: 100%;">{{moduleName + 'detail.title.contact'|translate}}</h4>
     <app-input name="tel" formControlName="tel"
                [placeholder]="moduleName + 'tel'|translate"
-               [hint]="moduleName + 'hint.tel'|translate"
-               style="width: calc(33% - 1rem);" [readonly]="true"></app-input>
+               style="width: calc(33% - 1rem);"
+               [readonly]="true"></app-input>
     <app-input name="email" formControlName="email"
                [placeholder]="moduleName + 'email'|translate"
-               [hint]="moduleName + 'hint.email'|translate"
-               style="width: calc(33% - 1rem);" [readonly]="true"></app-input>
+               style="width: calc(33% - 1rem);"
+               [readonly]="true"></app-input>
     <h4 style="width: 100%;">{{moduleName + 'detail.title.other'|translate}}</h4>
-    <app-select [label]="moduleName + 'status'" [data]="statusValues"
-                formControlName="status" [disabled]="true"
-                style="width: calc(33% - 1rem);" ></app-select>
+    <app-input [placeholder]="moduleName + 'status'"
+               formControlName="status"
+               [readonly]="true"
+               style="width: calc(33% - 1rem);"></app-input>
     <h4 style="width: 100%;">{{moduleName + 'detail.title.signature'|translate}}</h4>
 
-    <a (click)="download()">{{ fileName }}</a>  </div>
+    <a (click)="download()">{{ fileName }}</a></div>
   <div class="btn-sec">
     <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onCloseDialog()">
       {{'btnBack'|translate}}
