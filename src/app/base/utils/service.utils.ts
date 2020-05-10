@@ -109,7 +109,7 @@ export class ServiceUtils {
     const strCancel = this.transService.instant(strCancelTex);
     return Swal.fire({
       title: str,
-      imageUrl: 'assets/files/mStoreIcon.png',
+      // imageUrl: 'assets/files/mStoreIcon.png',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',

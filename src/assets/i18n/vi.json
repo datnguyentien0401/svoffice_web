@@ -106,7 +106,7 @@
       },
       "add": {
         "confirm": "Thêm mới nhân viên",
-        "success": "Cập nhật nhân viên thành công"
+        "success": "Thêm mới nhân viên thành công"
       },
       "detail": {
         "title": {
@@ -241,7 +241,8 @@
       "reject": "Từ chối",
       "remove": "Xóa văn bản",
       "reason": "Ý kiến",
-      "transfer": "Chuyển văn bản"
+      "transfer": "Chuyển văn bản",
+      "verify": "Xác thực văn bản"
     },
     "success": {
       "process": "Trình ký thành công",
@@ -249,8 +250,8 @@
       "approve": "Ký duyệt thành công",
       "reject": "Từ chối thành công",
       "remove": "Xóa văn bản thành công",
-      "transfer": "Chuyển văn bản thành công"
-
+      "transfer": "Chuyển văn bản thành công",
+      "verify": "Văn bản toàn vẹn dữ liệu"
     },
     "ae": {
       "code": "Ký hiệu văn bản",

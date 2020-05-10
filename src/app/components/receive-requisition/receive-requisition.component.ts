@@ -110,7 +110,14 @@ export class ReceiveRequisitionComponent extends BaseSearchLayout {
         color: 'warn',
         icon: 'visibility',
         click: 'viewDetail',
-        display: (e: User) => e && AuthoritiesUtils.hasAuthority('get/requisitions/{id}'),
+        display: (e: RequisitionModel) => e && AuthoritiesUtils.hasAuthority('get/requisitions/{id}'),
+      },
+      {
+        columnDef: 'verify',
+        color: 'warn',
+        icon: 'security',
+        click: 'verify',
+        display: (e: RequisitionModel) => e && AuthoritiesUtils.hasAuthority('get/requisitions/{id}'),
       },
       {
         columnDef: 'transfer',
@@ -194,6 +201,12 @@ export class ReceiveRequisitionComponent extends BaseSearchLayout {
     });
     return dialogRef.afterClosed();
 
+  }
+
+  verify(row: RequisitionModel) {
+    this.serviceUtils.execute(this.apiService.post('/requisitions/' + row.id + '/verify', null),
+      this.onSuccessFunc, this.moduleName + '.success.verify',
+      this.moduleName + '.confirm.verify');
   }
 
 }
