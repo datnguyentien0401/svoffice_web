@@ -1,8 +1,8 @@
-import { Component, Inject } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { HttpParams } from '@angular/common/http';
+import {Component} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
+import {Router} from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
+import {HttpParams} from '@angular/common/http';
 import {Utils} from "../../../base/utils/utils";
 import {ServiceUtils} from "../../../base/utils/service.utils";
 import {ApiService} from "../../../_services/api.service";
@@ -12,6 +12,8 @@ import {OrganizationModel} from "../../../_models/organization.model";
 import {UiStateService} from "../../../_services/ui.state/ui.state.service";
 import {OrganizationStatusEnum} from "../../../_models/enums/OrganizationStatusEnum";
 import {AuthoritiesUtils} from "../../../base/utils/authorities.utils";
+import {MatDialog} from "@angular/material";
+import {AddEditOrganizationComponent} from "../a-e-organization/a-e-organization.component";
 
 @Component({
   selector: 'app-organization',
@@ -28,7 +30,7 @@ export class OrganizationComponent extends BaseSearchLayout {
 
   constructor(protected formBuilder: FormBuilder, protected router: Router, protected apiService: ApiService,
               protected utils: Utils, protected serviceUtils: ServiceUtils, protected uiStateService: UiStateService,
-              protected translateService: TranslateService) {
+              protected translateService: TranslateService, private dialog: MatDialog) {
     super(router, apiService, utils, serviceUtils, uiStateService, translateService);
 
     this.columns.push(
@@ -104,7 +106,7 @@ export class OrganizationComponent extends BaseSearchLayout {
 
     super.ngOnInit();
     this.onSubmit();
-  }
+  };
 
   search() {
     const status = this.searchForm.get('status').value;
@@ -115,16 +117,18 @@ export class OrganizationComponent extends BaseSearchLayout {
     this._fillData('/organizations', params);
   }
 
-  addOrEdit(org: OrganizationModel) {
-    console.log(this.router.url);
-    if (org) {
-      this.router.navigate([this.router.url, 'edit', org.id]);
-    } else {
-      this.router.navigate([this.router.url, 'add']);
-    }
+  addOrEdit(org: OrganizationModel): void {
+    this.dialog.open(AddEditOrganizationComponent, {
+      width: '70%',
+      maxWidth: '70%',
+      height: '60%',
+      maxHeight: '60%',
+      data: org,
+    });
+    this.search();
   }
 
-  deactivate(row: OrganizationModel ) {
+  deactivate(row: OrganizationModel) {
     this.serviceUtils.execute(this.apiService.put('/organizations/deactivate', row),
       this.onSuccessFunc, this.moduleName + '.success.deactivate',
       this.moduleName + '.confirm.deactivate');

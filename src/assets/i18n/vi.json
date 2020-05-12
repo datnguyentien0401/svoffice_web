@@ -80,7 +80,9 @@
       "active": "Kích hoạt tài khoản thành công"
     },
     "ae": {
-      "": "Tìm kiếm",
+      "addTitle": "Thêm mới nhân viên",
+      "editTitle": "Cập nhật nhân viên",
+      "detailTitle": "Thông tin chi tiết nhân viên",
       "username": "Tài khoản",
       "lastName": "Họ & Đệm",
       "firstName": "Tên",
@@ -161,6 +163,8 @@
       "active": "Kích hoạt đơn vị thành công"
     },
     "ae": {
+      "addTitle": "Thêm mới phòng ban",
+      "editTitle": "Cập nhật phòng ban",
       "code": "Mã",
       "name": "Tên",
       "status": "Trạng thái",
@@ -254,6 +258,8 @@
       "verify": "Văn bản toàn vẹn dữ liệu"
     },
     "ae": {
+      "addTitle": "Thêm mới văn bản trình ký",
+      "editTitle": "Cập nhật văn bản trình ký",
       "code": "Ký hiệu văn bản",
       "title": "Tiêu đề văn bản",
       "type": "Hình thức văn bản",

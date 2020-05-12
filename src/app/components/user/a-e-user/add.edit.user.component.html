@@ -1,33 +1,39 @@
-<form [formGroup]="addEditForm" class="form" style="margin: 0px 1rem">
+<h2 style="text-align: center;">{{moduleName + (this.data ? 'editTitle' : 'addTitle')|translate}}</h2>
+<form [formGroup]="addEditForm" class="form" style="margin: 0 1rem">
   <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="1rem">
     <app-input name="username" formControlName="username"
               [placeholder]="moduleName + 'username'|translate"
-              style="width: calc(33% - 1rem);" [required]="true" [disabled]="isEdit"></app-input>
+              style="width: calc(45% - 1rem);" [required]="true" [disabled]="isEdit"></app-input>
+    <div style="width: calc(10% - 1rem);"></div>
+    <app-select [label]="moduleName + 'status'" [data]="statusValues"
+                formControlName="status" [disabled]="true"
+                style="width: calc(45% - 1rem);" [required]="true"></app-select>
+    <app-input name="lastName" formControlName="lastName"
+               [placeholder]="moduleName + 'lastName'|translate"
+               style="width: calc(45% - 1rem);" [required]="true" [disabled]="isEdit && !isExists"></app-input>
+    <div style="width: calc(10% - 1rem);"></div>
     <app-input name="firstName" formControlName="firstName"
               [placeholder]="moduleName + 'firstName'|translate"
-              style="width: calc(33% - 1rem);" [required]="true" [disabled]="isEdit && !isExists"></app-input>
-    <app-input name="lastName" formControlName="lastName"
-              [placeholder]="moduleName + 'lastName'|translate"
-              style="width: calc(33% - 1rem);" [required]="true" [disabled]="isEdit && !isExists"></app-input>
+              style="width: calc(45% - 1rem);" [required]="true" [disabled]="isEdit && !isExists"></app-input>
     <app-input name="tel" formControlName="tel"
               [placeholder]="moduleName + 'tel'|translate"
-              style="width: calc(33% - 1rem);" [required]="true" [disabled]="isEdit && !isExists"></app-input>
+              style="width: calc(45% - 1rem);" [required]="true" [disabled]="isEdit && !isExists"></app-input>
+    <div style="width: calc(10% - 1rem);"></div>
     <app-input name="email" formControlName="email"
               [placeholder]="moduleName + 'email'|translate"
-              style="width: calc(33% - 1rem);" [required]="true" [disabled]="isEdit && !isExists"></app-input>
-    <app-select [label]="moduleName + 'status'" [data]="statusValues"
-                name="status" formControlName="status" [disabled]="true"
-                style="width: calc(33% - 1rem);" [required]="true"></app-select>
+              style="width: calc(45% - 1rem);" [required]="true" [disabled]="isEdit && !isExists"></app-input>
+   
     <app-select [label]="moduleName + 'type'" [data]="typeValues"
-                name="type" formControlName="type" [required]="true"
+                formControlName="type" [required]="true"
                 (onSelectedChange)="onTypeChange()"
-                style="width: calc(33% - 1rem);"></app-select>
-    <app-autocomplete name="organization" formControlName="organization"
+                style="width: calc(45% - 1rem);"></app-select>
+    <div style="width: calc(10% - 1rem);"></div>
+    <app-autocomplete formControlName="organization"
                       [data]="organizationValues"
                       [placeholder]="moduleName + 'organization'"
                       [label]="moduleName + 'organization'"
                       [required]="false"
-                      style="width: calc(33% - 1rem);"></app-autocomplete>
+                      style="width: calc(45% - 1rem);"></app-autocomplete>
     <label for="file">{{ moduleName + 'file' | translate}}</label>
     <input type="file"
            id="file"
@@ -42,7 +48,7 @@
             [disabled]="addEditForm.invalid || (isEdit && !isExists)"
             *ngIf="hasAuthority()">{{'btnAddEdit'|translate}}
     </button>
-    <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="back()">
+    <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onCloseDialog()">
       {{'btnCancel'|translate}}
     </button>
   </div>

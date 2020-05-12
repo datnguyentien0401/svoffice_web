@@ -18,6 +18,8 @@ import {AuthoritiesUtils} from "../../../base/utils/authorities.utils";
 import {Observable} from "rxjs";
 import {MatDialog} from "@angular/material";
 import {UserDetailComponent} from "../user-detail/user-detail.component";
+import {AddEditOrganizationComponent} from "../../organization/a-e-organization/a-e-organization.component";
+import {AddEditUserComponent} from "../a-e-user/add.edit.user.component";
 
 @Component({
   selector: 'app-user',
@@ -205,12 +207,14 @@ export class UserComponent extends BaseSearchLayout {
     this._fillData('/users', params);
   }
 
-  addOrEdit(user: User) {
-    if (user) {
-      this.router.navigate([this.router.url, 'edit', user.username]);
-    } else {
-      this.router.navigate([this.router.url, 'add']);
-    }
+  addOrEdit(user: User): void {
+    this.dialog.open(AddEditUserComponent, {
+      width: '70%',
+      maxWidth: '70%',
+      height: '90%',
+      maxHeight: '90%',
+      data: user,
+    });
     this.search();
   }
 

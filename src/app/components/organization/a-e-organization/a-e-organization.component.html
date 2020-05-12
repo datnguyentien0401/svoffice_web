@@ -1,20 +1,19 @@
+<h2 style="text-align: center;">{{moduleName + (this.data ? 'editTitle' : 'addTitle')|translate}}</h2>
 <form [formGroup]="addEditForm" class="form" style="margin: 0px 1rem">
   <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="1rem">
     <app-input name="code" formControlName="code"
               [placeholder]="moduleName + 'code'"
-              [hint]="moduleName + 'hint.code'"
               style="width: calc(33% - 1rem);"
               [required]="true" [disabled]="isEdit">
     </app-input>
     <app-input name="name" formControlName="name"
               [placeholder]="moduleName + 'name'"
-              [hint]="moduleName + 'hint.name'"
               style="width: calc(33% - 1rem);"
               [required]="true" [disabled]="isEdit && !isExists">
     </app-input>
     <app-select [label]="moduleName + 'status'"
                 [data]="statusValues"
-                name="status" formControlName="status"
+                formControlName="status"
                 style="width: calc(33% - 1rem);"
                 [disabled]="true" [required]="true">
     </app-select>
@@ -24,7 +23,7 @@
             [disabled]="addEditForm.invalid || (isEdit && !isExists)"
             *ngIf="hasAuthority()">{{'btnAddEdit'|translate}}
     </button>
-    <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="back()">
+    <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onCloseDialog()">
       {{'btnCancel'|translate}}
     </button>
   </div>

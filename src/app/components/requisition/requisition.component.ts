@@ -17,10 +17,10 @@ import {DatePipe} from "@angular/common";
 import {AppSettings} from "../../app.settings";
 import {User} from "../../_models/user.model";
 import {Observable} from "rxjs";
-import {ConfirmRequisitionComponent} from "../sign_document/confirm-requesition/confirm-requisition.component";
 import {MatDialog} from "@angular/material";
 import {RequisitionDetailComponent} from "./requisition-detail/requisition-detail.component";
 import {TransferRequisitionComponent} from "./transfer-requisition/transfer-requisition.component";
+import {AddEditRequisitionComponent} from "./a-e-requisition/a-e-requisition.component";
 
 @Component({
   selector: 'app-user',
@@ -214,12 +214,14 @@ export class RequisitionComponent extends BaseSearchLayout {
 
   }
 
-  addOrEdit(req: RequisitionModel) {
-    if (req) {
-      this.router.navigate([this.router.url, 'edit', req.id]);
-    } else {
-      this.router.navigate([this.router.url, 'add']);
-    }
+  addOrEdit(req: RequisitionModel): void{
+    this.dialog.open(AddEditRequisitionComponent, {
+      width: '60%',
+      maxWidth: '60%',
+      height: '75%',
+      maxHeight: '75%',
+      data: req,
+    });
     this.search();
   }
 

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 
 import {ActivatedRoute} from '@angular/router';
 import {FormBuilder} from '@angular/forms';
@@ -16,6 +16,8 @@ import {User} from "../../../_models/user.model";
 import {AutocompleteModel} from "../../../_models/base/autocomplete.model";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {FileModel} from "../../../_models/file.model";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import {RequisitionComponent} from "../requisition.component";
 
 @Component({
   selector: 'app-a-e-organization',
@@ -31,13 +33,17 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
   fileId: number;
 
   constructor(protected activatedRoute: ActivatedRoute, protected formBuilder: FormBuilder, protected location: Location, private http: HttpClient,
-              protected translateService: TranslateService, protected apiService: ApiService, protected serviceUtils: ServiceUtils) {
+              protected translateService: TranslateService, protected apiService: ApiService, protected serviceUtils: ServiceUtils,
+              @Inject(MAT_DIALOG_DATA) public data: RequisitionModel, public dialogRef: MatDialogRef<RequisitionComponent>,) {
     super(activatedRoute, location, translateService, serviceUtils);
   }
 
   ngOnInit = async () => {
     super.ngOnInit();
-
+    if (this.data) {
+      this.isEdit = true;
+      this.id = this.data.id;
+    }
     this.addEditForm = this.formBuilder.group({
       code: [''],
       title: [''],
@@ -49,12 +55,12 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
     this.selectModelInit();
 
     if (this.isEdit) {
-      const requisition = await this.apiService.get('/requisitions/' + this.id, null).toPromise() as RequisitionModel;
+      const requisition = await this.apiService.get('/requisitions/' + this.data.id, null).toPromise() as RequisitionModel;
       requisition.fileUpload = new File([""], requisition.file.filePath);
       this.fileId = requisition.fileId;
 
       this.addEditForm.setValue(Utils.reduceEntityAttributeForFormControl(this.addEditForm, requisition));
-      this.file = new File([""], requisition.file.filePath);
+      this.file = new File([""], requisition.file.fileName);
     }
 
   };
@@ -96,7 +102,6 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
       }),
       reportProgress: true
     };
-    console.log(this.file.size);
     if (this.file.size == 0) {
       objSave.fileId = this.fileId;
       objSave.id = this.id;
@@ -133,4 +138,14 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
     return this.addEditForm.get('status').value != null;
   }
 
+  onCloseDialog() {
+    this.dialogRef.close();
+  }
+
+  onSuccessFunc = (data: any, onSuccessMessage: string): void => {
+    this.serviceUtils.onSuccessFunc(onSuccessMessage);
+    setTimeout(() => {
+      this.onCloseDialog();
+    }, 1500);
+  };
 }

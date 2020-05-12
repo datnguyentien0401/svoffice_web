@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 
 import {ActivatedRoute} from '@angular/router';
 import {FormBuilder} from '@angular/forms';
@@ -12,6 +12,9 @@ import {AuthoritiesUtils} from "../../../base/utils/authorities.utils";
 import {OrganizationModel} from "../../../_models/organization.model";
 import {OrganizationStatusEnum} from "../../../_models/enums/OrganizationStatusEnum";
 import {SelectModel} from "../../../_models/base/select.model";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import {RequisitionModel} from "../../../_models/requisition.model";
+import {OrganizationComponent} from "../list-organization/organization.component";
 
 @Component({
   selector: 'app-a-e-organization',
@@ -23,13 +26,17 @@ export class AddEditOrganizationComponent extends BaseAddEditLayout {
   statusValues: SelectModel[] = [];
 
   constructor(protected activatedRoute: ActivatedRoute, protected formBuilder: FormBuilder, protected location: Location,
-              protected translateService: TranslateService, protected apiService: ApiService, protected serviceUtils: ServiceUtils) {
+              protected translateService: TranslateService, protected apiService: ApiService, protected serviceUtils: ServiceUtils,
+              @Inject(MAT_DIALOG_DATA) public data: RequisitionModel, public dialogRef: MatDialogRef<OrganizationComponent>,) {
     super(activatedRoute, location, translateService, serviceUtils);
   }
 
   ngOnInit = async () => {
     super.ngOnInit();
-
+    if (this.data) {
+      this.isEdit = true;
+      this.id = this.data.id;
+    }
     this.addEditForm = this.formBuilder.group({
       code: [''],
       name: [''],
@@ -49,7 +56,7 @@ export class AddEditOrganizationComponent extends BaseAddEditLayout {
     } else {
       this.addEditForm.get('status').setValue('1');
     }
-  }
+  };
 
   onSubmit(): void {
     const objSave = new OrganizationModel(this.addEditForm);
@@ -67,15 +74,23 @@ export class AddEditOrganizationComponent extends BaseAddEditLayout {
   }
 
   hasAuthority(): boolean {
-    if ((this.isEdit && AuthoritiesUtils.hasAuthority('patch/organizations/{id}' ))
-      || (!this.isEdit && AuthoritiesUtils.hasAuthority('post/organizations' ))) {
-      return true;
-    }
-    return false;
+    return (this.isEdit && AuthoritiesUtils.hasAuthority('patch/organizations/{id}'))
+      || (!this.isEdit && AuthoritiesUtils.hasAuthority('post/organizations'));
+
   }
 
   isExists(): boolean {
-    return this.addEditForm.get('status').value == null ? false : true;
+    return this.addEditForm.get('status').value != null;
   }
 
+  onCloseDialog() {
+    this.dialogRef.close();
+  }
+
+  onSuccessFunc = (data: any, onSuccessMessage: string): void => {
+    this.serviceUtils.onSuccessFunc(onSuccessMessage);
+    setTimeout(() => {
+      this.onCloseDialog();
+    }, 1500);
+  };
 }

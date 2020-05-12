@@ -1,14 +1,13 @@
-<form [formGroup]="addEditForm" class="form" style="margin: 0px 1rem">
+<h2 style="text-align: center;">{{moduleName + (this.data ? 'editTitle' : 'addTitle')|translate}}</h2>
+<form [formGroup]="addEditForm" class="form" style="margin: 0 1rem">
   <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="1rem">
     <app-input name="title" formControlName="title"
                [placeholder]="moduleName + 'title'"
-               [hint]="moduleName + 'hint.title'"
                style="width: calc(50% - 1rem);"
                [required]="true">
     </app-input>
     <app-input name="code" formControlName="code"
                [placeholder]="moduleName + 'code'"
-               [hint]="moduleName + 'hint.code'"
                style="width: calc(50% - 1rem);"
                [required]="true">
     </app-input>
@@ -22,11 +21,13 @@
                       [data]="signerValues"
                       [placeholder]="moduleName + 'signer'"
                       [label]="moduleName + 'signer'"
-                      [hint]="moduleName + 'hint.signer'"
                       [required]="true"
                       style="width: calc(50% - 1rem);">
     </app-autocomplete>
     <label for="file">{{ moduleName + 'file' | translate}}</label>
+    <label for="file" class="custom-file-upload">
+      <i class="fa fa-cloud-upload"></i> File upload
+    </label>
     <input type="file"
            id="file"
            name="fileUpload"
@@ -34,19 +35,14 @@
            class="btn-1"
            accept="application/pdf"
            (change)="onChangeFileUpload($event)"/>
-<!--    <app-file name="fileUpload" formControlName="fileUpload"-->
-<!--              [placeholder]="moduleName + 'fileUpload'"-->
-<!--              [hint]="moduleName + 'hint.fileUpload'"-->
-<!--              style="width: calc(50% - 1rem);"-->
-<!--              [required]="true">-->
-<!--    </app-file>-->
+    <p>{{file ? file.name : ''}}</p>
   </div>
   <div class="btn-sec">
     <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onSubmit()"
             [disabled]="addEditForm.invalid || this.file === undefined ||(isEdit && !isExists) "
             *ngIf="hasAuthority()">{{'btnAddEdit'|translate}}
     </button>
-    <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="back()">
+    <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onCloseDialog()">
       {{'btnCancel'|translate}}
     </button>
   </div>

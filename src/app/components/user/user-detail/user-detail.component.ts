@@ -17,7 +17,6 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {SignDocumentComponent} from "../../sign_document/sign_document.component";
 import {AppSettings} from "../../../app.settings";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {RequisitionTypeEnum} from "../../../_models/enums/RequisitionTypeEnum";
 
 @Component({
   selector: 'app-warehouse-detail',
@@ -30,7 +29,6 @@ export class UserDetailComponent extends BaseAddEditLayout {
 
   statusValues: SelectModel[] = [];
   typeValues: SelectModel[] = [];
-  organizationValues: SelectModel[] = [];
   signatureFileUrl;
   private fileName: string;
 

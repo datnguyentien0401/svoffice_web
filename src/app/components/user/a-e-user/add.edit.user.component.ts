@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {Location} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
@@ -16,6 +16,8 @@ import {User} from "../../../_models/user.model";
 import {AuthoritiesUtils} from "../../../base/utils/authorities.utils";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {FileModel} from "../../../_models/file.model";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import {UserComponent} from "../l-d-user/user.component";
 
 @Component({
   selector: 'app-add-edit-user',
@@ -33,13 +35,17 @@ export class AddEditUserComponent extends BaseAddEditLayout {
   signatureFileId: number;
 
   constructor(protected activatedRoute: ActivatedRoute, protected formBuilder: FormBuilder, protected location: Location, private http: HttpClient,
-              protected translateService: TranslateService, protected apiService: ApiService, protected serviceUtils: ServiceUtils) {
+              protected translateService: TranslateService, protected apiService: ApiService, protected serviceUtils: ServiceUtils,
+              @Inject(MAT_DIALOG_DATA) public data: User, public dialogRef: MatDialogRef<UserComponent>,) {
     super(activatedRoute, location, translateService, serviceUtils);
   }
 
   ngOnInit = async () => {
     super.ngOnInit();
-
+    if (this.data) {
+      this.isEdit = true;
+      this.id = this.data.username;
+    }
     this.addEditForm = this.formBuilder.group({
       username: [''],
       firstName: [''],
@@ -149,4 +155,15 @@ export class AddEditUserComponent extends BaseAddEditLayout {
   onTypeChange() {
     this.addEditForm.get('organization').setValue('');
   }
+
+  onCloseDialog() {
+    this.dialogRef.close();
+  }
+
+  onSuccessFunc = (data: any, onSuccessMessage: string): void => {
+    this.serviceUtils.onSuccessFunc(onSuccessMessage);
+    setTimeout(() => {
+      this.onCloseDialog();
+    }, 1500);
+  };
 }
