@@ -1,0 +1,33 @@
+<h2> {{ moduleName + '.management.' | translate }} </h2>
+<form [formGroup]="searchForm" style="margin: 0px 1rem; text-align: center">
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="1rem">
+    <label style="width: calc(20% - 1rem);">{{moduleName + '.management.search.createDate'|translate}}</label>
+    <app-datepicker
+      formControlName="createDateFrom"
+      [placeholder]="moduleName + '.management.search.fromDate'"
+      style="width: calc(33% - 1rem);"></app-datepicker>
+    <app-datepicker
+      formControlName="createDateTo"
+      [placeholder]="moduleName + '.management.search.toDate'"
+      style="width: calc(33% - 1rem);"></app-datepicker>
+    <label style="width: calc(20% - 1rem);">{{moduleName + '.management.search.deadline'|translate}}</label>
+    <app-datepicker
+      formControlName="deadlineFrom"
+      [placeholder]="moduleName + '.management.search.fromDate'"
+      style="width: calc(33% - 1rem);"></app-datepicker>
+    <app-datepicker
+      formControlName="deadlineTo"
+      [placeholder]="moduleName + '.management.search.toDate'"
+      style="width: calc(33% - 1rem);"></app-datepicker>
+  </div>
+  <button mat-fab color="primary" style="width: 60px;" type="button" (click)="onSubmit()">
+    <mat-icon>search</mat-icon>
+  </button>
+</form>
+<div class="content">
+  <app-table [columns]="columns" [buttons]="buttons"
+             [paging]="paging" (pagingChange)="pagingChange($event)"
+             [moduleName]="moduleName" [results]="results"
+             (clickAction)="onClick($event)">
+  </app-table>
+</div>

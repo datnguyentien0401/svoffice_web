@@ -12,30 +12,27 @@ import {SignDocumentComponent} from "./components/sign_document/sign_document.co
 import {UserDetailComponent} from "./components/user/user-detail/user-detail.component";
 import {RequisitionDetailComponent} from "./components/requisition/requisition-detail/requisition-detail.component";
 import {ReceiveRequisitionComponent} from "./components/receive-requisition/receive-requisition.component";
+import {NotificationComponent} from "./components/notification/notification.component";
 
 
 const routes: Routes = [
   {path: '', component: DashboardComponent},
   {path: 'home', component: DashboardComponent},
   {path: 'logout', component: LogoutComponent},
+
   {path: 'employee', component: UserComponent},
-  {path: 'employee/add', component: AddEditUserComponent},
-  {path: 'employee/edit/:id', component: AddEditUserComponent},
   {path: 'employee/:id', component: UserDetailComponent},
 
   {path: 'organization', component: OrganizationComponent},
-  {path: 'organization/add', component: AddEditOrganizationComponent},
-  {path: 'organization/edit/:id', component: AddEditOrganizationComponent},
 
   {path: 'requisition', component: RequisitionComponent},
-  {path: 'requisition/add', component: AddEditRequisitionComponent},
-  {path: 'requisition/edit/:id', component: AddEditRequisitionComponent},
   {path: 'requisition/:id', component: RequisitionDetailComponent},
 
 
   {path: 'sign-document', component: SignDocumentComponent},
   {path: 'receive-document', component: ReceiveRequisitionComponent},
 
+  {path: 'notification', component: NotificationComponent},
 
 ];
 

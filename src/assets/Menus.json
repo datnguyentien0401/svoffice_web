@@ -37,6 +37,12 @@
     ]
   },
   {
+    "displayName": "menu.notification",
+    "iconName": "notifications",
+    "route": "notification",
+    "roleMenu": "TB"
+  },
+  {
     "displayName": "menu.logout",
     "iconName": "security",
     "roleMenu": "LOGOUT",

@@ -62,6 +62,7 @@ import {RequisitionDetailComponent} from "./components/requisition/requisition-d
 import {TransferRequisitionComponent} from "./components/requisition/transfer-requisition/transfer-requisition.component";
 import {MultiSelectAutocompleteComponent} from "./base/multi-select-autocomplete/multi.select.autocomplete.component";
 import {ReceiveRequisitionComponent} from "./components/receive-requisition/receive-requisition.component";
+import {NotificationComponent} from "./components/notification/notification.component";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -107,7 +108,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     UserDetailComponent,
     RequisitionDetailComponent,
     TransferRequisitionComponent,
-    ReceiveRequisitionComponent
+    ReceiveRequisitionComponent,
+    NotificationComponent
   ],
   // Mấy ông mà gọi Modal là phải cho vào đây nhé @@
   entryComponents: [

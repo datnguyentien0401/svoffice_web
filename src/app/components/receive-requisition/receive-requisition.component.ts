@@ -15,14 +15,13 @@ import {RequisitionTypeEnum} from "../../_models/enums/RequisitionTypeEnum";
 import {AuthoritiesUtils} from "../../base/utils/authorities.utils";
 import {DatePipe} from "@angular/common";
 import {AppSettings} from "../../app.settings";
-import {User} from "../../_models/user.model";
 import {Observable} from "rxjs";
 import {MatDialog} from "@angular/material";
 import {RequisitionDetailComponent} from "../requisition/requisition-detail/requisition-detail.component";
 import {TransferRequisitionComponent} from "../requisition/transfer-requisition/transfer-requisition.component";
 
 @Component({
-  selector: 'app-user',
+  selector: 'app-receive-requisition',
   templateUrl: './receive-requisition.component.html',
   styleUrls: ['./receive-requisition.component.scss'],
   providers: [DatePipe]

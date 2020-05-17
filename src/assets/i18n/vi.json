@@ -18,6 +18,7 @@
       "sign-document": "Văn bản ký duyệt",
       "receive-document": "Văn bản đến"
     },
+    "notification": "Thông báo",
     "logout": "Đăng xuất"
   },
   "user": {
@@ -306,6 +307,29 @@
     },
     "receive": {
       "": "Văn bản đến"
+    }
+  },
+  "notification": {
+    "management": {
+      "": "Quản lý thông báo",
+      "search": {
+        "": "Tìm kiếm",
+        "createDate": "Ngày tạo",
+        "deadline": "Hạn xử lý",
+        "fromDate": "Từ ngày",
+        "toDate": "Đến ngày"
+      }
+    },
+    "table": {
+      "header": {
+        "stt": "STT",
+        "id": "ID",
+        "content": "Nội dung",
+        "createDate": "Ngày tạo",
+        "deadline": "Hạn xử lý",
+        "sender": "Người gửi",
+        "receiver": "Người nhận"
+      }
     }
   },
   "btnAddEdit": "Lưu",
