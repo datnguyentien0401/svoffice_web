@@ -93,6 +93,7 @@
       "type": "Vai trò",
       "organization": "Đơn vị",
       "file": "File chữ ký mẫu",
+      "fullName": "Họ tên",
       "hint": {
         "username": "Tài khoản",
         "lastName": "Họ & Đệm",
@@ -247,7 +248,9 @@
       "remove": "Xóa văn bản",
       "reason": "Ý kiến",
       "transfer": "Chuyển văn bản",
-      "verify": "Xác thực văn bản"
+      "verify": "Xác thực văn bản",
+      "file": "Ảnh chữ ký",
+      "selectFile": "Chọn ảnh chữ ký"
     },
     "success": {
       "process": "Trình ký thành công",
@@ -274,13 +277,7 @@
       "transferDate": "Ngày đến",
       "transferUser": "Người gửi",
       "transferComment": "Chỉ thị chuyển",
-      "hint": {
-        "code": "Ký hiệu văn bản",
-        "title": "Tiêu đề văn bản",
-        "type": "Hình thức văn bản",
-        "signer": "Người ký",
-        "file": "File đính kèm"
-      },
+      "receiver": "Thành phần liên quan",
       "edit": {
         "confirm": "Cập nhật văn bản",
         "success": "Cập nhật văn bản thành công"
@@ -338,6 +335,7 @@
   "btnCancelProcess": "Hủy trình ký",
   "btnProcess": "Trình ký",
   "btnTransfer": "Chuyển văn bản",
+  "btnSign": "Ký",
   "signDocNotification": "Văn bản cần ký duyệt",
   "recvDocNotification": "Văn bản đến"
 }

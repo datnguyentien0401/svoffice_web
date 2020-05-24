@@ -149,15 +149,15 @@ export class RequisitionComponent extends BaseSearchLayout {
         display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('put/requisitions/{id}/cancel'),
         disabled: (o: RequisitionModel) => o.status != 1
       },
-      {
-        columnDef: 'transfer',
-        color: 'warn',
-        icon: 'send',
-        tooltip: 'transfer',
-        click: 'transfer',
-        display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('put/requisitions/{id}/transfer'),
-        disabled: (o: RequisitionModel) => o.status != 2
-      },
+      // {
+      //   columnDef: 'transfer',
+      //   color: 'warn',
+      //   icon: 'send',
+      //   tooltip: 'transfer',
+      //   click: 'transfer',
+      //   display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('put/requisitions/{id}/transfer'),
+      //   disabled: (o: RequisitionModel) => o.status != 2
+      // },
 
     );
   }
@@ -215,14 +215,15 @@ export class RequisitionComponent extends BaseSearchLayout {
   }
 
   addOrEdit(req: RequisitionModel): void{
-    this.dialog.open(AddEditRequisitionComponent, {
+    let observable = this.dialog.open(AddEditRequisitionComponent, {
       width: '60%',
       maxWidth: '60%',
       height: '75%',
       maxHeight: '75%',
       data: req,
+    }).afterClosed().subscribe(rs => {
+      this.search();
     });
-    this.search();
   }
 
   process(row: RequisitionModel) {

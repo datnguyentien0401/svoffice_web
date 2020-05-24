@@ -13,7 +13,6 @@ import {SelectModel} from "../../../_models/base/select.model";
 import {RequisitionTypeEnum} from "../../../_models/enums/RequisitionTypeEnum";
 import {RequisitionModel} from "../../../_models/requisition.model";
 import {User} from "../../../_models/user.model";
-import {AutocompleteModel} from "../../../_models/base/autocomplete.model";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {FileModel} from "../../../_models/file.model";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
@@ -29,6 +28,7 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
 
   typeValues: SelectModel[] = [];
   signerValues: SelectModel[] = [];
+  receiverValues: SelectModel[] = [];
   file: File;
   fileId: number;
 
@@ -48,21 +48,46 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
       code: [''],
       title: [''],
       type: [''],
-      signerId: [''],
+      signerIds: [''],
       fileUpload: [''],
+      receiverIds: ['']
     });
 
     this.selectModelInit();
-
+    this.addEditForm.get('receiverIds').setValue([]);
     if (this.isEdit) {
       const requisition = await this.apiService.get('/requisitions/' + this.data.id, null).toPromise() as RequisitionModel;
+
       requisition.fileUpload = new File([""], requisition.file.filePath);
       this.fileId = requisition.fileId;
 
+      requisition.signerIds = [];
+      requisition.receiverIds = [];
       this.addEditForm.setValue(Utils.reduceEntityAttributeForFormControl(this.addEditForm, requisition));
-      this.file = new File([""], requisition.file.fileName);
-    }
 
+      if (requisition.signerList) {
+        console.log(requisition.signerList.split(',').filter(obj => {
+          return obj != '';
+        }));
+        this.addEditForm.get('signerIds').setValue(requisition.signerList.split(',').filter(obj => {
+          return obj != '';
+        }));
+      } else {
+        this.addEditForm.get('signerIds').setValue([]);
+      }
+      if (requisition.receivers) {
+        this.addEditForm.get('receiverIds').setValue(requisition.receivers.split(',').filter(obj => {
+          return obj != '';
+        }));
+      } else {
+        this.addEditForm.get('receiverIds').setValue([]);
+      }
+
+      this.file = new File([""], requisition.file.fileName);
+    } else {
+      this.addEditForm.get('signerIds').setValue([]);
+      this.addEditForm.get('receiverIds').setValue([]);
+    }
   };
 
   async selectModelInit() {
@@ -74,20 +99,23 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
       });
     });
 
-    const signers = await this.apiService.get('/users/leaders', null).toPromise() as User[];
-    const tmpSigners = [];
-    signers.forEach((leader: User) => {
-      tmpSigners.push(new AutocompleteModel(leader.username, leader.lastName + ' ' + leader.firstName));
+    const recvUsers = await this.apiService.get('/users/all', null).toPromise() as User[];
+    recvUsers.forEach((recvUser: User) => {
+      this.receiverValues.push(new SelectModel(recvUser.username, recvUser.lastName + ' ' + recvUser.firstName));
     });
-    this.signerValues = tmpSigners;
+
+    const signers = await this.apiService.get('/users/leaders', null).toPromise() as User[];
+    signers.forEach((leader: User) => {
+      this.signerValues.push(new SelectModel(leader.username, leader.lastName + ' ' + leader.firstName));
+    });
   }
 
   onChangeFileUpload(event: any): void {
-    console.log(event);
     this.file = <File>event.target.files[0];
   }
 
   onSubmit(): void {
+    console.log(this.addEditForm);
     const objSave = new RequisitionModel(this.addEditForm);
     let apiCall;
     let action;

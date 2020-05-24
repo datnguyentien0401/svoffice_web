@@ -55,7 +55,7 @@ export class AddEditUserComponent extends BaseAddEditLayout {
       status: [''],
       type: [''],
       organization: [''],
-      signatureFileUpload: ['']
+      // signatureFileUpload: ['']
     });
 
     Object.keys(UserStatusEnum).forEach(key => {
@@ -77,69 +77,78 @@ export class AddEditUserComponent extends BaseAddEditLayout {
       });
     });
     const organizations = await this.apiService.get('/organizations/all', null).toPromise() as OrganizationModel[];
-    const tempOrg = [];
     organizations.forEach((organization: OrganizationModel) => {
-      tempOrg.push(new AutocompleteModel(organization.id, organization.code + ' - ' + organization.name));
+      this.organizationValues.push(new AutocompleteModel(organization.id, organization.code + ' - ' + organization.name));
     });
-    this.organizationValues = tempOrg;
+
     if (this.isEdit) {
       const user = await this.apiService.get('/users/' + this.id, null).toPromise() as User;
-      user.signatureFileUpload = new File([""], user.signatureFile.filePath);
-      this.signatureFileId = user.signatureFileId;
-
+      // user.signatureFileUpload = new File([""], user.signatureFile.filePath);
+      // this.signatureFileId = user.signatureFileId;
+      // this.signatureFileUpload = new File([""], user.signatureFile.filePath);
       this.addEditForm.setValue(Utils.reduceEntityAttributeForFormControl(this.addEditForm, user));
-      this.signatureFileUpload = new File([""], user.signatureFile.filePath);
-      console.log(this.signatureFileUpload);
     } else {
       this.addEditForm.get('status').setValue('1');
     }
 
   };
 
-  onChangeFileUpload(event: any): void {
-    console.log(event);
-    this.signatureFileUpload  = <File>event.target.files[0];
-  }
+  // onChangeFileUpload(event: any): void {
+  //   console.log(event);
+  //   this.signatureFileUpload  = <File>event.target.files[0];
+  // }
 
   onSubmit(): void {
     let objSave = new User(this.addEditForm);
-    console.log(objSave);
     let apiCall;
     let action;
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Accept': 'application/json'
-      }),
-      reportProgress: true
-    };
-
-    let formData: FormData = new FormData();
-    formData.append("file", this.signatureFileUpload, this.signatureFileUpload.name);
-    formData.append("isSignature", `${true}`);
-    if (this.signatureFileUpload.size != 0) {
-      this.http.post<FileModel>(this.apiService.getFullUrl('/files'), formData, httpOptions).subscribe(
-        data => {
-          objSave.signatureFileId = data.id;
-          if (this.isEdit) {
-            objSave.id = this.id;
-            apiCall = this.apiService.patch('/users', objSave);
-            action = 'edit';
-          } else {
-            apiCall = this.apiService.post('/users', objSave);
-            action = 'add';
-          }
-
-          this.serviceUtils.execute(apiCall, this.onSuccessFunc, this.moduleName + action + '.success', this.moduleName + action + '.confirm');
-        }
-      );
-    } else {
-      objSave.signatureFileId = this.signatureFileId;
+    if (this.isEdit) {
       objSave.id = this.id;
       apiCall = this.apiService.patch('/users', objSave);
       action = 'edit';
-      this.serviceUtils.execute(apiCall, this.onSuccessFunc, this.moduleName + action + '.success', this.moduleName + action + '.confirm');
+    } else {
+      apiCall = this.apiService.post('/users', objSave);
+      action = 'add';
     }
+
+    this.serviceUtils.execute(apiCall,
+      this.onSuccessFunc,
+      this.moduleName + action + '.success',
+      this.moduleName + action + '.confirm'
+    );
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Accept': 'application/json'
+    //   }),
+    //   reportProgress: true
+    // };
+    //
+    // let formData: FormData = new FormData();
+    // formData.append("file", this.signatureFileUpload, this.signatureFileUpload.name);
+    // formData.append("isSignature", `${true}`);
+    // if (this.signatureFileUpload.size != 0) {
+    //   this.http.post<FileModel>(this.apiService.getFullUrl('/files'), formData, httpOptions).subscribe(
+    //     data => {
+    //       objSave.signatureFileId = data.id;
+    //       if (this.isEdit) {
+    //         objSave.id = this.id;
+    //         apiCall = this.apiService.patch('/users', objSave);
+    //         action = 'edit';
+    //       } else {
+    //         apiCall = this.apiService.post('/users', objSave);
+    //         action = 'add';
+    //       }
+    //
+    //       this.serviceUtils.execute(apiCall, this.onSuccessFunc, this.moduleName + action + '.success', this.moduleName + action + '.confirm');
+    //     }
+    //   );
+    // } else {
+    //   objSave.signatureFileId = this.signatureFileId;
+    //   objSave.id = this.id;
+    //   apiCall = this.apiService.patch('/users', objSave);
+    //   action = 'edit';
+    //   this.serviceUtils.execute(apiCall, this.onSuccessFunc, this.moduleName + action + '.success', this.moduleName + action + '.confirm');
+    // }
   }
 
   hasAuthority(): boolean {

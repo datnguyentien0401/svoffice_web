@@ -84,19 +84,11 @@ export class UserComponent extends BaseSearchLayout {
       cell: (e: User) => `${this.utils.getEnumValueTranslated(UserStatusEnum, e.status === true ? '1' : '0')}`,
       className: 'mat-column-status'
     },
-    {
-      columnDef: 'file', header: 'file',
-      title: (e: User) => `${e.signatureFile.fileName}`,
-      cell: (e: User) => `${e.signatureFile.fileName}`,
-      className: 'mat-column-file'
-    },
   ];
-
 
   statusValues: SelectModel[] = [];
   typeValues: SelectModel[] = [];
   organizationValues: AutocompleteModel[] = [];
-
 
   constructor(protected formBuilder: FormBuilder, protected router: Router, protected apiService: ApiService,
               protected utils: Utils, protected serviceUtils: ServiceUtils, protected uiStateService: UiStateService,
@@ -214,8 +206,9 @@ export class UserComponent extends BaseSearchLayout {
       height: '90%',
       maxHeight: '90%',
       data: user,
+    }).afterClosed().subscribe(rs => {
+      this.search();
     });
-    this.search();
   }
 
   deactivate(user: User) {

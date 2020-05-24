@@ -13,17 +13,28 @@
     </app-input>
     <app-select [label]="moduleName + 'type'"
                 [data]="typeValues"
-                name="type" formControlName="type"
+                formControlName="type"
                 style="width: calc(50% - 1rem);"
                 [required]="true">
     </app-select>
-    <app-autocomplete name="signerId" formControlName="signerId"
-                      [data]="signerValues"
-                      [placeholder]="moduleName + 'signer'"
+<!--    <app-select [label]="moduleName + 'signer'"-->
+<!--                [data]="signerValues"-->
+<!--                formControlName="signerId"-->
+<!--                style="width: calc(50% - 1rem);"-->
+<!--                [required]="true">-->
+<!--    </app-select>-->
+    <app-multi-select-autocomplete formControlName="signerIds"
+                      [options]="signerValues"
                       [label]="moduleName + 'signer'"
                       [required]="true"
                       style="width: calc(50% - 1rem);">
-    </app-autocomplete>
+    </app-multi-select-autocomplete>
+    <app-multi-select-autocomplete [multiple]="true"
+                                   [options]="receiverValues"
+                                   [label]="moduleName + 'receiver'"
+                                   formControlName="receiverIds"
+                                   style="width: calc(50% - 1rem);">
+    </app-multi-select-autocomplete>
     <label for="file">{{ moduleName + 'file' | translate}}</label>
     <label for="file" class="custom-file-upload">
       <i class="fa fa-cloud-upload"></i> File upload

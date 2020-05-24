@@ -118,15 +118,15 @@ export class ReceiveRequisitionComponent extends BaseSearchLayout {
         click: 'verify',
         display: (e: RequisitionModel) => e && AuthoritiesUtils.hasAuthority('get/requisitions/{id}'),
       },
-      {
-        columnDef: 'transfer',
-        color: 'warn',
-        icon: 'send',
-        tooltip: 'transfer',
-        click: 'transfer',
-        display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('put/requisitions/{id}/transfer'),
-        disabled: (o: RequisitionModel) => o.status != 2 && o.status !=5
-      },
+      // {
+      //   columnDef: 'transfer',
+      //   color: 'warn',
+      //   icon: 'send',
+      //   tooltip: 'transfer',
+      //   click: 'transfer',
+      //   display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('put/requisitions/{id}/transfer'),
+      //   disabled: (o: RequisitionModel) => o.status != 2 && o.status !=5
+      // },
     );
   }
 

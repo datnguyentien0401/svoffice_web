@@ -117,7 +117,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     ConfirmRequisitionComponent,
     RequisitionDetailComponent,
     UserDetailComponent,
-    TransferRequisitionComponent
+    TransferRequisitionComponent,
+    AddEditUserComponent,
+    AddEditOrganizationComponent,
+    AddEditRequisitionComponent
   ],
   imports: [
     BrowserModule,

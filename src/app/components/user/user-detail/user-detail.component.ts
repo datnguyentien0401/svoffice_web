@@ -43,7 +43,7 @@ export class UserDetailComponent extends BaseAddEditLayout {
 
     this.addEditForm = this.formBuilder.group({
       username: [''],
-      firstName: [''],
+      fullName: [''],
       tel: [''],
       email: [''],
       status: [''],
@@ -53,6 +53,7 @@ export class UserDetailComponent extends BaseAddEditLayout {
 
     const user = await this.apiService.get('/users/' + this.data.username, null).toPromise() as User;
 
+    user.fullName = user.lastName + ' ' + user.firstName;
     this.addEditForm.setValue(Utils.reduceEntityAttributeForFormControl(this.addEditForm, user));
     this.addEditForm.get('organization').setValue(user.organization.name);
 

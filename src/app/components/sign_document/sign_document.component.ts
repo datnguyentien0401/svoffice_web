@@ -18,6 +18,7 @@ import {AppSettings} from "../../app.settings";
 import {Observable} from "rxjs";
 import {ConfirmRequisitionComponent} from "./confirm-requesition/confirm-requisition.component";
 import {MatDialog} from "@angular/material";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-user',
@@ -36,7 +37,7 @@ export class SignDocumentComponent extends BaseSearchLayout {
   typeValues: SelectModel[] = [];
 
 
-  constructor(protected formBuilder: FormBuilder, protected router: Router, protected apiService: ApiService,
+  constructor(protected formBuilder: FormBuilder, protected router: Router, protected apiService: ApiService, public cookieService: CookieService,
               protected utils: Utils, protected serviceUtils: ServiceUtils, protected uiStateService: UiStateService,
               protected translateService: TranslateService, private datePipe: DatePipe, public dialog: MatDialog) {
     super(router, apiService, utils, serviceUtils, uiStateService, translateService);
@@ -105,8 +106,8 @@ export class SignDocumentComponent extends BaseSearchLayout {
         icon: 'done_all',
         tooltip: 'approve',
         click: 'approve',
-        display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('put/requisitions/{id}/approve'),
-        disabled: (o: RequisitionModel) => o.status != 1
+        display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('post/requisitions/approve'),
+        disabled: (o: RequisitionModel) => o.status != 1 || o.signerId != cookieService.get('username')
       },
       {
         columnDef: 'reject',
@@ -115,7 +116,7 @@ export class SignDocumentComponent extends BaseSearchLayout {
         tooltip: 'reject',
         click: 'reject',
         display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('put/requisitions/{id}/reject'),
-        disabled: (o: RequisitionModel) => o.status != 1
+        disabled: (o: RequisitionModel) => o.status != 1 || o.signerId != cookieService.get('username')
       },
 
     );

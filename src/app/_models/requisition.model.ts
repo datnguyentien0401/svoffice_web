@@ -11,6 +11,7 @@ export class RequisitionModel {
   type: string;
   status: number;
   signer: User;
+  signerIds: [];
   signerId: string;
   fileId: number;
   file: FileModel;
@@ -22,8 +23,12 @@ export class RequisitionModel {
   transferComment: string;
   transferUser: string;
   transferDate: string;
+  receiverIds: [];
+  receivers: string;
+  signerList: string;
 
   isTransferMenu: boolean;
+
   constructor(form: FormGroup | number) {
     if (form instanceof FormGroup) {
       console.log(form);
@@ -45,8 +50,8 @@ export class RequisitionModel {
       if (form.get('createDate')) {
         this.createDate = form.get('createDate').value;
       }
-      if (form.get('signerId')) {
-        this.signerId = form.get('signerId').value;
+      if (form.get('signerIds')) {
+        this.signerIds = form.get('signerIds').value;
       }
       if (form.get('fileId')) {
         this.fileId = form.get('fileId').value;
@@ -61,7 +66,7 @@ export class RequisitionModel {
         this.signer = new User(form.get('signer').value);
       }
       if (form.get('reason')) {
-        this.signer = new User(form.get('reason').value);
+        this.reason = form.get('reason').value;
       }
       if (form.get('organization')) {
         this.organization = new OrganizationModel(form.get('organization').value);
@@ -78,7 +83,12 @@ export class RequisitionModel {
       if (form.get('transferDate')) {
         this.transferDate = form.get('transferDate').value;
       }
-
+      if (form.get('receiverIds')) {
+        this.receiverIds = form.get('receiverIds').value;
+      }
+      if (form.get('signerId')) {
+        this.signerId = form.get('signerId').value;
+      }
     } else {
       this.id = form;
     }

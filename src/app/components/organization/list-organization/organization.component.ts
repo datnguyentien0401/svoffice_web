@@ -124,8 +124,9 @@ export class OrganizationComponent extends BaseSearchLayout {
       height: '60%',
       maxHeight: '60%',
       data: org,
+    }).afterClosed().subscribe(rs => {
+      this.search();
     });
-    this.search();
   }
 
   deactivate(row: OrganizationModel) {
