@@ -16,7 +16,6 @@ import {AuthoritiesUtils} from "../../base/utils/authorities.utils";
 import {DatePipe} from "@angular/common";
 import {AppSettings} from "../../app.settings";
 import {User} from "../../_models/user.model";
-import {Observable} from "rxjs";
 import {MatDialog} from "@angular/material";
 import {RequisitionDetailComponent} from "./requisition-detail/requisition-detail.component";
 import {TransferRequisitionComponent} from "./transfer-requisition/transfer-requisition.component";
@@ -52,8 +51,8 @@ export class RequisitionComponent extends BaseSearchLayout {
         className: 'mat-column-stt'
       },
       {
-        columnDef: 'code', header: 'code', title: (e: RequisitionModel) => `${e.code}`,
-        cell: (e: RequisitionModel) => `${e.code}`,
+        columnDef: 'id', header: 'id', title: (e: RequisitionModel) => `${e.id}`,
+        cell: (e: RequisitionModel) => `${e.id}`,
         className: 'mat-column-id'
       },
       {
@@ -65,19 +64,25 @@ export class RequisitionComponent extends BaseSearchLayout {
         columnDef: 'type', header: 'type',
         title: (e: RequisitionModel) => `${this.utils.getEnumValueTranslated(RequisitionTypeEnum, e.type.toString())}`,
         cell: (e: RequisitionModel) => `${this.utils.getEnumValueTranslated(RequisitionTypeEnum, e.type.toString())}`,
-        className: 'mat-column-lastName'
+        className: 'mat-column-type'
       },
       {
         columnDef: 'signer', header: 'signer',
         title: (e: RequisitionModel) => `${e.signer.lastName + ' ' + e.signer.firstName}`,
         cell: (e: RequisitionModel) => `${e.signer.lastName + ' ' + e.signer.firstName}`,
-        className: 'mat-column-tel'
+        className: 'mat-column-signer'
       },
       {
         columnDef: 'createdDate', header: 'createdDate',
         title: (e: RequisitionModel) => `${this.datePipe.transform(e.createDate, AppSettings.DIS_DATE_FORMAT, '-0')}`,
         cell: (e: RequisitionModel) => `${this.datePipe.transform(e.createDate, AppSettings.DIS_DATE_FORMAT, '-0')}`,
-        className: 'mat-column-email'
+        className: 'mat-column-createdDate'
+      },
+      {
+        columnDef: 'deadline', header: 'deadline',
+        title: (e: RequisitionModel) => `${this.datePipe.transform(e.createDate, AppSettings.DIS_DATE_FORMAT, '-0')}`,
+        cell: (e: RequisitionModel) => `${this.datePipe.transform(e.createDate, AppSettings.DIS_DATE_FORMAT, '-0')}`,
+        className: 'mat-column-deadline'
       },
       {
         columnDef: 'status',
@@ -98,7 +103,7 @@ export class RequisitionComponent extends BaseSearchLayout {
         cell: (e: RequisitionModel) => `${e.reason ? e.reason : ''}`,
         className: 'mat-column-reason'
       },
-    )
+    );
 
     this.buttons.push(
       {
@@ -106,6 +111,7 @@ export class RequisitionComponent extends BaseSearchLayout {
         color: 'warn',
         icon: 'visibility',
         click: 'viewDetail',
+        title: 'View detail',
         display: (e: User) => e && AuthoritiesUtils.hasAuthority('get/requisitions/{id}'),
       },
       {
@@ -114,6 +120,8 @@ export class RequisitionComponent extends BaseSearchLayout {
         icon: 'delete',
         tooltip: 'remove',
         click: 'remove',
+        title: 'Delete',
+        disabled: (o: RequisitionModel) => o.status == 5 || o.status == 2,
         display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('delete/requisitions/{id}'),
       },
       {
@@ -121,6 +129,7 @@ export class RequisitionComponent extends BaseSearchLayout {
         color: 'warn',
         icon: 'edit',
         click: 'addOrEdit',
+        title: 'Update',
         display: (o: RequisitionModel) =>  AuthoritiesUtils.hasAuthority('put/requisitions'),
         disabled: (o: RequisitionModel) => o.status != 0,
         header: {
@@ -128,6 +137,7 @@ export class RequisitionComponent extends BaseSearchLayout {
           icon: 'add',
           color: 'warn',
           click: 'addOrEdit',
+          title: 'Add',
           display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('post/requisitions'),
         },
       },
@@ -137,6 +147,7 @@ export class RequisitionComponent extends BaseSearchLayout {
         icon: 'call_made',
         tooltip: 'process',
         click: 'process',
+        title: 'Process',
         display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('put/requisitions/{id}/process'),
         disabled: (o: RequisitionModel) => o.status != 0
       },
@@ -146,6 +157,7 @@ export class RequisitionComponent extends BaseSearchLayout {
         icon: 'cancel',
         tooltip: 'cancelProcess',
         click: 'cancelProcess',
+        title: 'Cancel process',
         display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('put/requisitions/{id}/cancel'),
         disabled: (o: RequisitionModel) => o.status != 1
       },
@@ -164,7 +176,7 @@ export class RequisitionComponent extends BaseSearchLayout {
 
   ngOnInit = async () => {
     this.searchForm = this.formBuilder.group({
-      code: [''],
+      id: [''],
       title: [''],
       fromDate: [''],
       toDate: [''],
@@ -204,7 +216,7 @@ export class RequisitionComponent extends BaseSearchLayout {
 
     const params = new HttpParams()
       .set('title', this.searchForm.get('title').value)
-      .set('code', this.searchForm.get('code').value)
+      .set('id', this.searchForm.get('id').value)
       .set('fromDate', `${fromDateFormat ? fromDateFormat : ''}`)
       .set('toDate', `${toDateFormat ? toDateFormat : ''}`)
       .set('status', `${status ? status : ''}`)
@@ -215,7 +227,7 @@ export class RequisitionComponent extends BaseSearchLayout {
   }
 
   addOrEdit(req: RequisitionModel): void{
-    let observable = this.dialog.open(AddEditRequisitionComponent, {
+    this.dialog.open(AddEditRequisitionComponent, {
       width: '60%',
       maxWidth: '60%',
       height: '75%',
@@ -255,17 +267,17 @@ export class RequisitionComponent extends BaseSearchLayout {
     this.search();
   }
 
-  viewDetail(req: RequisitionModel):  Observable<any> {
+  viewDetail(req: RequisitionModel){
     req.isTransferMenu = false;
-    const dialogRef = this.dialog.open(RequisitionDetailComponent, {
+    this.dialog.open(RequisitionDetailComponent, {
       width: '80%',
       maxWidth: '80%',
       height: '90%',
       maxHeight: '90%',
       data: req,
+    }).afterClosed().subscribe(res => {
+      this.search();
     });
-    return dialogRef.afterClosed();
-
   }
 
 }

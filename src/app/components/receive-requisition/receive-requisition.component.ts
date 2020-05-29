@@ -55,11 +55,6 @@ export class ReceiveRequisitionComponent extends BaseSearchLayout {
         className: 'mat-column-id'
       },
       {
-        columnDef: 'code', header: 'code', title: (e: RequisitionModel) => `${e.code}`,
-        cell: (e: RequisitionModel) => `${e.code}`,
-        className: 'mat-column-id'
-      },
-      {
         columnDef: 'title', header: 'title', title: (e: RequisitionModel) => `${e.title}`,
         cell: (e: RequisitionModel) => `${e.title}`,
         className: 'mat-column-title'
@@ -89,12 +84,6 @@ export class ReceiveRequisitionComponent extends BaseSearchLayout {
         className: 'mat-column-transferDate'
       },
       {
-        columnDef: 'transferComment', header: 'transferComment',
-        title: (e: RequisitionModel) => `${e.transferComment }`,
-        cell: (e: RequisitionModel) => `${e.transferComment }`,
-        className: 'mat-column-reason'
-      },
-      {
         columnDef: 'file', header: 'file',
         title: (e: RequisitionModel) => `${e.file.fileName}`,
         cell: (e: RequisitionModel) => `${e.file.fileName}`,
@@ -109,6 +98,7 @@ export class ReceiveRequisitionComponent extends BaseSearchLayout {
         color: 'warn',
         icon: 'visibility',
         click: 'viewDetail',
+        title: "View detail",
         display: (e: RequisitionModel) => e && AuthoritiesUtils.hasAuthority('get/requisitions/{id}'),
       },
       {
@@ -116,6 +106,7 @@ export class ReceiveRequisitionComponent extends BaseSearchLayout {
         color: 'warn',
         icon: 'security',
         click: 'verify',
+        title: "Verify document",
         display: (e: RequisitionModel) => e && AuthoritiesUtils.hasAuthority('get/requisitions/{id}'),
       },
       // {
@@ -132,7 +123,7 @@ export class ReceiveRequisitionComponent extends BaseSearchLayout {
 
   ngOnInit = async () => {
     this.searchForm = this.formBuilder.group({
-      code: [''],
+      id: [''],
       title: [''],
       fromDate: [''],
       toDate: [''],
@@ -170,7 +161,7 @@ export class ReceiveRequisitionComponent extends BaseSearchLayout {
 
     const params = new HttpParams()
       .set('title', this.searchForm.get('title').value)
-      .set('code', this.searchForm.get('code').value)
+      .set('id', this.searchForm.get('id').value)
       .set('fromDate', `${fromDateFormat ? fromDateFormat : ''}`)
       .set('toDate', `${toDateFormat ? toDateFormat : ''}`)
       .set('type', `${type ? type : ''}`);

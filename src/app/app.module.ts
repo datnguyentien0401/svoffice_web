@@ -63,6 +63,7 @@ import {TransferRequisitionComponent} from "./components/requisition/transfer-re
 import {MultiSelectAutocompleteComponent} from "./base/multi-select-autocomplete/multi.select.autocomplete.component";
 import {ReceiveRequisitionComponent} from "./components/receive-requisition/receive-requisition.component";
 import {NotificationComponent} from "./components/notification/notification.component";
+import {NumberComponent} from "./base/number/number.component";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -93,6 +94,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MultiSelectAutocompleteComponent,
     SelectComponent,
     InputComponent,
+    NumberComponent,
     CheckboxComponent,
     CounterInputComponent,
     DatepickerComponent,

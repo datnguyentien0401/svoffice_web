@@ -91,6 +91,6 @@ export class AddEditOrganizationComponent extends BaseAddEditLayout {
     this.serviceUtils.onSuccessFunc(onSuccessMessage);
     setTimeout(() => {
       this.onCloseDialog();
-    }, 1500);
+    }, 1000);
   };
 }

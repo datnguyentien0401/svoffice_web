@@ -26,6 +26,7 @@ export class RequisitionModel {
   receiverIds: [];
   receivers: string;
   signerList: string;
+  requisitionDate: string;
 
   isTransferMenu: boolean;
 

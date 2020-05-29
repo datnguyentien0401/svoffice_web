@@ -12,29 +12,22 @@
     "route": "organization"
   },
   {
-    "displayName": "menu.document.",
+    "displayName": "menu.document.requisition",
     "iconName": "book",
-    "roleMenu": "QLVB",
-    "children": [
-      {
-        "displayName": "menu.document.requisition",
-        "iconName": "book",
-        "route": "requisition",
-        "roleMenu": "VBTK"
-      },
-      {
-        "displayName": "menu.document.sign-document",
-        "iconName": "book",
-        "route": "sign-document",
-        "roleMenu": "VBKD"
-      },
-      {
-        "displayName": "menu.document.receive-document",
-        "iconName": "book",
-        "route": "receive-document",
-        "roleMenu": "VBD"
-      }
-    ]
+    "route": "requisition",
+    "roleMenu": "VBTK"
+  },
+  {
+    "displayName": "menu.document.sign-document",
+    "iconName": "book",
+    "route": "sign-document",
+    "roleMenu": "VBKD"
+  },
+  {
+    "displayName": "menu.document.receive-document",
+    "iconName": "book",
+    "route": "receive-document",
+    "roleMenu": "VBD"
   },
   {
     "displayName": "menu.notification",

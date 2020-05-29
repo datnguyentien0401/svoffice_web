@@ -50,8 +50,9 @@ export class SignDocumentComponent extends BaseSearchLayout {
         className: 'mat-column-stt'
       },
       {
-        columnDef: 'code', header: 'code', title: (e: RequisitionModel) => `${e.code}`,
-        cell: (e: RequisitionModel) => `${e.code}`,
+        columnDef: 'id', header: 'id',
+        title: (e: RequisitionModel) => `${e.id}`,
+        cell: (e: RequisitionModel) => `${e.id}`,
         className: 'mat-column-id'
       },
       {
@@ -64,19 +65,25 @@ export class SignDocumentComponent extends BaseSearchLayout {
         columnDef: 'type', header: 'type',
         title: (e: RequisitionModel) => `${this.utils.getEnumValueTranslated(RequisitionTypeEnum, e.type.toString())}`,
         cell: (e: RequisitionModel) => `${this.utils.getEnumValueTranslated(RequisitionTypeEnum, e.type.toString())}`,
-        className: 'mat-column-lastName'
+        className: 'mat-column-type'
       },
       {
-        columnDef: 'signer', header: 'signer',
-        title: (e: RequisitionModel) => `${e.signer.lastName + ' ' + e.signer.firstName}`,
-        cell: (e: RequisitionModel) => `${e.signer.lastName + ' ' + e.signer.firstName}`,
-        className: 'mat-column-tel'
+        columnDef: 'organization', header: 'organization',
+        title: (e: RequisitionModel) => `${e.organization.name }`,
+        cell: (e: RequisitionModel) => `${e.organization.name }`,
+        className: 'mat-column-organization'
       },
       {
-        columnDef: 'createdDate', header: 'createdDate',
-        title: (e: RequisitionModel) => `${this.datePipe.transform(e.createDate, AppSettings.DIS_DATE_FORMAT, '-0')}`,
-        cell: (e: RequisitionModel) => `${this.datePipe.transform(e.createDate, AppSettings.DIS_DATE_FORMAT, '-0')}`,
-        className: 'mat-column-email'
+        columnDef: 'requisitionDate', header: 'requisitionDate',
+        title: (e: RequisitionModel) => `${this.datePipe.transform(e.requisitionDate, AppSettings.DIS_DATE_FORMAT, '-0')}`,
+        cell: (e: RequisitionModel) => `${this.datePipe.transform(e.requisitionDate, AppSettings.DIS_DATE_FORMAT, '-0')}`,
+        className: 'mat-column-requisitionDate'
+      },
+      {
+        columnDef: 'deadline', header: 'deadline',
+        title: (e: RequisitionModel) => `${this.datePipe.transform(e.requisitionDate, AppSettings.DIS_DATE_FORMAT, '-0')}`,
+        cell: (e: RequisitionModel) => `${this.datePipe.transform(e.requisitionDate, AppSettings.DIS_DATE_FORMAT, '-0')}`,
+        className: 'mat-column-deadline'
       },
       {
         columnDef: 'status',
@@ -106,6 +113,7 @@ export class SignDocumentComponent extends BaseSearchLayout {
         icon: 'done_all',
         tooltip: 'approve',
         click: 'approve',
+        title: 'Approve',
         display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('post/requisitions/approve'),
         disabled: (o: RequisitionModel) => o.status != 1 || o.signerId != cookieService.get('username')
       },
@@ -115,6 +123,7 @@ export class SignDocumentComponent extends BaseSearchLayout {
         icon: 'clear',
         tooltip: 'reject',
         click: 'reject',
+        title: 'Reject',
         display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('put/requisitions/{id}/reject'),
         disabled: (o: RequisitionModel) => o.status != 1 || o.signerId != cookieService.get('username')
       },
@@ -124,7 +133,7 @@ export class SignDocumentComponent extends BaseSearchLayout {
 
   ngOnInit = async () => {
     this.searchForm = this.formBuilder.group({
-      code: [''],
+      id: [''],
       title: [''],
       fromDate: [''],
       toDate: [''],
@@ -164,7 +173,7 @@ export class SignDocumentComponent extends BaseSearchLayout {
 
     const params = new HttpParams()
       .set('title', this.searchForm.get('title').value)
-      .set('code', this.searchForm.get('code').value)
+      .set('id', this.searchForm.get('id').value)
       .set('fromDate', `${fromDateFormat ? fromDateFormat : ''}`)
       .set('toDate', `${toDateFormat ? toDateFormat : ''}`)
       .set('status', `${status ? status : ''}`)
@@ -190,10 +199,10 @@ export class SignDocumentComponent extends BaseSearchLayout {
 
   openDialog(req: RequisitionModel): Observable<any> {
     const dialogRef = this.dialog.open(ConfirmRequisitionComponent, {
-      width: '500px',
-      maxWidth: '500px',
-      height: '300px',
-      maxHeight: '300px',
+      width: '50%',
+      maxWidth: '50%',
+      height: '70%',
+      maxHeight: '70%',
       data: req ,
     });
     return dialogRef.afterClosed();

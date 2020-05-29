@@ -1,33 +1,27 @@
 <h2> {{ moduleName + '.management.' | translate }} </h2>
 <form [formGroup]="searchForm" style="margin: 0px 1rem; text-align: center">
   <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="1rem">
-    <app-input name="code"
-               formControlName="code"
+    <app-number name="id"
+               formControlName="id"
                [placeholder]="moduleName + '.management.search.code'"
-               [hint]="moduleName + '.management.search.hint.code'"
-               style="width: calc(33% - 1rem);"></app-input>
+               style="width: calc(33% - 1rem);"></app-number>
     <app-input name="title"
                formControlName="title"
                [placeholder]="moduleName + '.management.search.title'"
-               [hint]="moduleName + '.management.search.hint.title'"
                style="width: calc(33% - 1rem);"></app-input>
     <app-select [label]="moduleName + '.management.search.type'"
                 [data]="typeValues"
-                name="type"
                 formControlName="type"
                 style="width: calc(33% - 1rem);">
     </app-select>
-    <app-datepicker name="fromDate"
-                    formControlName="fromDate"
+    <app-datepicker formControlName="fromDate"
                     [placeholder]="moduleName + '.management.search.fromDate'"
                     style="width: calc(33% - 1rem);"></app-datepicker>
-    <app-datepicker name="toDate"
-               formControlName="toDate"
-               [placeholder]="moduleName + '.management.search.toDate'"
-               style="width: calc(33% - 1rem);"></app-datepicker>
+    <app-datepicker formControlName="toDate"
+                    [placeholder]="moduleName + '.management.search.toDate'"
+                    style="width: calc(33% - 1rem);"></app-datepicker>
     <app-select [label]="moduleName + '.management.search.status'"
                 [data]="statusValues"
-                name="status"
                 formControlName="status"
                 style="width: calc(33% - 1rem);">
     </app-select>

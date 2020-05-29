@@ -25,6 +25,15 @@
            accept="image/*"
            (change)="onChangeFileUpload($event)"/>
     <p>{{file ? file.name : ''}}</p>
+    <div style="width: calc(100% - 1rem);"></div>
+    <app-number name="absoluteX"
+               formControlName="absoluteX"
+               [placeholder]="moduleName + '.absoluteX'"
+               style="width: calc(50% - 1rem);"></app-number>
+    <app-number name="absoluteY"
+                formControlName="absoluteY"
+                [placeholder]="moduleName + '.absoluteY'"
+                style="width: calc(50% - 1rem);"></app-number>
   </div>
   <div class="btn-sec">
     <div class="btn-sec">

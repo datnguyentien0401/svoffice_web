@@ -92,6 +92,9 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
 
   async selectModelInit() {
     Object.keys(RequisitionTypeEnum).forEach(key => {
+      if (key === '_') {
+        return;
+      }
       const type = Utils.getEnumValue(RequisitionTypeEnum, key.replace('_', ''));
 
       this.translateService.get(type).subscribe(res => {

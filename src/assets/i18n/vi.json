@@ -11,7 +11,7 @@
   },
   "menu": {
     "employee": "Quản lý nhân viên",
-    "organization": "Quản lý đơn vị",
+    "organization": "Quản lý phòng ban",
     "document": {
       "": "Quản lý văn bản",
       "requisition": "Văn bản trình ký",
@@ -33,7 +33,7 @@
         "email": "Email",
         "status": "Trạng thái",
         "type": "Vai trò",
-        "organization": "Đơn vị",
+        "organization": "Phòng ban",
         "hint": {
           "username": "Tài khoản",
           "lastName": "Họ & Đệm",
@@ -41,7 +41,7 @@
           "tel": "Số điện thoại",
           "email": "Email",
           "type": "Vai trò",
-          "organization": "Đơn vị"
+          "organization": "Phòng ban"
         }
       }
     },
@@ -52,7 +52,7 @@
     },
     "type": {
       "": "Tất cả",
-      "admin": "Quản lý hệ thống",
+      "admin": "Quản trị hệ thống",
       "employee": "Nhân viên",
       "leader": "Lãnh đạo"
     },
@@ -65,7 +65,7 @@
         "tel": "Số điện thoại",
         "email": "Email",
         "type": "Vai trò",
-        "organization": "Đơn vị",
+        "organization": "Phòng ban",
         "status": "Trạng thái",
         "file": "Chữ ký mẫu"
       }
@@ -91,7 +91,7 @@
       "email": "Email",
       "status": "Trạng thái",
       "type": "Vai trò",
-      "organization": "Đơn vị",
+      "organization": "Phòng ban",
       "file": "File chữ ký mẫu",
       "fullName": "Họ tên",
       "hint": {
@@ -101,7 +101,7 @@
         "tel": "Số điện thoại",
         "email": "Email",
         "type": "Vai trò",
-        "organization": "Đơn vị",
+        "organization": "Phòng ban",
         "file": "File chữ ký mẫu"
       },
       "edit": {
@@ -130,7 +130,7 @@
   },
   "organization": {
     "management": {
-      "": "Quản lý đơn vị",
+      "": "Quản lý phòng ban",
       "search": {
         "": "Tìm kiếm",
         "code": "Mã",
@@ -157,12 +157,12 @@
       }
     },
     "confirm": {
-      "deactivate": "Khóa đơn vị",
-      "active": "Kích hoạt đơn vị"
+      "deactivate": "Khóa phòng ban",
+      "active": "Kích hoạt phòng ban"
     },
     "success": {
-      "deactivate": "Khóa đơn vị thành công",
-      "active": "Kích hoạt đơn vị thành công"
+      "deactivate": "Khóa phòng ban thành công",
+      "active": "Kích hoạt phòng ban thành công"
     },
     "ae": {
       "addTitle": "Thêm mới phòng ban",
@@ -176,21 +176,22 @@
         "status": "Trạng thái"
       },
       "edit": {
-        "confirm": "Cập nhật đơn vị",
-        "success": "Cập nhật đơn vị thành công"
+        "confirm": "Cập nhật phòng ban",
+        "success": "Cập nhật phòng ban thành công"
       },
       "add": {
-        "confirm": "Thêm mới đơn vị",
-        "success": "Thêm mới đơn vị thành công"
+        "confirm": "Thêm mới phòng ban",
+        "success": "Thêm mới phòng ban thành công"
       }
     }
   },
   "requisition": {
     "management": {
       "": "Văn bản trình ký",
+      "sign": "Văn bản ký duyệt",
       "search": {
         "": "Tìm kiếm",
-        "code": "Ký hiệu văn bản",
+        "code": "Mã",
         "title": "Tiêu đề văn bản",
         "status": "Trạng thái",
         "type": "Hình thức văn bản",
@@ -221,23 +222,28 @@
       "new": "Chưa trình ký",
       "waiting": "Chờ ký duyệt",
       "approved": "Đã ký duyệt",
-      "rejected": "Đã từ chối"
+      "rejected": "Đã từ chối",
+      "transfer": "Đã chuyển"
+
     },
     "table": {
       "header": {
         "stt": "STT",
         "id": "ID",
-        "code": "Ký hiệu văn bản",
+        "code": "Ký hiệu",
         "title": "Tiêu đề",
         "status": "Trạng thái",
         "type": "Hình thức",
         "createdDate": "Ngày tạo",
         "file": "File đính kèm",
         "signer": "Người ký",
-        "reason": "Ý kiến",
+        "reason": "Lý do",
         "transferDate": "Ngày đến",
         "transferUser": "Người gửi",
-        "transferComment": "Chỉ thị chuyển"
+        "transferComment": "Chỉ thị chuyển",
+        "requisitionDate": "Ngày trình",
+        "organization": "Đơn vị trình",
+        "deadline": "Hạn xử lý"
       }
     },
     "confirm": {
@@ -246,11 +252,14 @@
       "approve": "Ký duyệt",
       "reject": "Từ chối",
       "remove": "Xóa văn bản",
-      "reason": "Ý kiến",
+      "reason": "Lý do",
       "transfer": "Chuyển văn bản",
       "verify": "Xác thực văn bản",
       "file": "Ảnh chữ ký",
-      "selectFile": "Chọn ảnh chữ ký"
+      "selectFile": "Chọn ảnh chữ ký",
+      "absoluteX": "Tọa độ X",
+      "absoluteY": "Tọa độ Y"
+
     },
     "success": {
       "process": "Trình ký thành công",
@@ -264,16 +273,16 @@
     "ae": {
       "addTitle": "Thêm mới văn bản trình ký",
       "editTitle": "Cập nhật văn bản trình ký",
-      "code": "Ký hiệu văn bản",
+      "code": "Mã",
       "title": "Tiêu đề văn bản",
       "type": "Hình thức văn bản",
       "signer": "Người ký",
       "file": "File đính kèm",
       "createUser": "Người tạo",
       "createDate": "Ngày tạo",
-      "reason": "Ý kiến",
+      "reason": "Lý do",
       "status": "Trạng thái",
-      "organization": "Đơn vị",
+      "organization": "Phòng ban",
       "transferDate": "Ngày đến",
       "transferUser": "Người gửi",
       "transferComment": "Chỉ thị chuyển",
@@ -299,7 +308,7 @@
       "": "Chuyển văn vản",
       "comment": "Chỉ đạo văn bản ",
       "comment-maxlength": "2000 ký tự",
-      "organization": "Đơn vị nhận văn bản",
+      "organization": "Phòng ban nhận văn bản",
       "receiveUser": "Cá nhân nhận văn bản"
     },
     "receive": {
@@ -311,7 +320,7 @@
       "": "Quản lý thông báo",
       "search": {
         "": "Tìm kiếm",
-        "createDate": "Ngày tạo",
+        "createDate": "Ngày đến",
         "deadline": "Hạn xử lý",
         "fromDate": "Từ ngày",
         "toDate": "Đến ngày"
@@ -322,10 +331,9 @@
         "stt": "STT",
         "id": "ID",
         "content": "Nội dung",
-        "createDate": "Ngày tạo",
+        "createDate": "Ngày đến",
         "deadline": "Hạn xử lý",
-        "sender": "Người gửi",
-        "receiver": "Người nhận"
+        "sender": "Người gửi"
       }
     }
   },

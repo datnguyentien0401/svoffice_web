@@ -18,7 +18,8 @@
     <ng-container *ngFor="let button of buttons" matColumnDef="{{button.columnDef}}">
       <mat-header-cell *matHeaderCellDef="let header" [ngClass]="button.className" fxFlex="50px">
         <button mat-icon-button color="{{button.header.color}}" (click)="onClick(button.header.click, null)"
-                *ngIf="(button.header && button.header.display) ? button.header.display(header) : false">
+                *ngIf="(button.header && button.header.display) ? button.header.display(header) : false"
+                title="{{button.header.title}}">
           <mat-icon>{{button.header.icon}}</mat-icon>
         </button>
       </mat-header-cell>
@@ -26,7 +27,8 @@
         <mat-cell [ngClass]="button.className" fxFlex="50px"
                   *ngIf="button.display ? button.display(cell) : false">
           <button mat-icon-button color="{{button.color}}" (click)="onClick(button.click, cell)"
-                  disabled="{{button.disabled ? button.disabled(cell) : false}}">
+                  disabled="{{button.disabled ? button.disabled(cell) : false}}"
+                  title="{{button.title}}">
             <mat-icon>{{button.icon}}</mat-icon>
           </button>
         </mat-cell>

@@ -62,8 +62,12 @@ export class NotificationComponent extends BaseSearchLayout {
       },
       {
         columnDef: 'deadline', header: 'deadline',
-        title: (e: NotificationModel) => `${this.datePipe.transform(e.deadline, AppSettings.DIS_DATE_FORMAT, '-0')}`,
-        cell: (e: NotificationModel) => `${this.datePipe.transform(e.deadline, AppSettings.DIS_DATE_FORMAT, '-0')}`,
+        title: (e: NotificationModel) => e.deadline ?
+          `${this.datePipe.transform(e.deadline, AppSettings.DIS_DATE_FORMAT, '-0')}`
+          : '',
+        cell: (e: NotificationModel) => e.deadline ?
+          `${this.datePipe.transform(e.deadline, AppSettings.DIS_DATE_FORMAT, '-0')}`
+          : '',
         className: 'mat-column-deadline'
       },
       {
@@ -73,7 +77,7 @@ export class NotificationComponent extends BaseSearchLayout {
         className: 'mat-column-sender'
       },
     );
-    
+
   }
 
   ngOnInit = async () => {
@@ -95,7 +99,7 @@ export class NotificationComponent extends BaseSearchLayout {
     const createDateTo = this.searchForm.get('createDateTo').value;
     const deadlineFrom = this.searchForm.get('deadlineFrom').value;
     const deadlineTo = this.searchForm.get('deadlineTo').value;
-    
+
     const createDateFromStr = this.datePipe.transform(createDateFrom, AppSettings.API_DATE_FORMAT, '+7');
     const createDateToStr = this.datePipe.transform(createDateTo, AppSettings.API_DATE_FORMAT, '+7');
     const deadlineFromStr = this.datePipe.transform(deadlineFrom, AppSettings.API_DATE_FORMAT, '+7');

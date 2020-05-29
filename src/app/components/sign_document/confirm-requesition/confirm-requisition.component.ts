@@ -36,6 +36,8 @@ export class ConfirmRequisitionComponent extends BaseAddEditLayout {
     this.addEditForm = this.formBuilder.group({
       reason: [''],
       file: [''],
+      absoluteX: [''],
+      absoluteY: [''],
     });
   };
 
@@ -55,6 +57,9 @@ export class ConfirmRequisitionComponent extends BaseAddEditLayout {
       let formData: FormData = new FormData();
       formData.append("file", this.file, this.file.name);
       formData.append("id", `${this.data.id}`);
+      formData.append("absoluteX", `${this.addEditForm.get('absoluteX').value}`);
+      formData.append("absoluteY", `${this.addEditForm.get('absoluteY').value}`);
+
       this.serviceUtils.showLoading();
       this.http.post<FileModel>(
         this.apiService.getFullUrl('/requisitions/approve'), formData, httpOptions).subscribe(
@@ -62,10 +67,11 @@ export class ConfirmRequisitionComponent extends BaseAddEditLayout {
           this.onSuccessFunc(res, 'requisition.success.approve');
           this.serviceUtils.hideLoading();
         });
-
-      this.serviceUtils.execute(
-        this.http.post(this.apiService.getFullUrl('/requisitions/approve'), FormData, httpOptions),
-        this.onSuccessFunc, 'requisition.success.approve', null);
+      // const apiCall = this.http.post<FileModel>(this.apiService.getFullUrl('/requisitions/approve'), FormData);
+      // this.serviceUtils.execute(
+      //   apiCall,
+      //   this.onSuccessFunc, 'requisition.success.approve',
+      //   'requisition.confirm.approve');
     }
 
   }
