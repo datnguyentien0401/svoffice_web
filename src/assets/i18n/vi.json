@@ -33,16 +33,7 @@
         "email": "Email",
         "status": "Trạng thái",
         "type": "Vai trò",
-        "organization": "Phòng ban",
-        "hint": {
-          "username": "Tài khoản",
-          "lastName": "Họ & Đệm",
-          "firstName": "Tên",
-          "tel": "Số điện thoại",
-          "email": "Email",
-          "type": "Vai trò",
-          "organization": "Phòng ban"
-        }
+        "organization": "Phòng ban"
       }
     },
     "status": {
@@ -67,7 +58,8 @@
         "type": "Vai trò",
         "organization": "Phòng ban",
         "status": "Trạng thái",
-        "file": "Chữ ký mẫu"
+        "file": "Chữ ký mẫu",
+        "position": "Chức danh"
       }
     },
     "confirm": {
@@ -94,16 +86,7 @@
       "organization": "Phòng ban",
       "file": "File chữ ký mẫu",
       "fullName": "Họ tên",
-      "hint": {
-        "username": "Tài khoản",
-        "lastName": "Họ & Đệm",
-        "firstName": "Tên",
-        "tel": "Số điện thoại",
-        "email": "Email",
-        "type": "Vai trò",
-        "organization": "Phòng ban",
-        "file": "File chữ ký mẫu"
-      },
+      "position": "Chức danh",
       "edit": {
         "confirm": "Cập nhật nhân viên",
         "success": "Cập nhật nhân viên thành công"
@@ -287,6 +270,7 @@
       "transferUser": "Người gửi",
       "transferComment": "Chỉ thị chuyển",
       "receiver": "Thành phần liên quan",
+      "deadline": "Hạn xử lý",
       "edit": {
         "confirm": "Cập nhật văn bản",
         "success": "Cập nhật văn bản thành công"
@@ -343,6 +327,8 @@
   "btnCancelProcess": "Hủy trình ký",
   "btnProcess": "Trình ký",
   "btnTransfer": "Chuyển văn bản",
+  "btnApprove": "Ký duyệt",
+  "btnReject": "Từ chối",
   "btnSign": "Ký",
   "signDocNotification": "Văn bản cần ký duyệt",
   "recvDocNotification": "Văn bản đến"

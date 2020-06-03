@@ -3,12 +3,10 @@
   <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="1rem">
     <app-input name="code" formControlName="code"
               [placeholder]="moduleName + '.management.search.code'"
-              [hint]="moduleName + '.management.search.hint.code'"
               style="width: calc(33% - 1rem);">
     </app-input>
     <app-input name="name" formControlName="name"
               [placeholder]="moduleName + '.management.search.name'"
-              [hint]="moduleName + '.management.search.hint.name'"
               style="width: calc(33% - 1rem);">
     </app-input>
     <app-select [label]="moduleName + '.management.search.status'"

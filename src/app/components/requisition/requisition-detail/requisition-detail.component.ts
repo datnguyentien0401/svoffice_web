@@ -20,9 +20,10 @@ import {AppSettings} from "../../../app.settings";
 import {RequisitionStatusEnum} from "../../../_models/enums/RequisitionStatusEnum";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 import {SignDocumentComponent} from "../../sign_document/sign_document.component";
-import {TransferModel} from "../../../_models/transfer.model";
-import {Observable} from "rxjs";
 import {TransferRequisitionComponent} from "../transfer-requisition/transfer-requisition.component";
+import {Observable} from "rxjs";
+import {ConfirmRequisitionComponent} from "../../sign_document/confirm-requesition/confirm-requisition.component";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-a-e-organization',
@@ -40,7 +41,7 @@ export class RequisitionDetailComponent extends BaseAddEditLayout {
 
   constructor(protected activatedRoute: ActivatedRoute, protected formBuilder: FormBuilder, protected location: Location, private http: HttpClient,
               protected translateService: TranslateService, protected apiService: ApiService, protected serviceUtils: ServiceUtils,
-              private datePipe: DatePipe, public dialogRef: MatDialogRef<SignDocumentComponent>,
+              private datePipe: DatePipe, public dialogRef: MatDialogRef<SignDocumentComponent>, private cookieService: CookieService,
               @Inject(MAT_DIALOG_DATA) public data: RequisitionModel, public dialog: MatDialog) {
     super(activatedRoute, location, translateService, serviceUtils);
   }
@@ -60,6 +61,7 @@ export class RequisitionDetailComponent extends BaseAddEditLayout {
       transferComment: [''],
       transferDate: [''],
       transferUser: [''],
+      deadline: [''],
     });
 
     this.urlDownload = AppSettings.BASE_URL + '/files/download/' + this.data.fileId;
@@ -73,6 +75,7 @@ export class RequisitionDetailComponent extends BaseAddEditLayout {
     this.addEditForm.get('createDate').setValue(this.datePipe.transform(requisition.createDate, AppSettings.DIS_DATE_FORMAT, '-0'));
     this.addEditForm.get('transferDate').setValue(this.datePipe.transform(requisition.transferDate, AppSettings.DIS_DATE_FORMAT, '-0'));
     this.addEditForm.get('organization').setValue(requisition.organization.name);
+    this.addEditForm.get('deadline').setValue(this.datePipe.transform(requisition.deadline, AppSettings.DIS_DATE_FORMAT, '+7'));
 
     this.selectModelInit(requisition);
   };
@@ -138,6 +141,39 @@ export class RequisitionDetailComponent extends BaseAddEditLayout {
       data: this.data,
     });
     this.onCloseDialog();
+  }
+
+  approve() {
+    this.data.isReject = false;
+    this.openDialog(this.data).subscribe( data => {
+      this.onCloseDialog();
+    });
+  }
+
+  reject() {
+    this.data.isReject = true;
+    this.openDialog(this.data).subscribe( data => {
+      this.onCloseDialog();
+    });
+  }
+
+  openDialog(req: RequisitionModel): Observable<any> {
+    const dialogRef = this.dialog.open(ConfirmRequisitionComponent, {
+      width: '50%',
+      maxWidth: '50%',
+      height: '70%',
+      maxHeight: '70%',
+      data: req ,
+    });
+    return dialogRef.afterClosed();
+  }
+
+  isCancelProcessPermission(): boolean{
+    return (this.data.status == 1 && this.data.createUser === this.cookieService.get('username'));
+  }
+
+  isApproveOrRejectPermission(): boolean {
+    return (this.data.status == 1 && this.data.signerId === this.cookieService.get('username'));
   }
 
   hasAuthority(): boolean {

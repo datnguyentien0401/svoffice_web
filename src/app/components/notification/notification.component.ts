@@ -63,10 +63,10 @@ export class NotificationComponent extends BaseSearchLayout {
       {
         columnDef: 'deadline', header: 'deadline',
         title: (e: NotificationModel) => e.deadline ?
-          `${this.datePipe.transform(e.deadline, AppSettings.DIS_DATE_FORMAT, '-0')}`
+          `${this.datePipe.transform(e.deadline, AppSettings.DIS_DATE_FORMAT, '+7')}`
           : '',
         cell: (e: NotificationModel) => e.deadline ?
-          `${this.datePipe.transform(e.deadline, AppSettings.DIS_DATE_FORMAT, '-0')}`
+          `${this.datePipe.transform(e.deadline, AppSettings.DIS_DATE_FORMAT, '+7')}`
           : '',
         className: 'mat-column-deadline'
       },

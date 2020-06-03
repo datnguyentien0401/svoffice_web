@@ -65,11 +65,11 @@ export class OrganizationComponent extends BaseSearchLayout {
         columnDef: 'edit',
         color: 'warn',
         icon: 'edit',
-        tooltip: 'add',
+        title: 'Update',
         header: {
           columnDef: 'add',
           icon: 'add',
-          tooltip: 'add',
+          title: 'Add',
           color: 'warn',
           click: 'addOrEdit',
           display: (o: OrganizationModel) => AuthoritiesUtils.hasAuthority('post/organizations'),
@@ -81,8 +81,8 @@ export class OrganizationComponent extends BaseSearchLayout {
         columnDef: 'deactivate',
         color: 'warn',
         icon: 'clear',
+        title: 'Delete',
         click: 'deactivate',
-        // tslint:disable-next-line:max-line-length
         disabled: (o: OrganizationModel) => Utils.getEnumValue(OrganizationStatusEnum, o.status ? '1' : '0') !== OrganizationStatusEnum._1,
         display: (o: OrganizationModel) => o && AuthoritiesUtils.hasAuthority('put/organizations/deactivate'),
       },

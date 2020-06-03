@@ -17,6 +17,7 @@ export class User {
   signatureFileId: number;
   signatureFile: FileModel;
   signatureFileUpload: File;
+  position: string;
 
   constructor(form: FormGroup | string) {
     if (form instanceof FormGroup) {
@@ -40,6 +41,9 @@ export class User {
       }
       if (form.get('signatureFileUpload')) {
         this.signatureFileUpload = form.get('signatureFileUpload').value;
+      }
+      if (form.get('position')) {
+        this.position = form.get('position').value;
       }
     } else {
       this.username = form;

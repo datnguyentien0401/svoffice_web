@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 
 import {ActivatedRoute} from '@angular/router';
 import {FormBuilder} from '@angular/forms';
-import {Location} from '@angular/common';
+import {DatePipe, Location} from '@angular/common';
 import {TranslateService} from '@ngx-translate/core';
 import {ApiService} from "../../../_services/api.service";
 import {ServiceUtils} from "../../../base/utils/service.utils";
@@ -17,11 +17,13 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {FileModel} from "../../../_models/file.model";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {RequisitionComponent} from "../requisition.component";
+import {AppSettings} from "../../../app.settings";
 
 @Component({
   selector: 'app-a-e-organization',
   templateUrl: './a-e-requisition.component.html',
-  styleUrls: ['./a-e-requisition.component.scss']
+  styleUrls: ['./a-e-requisition.component.scss'],
+  providers: [DatePipe]
 })
 export class AddEditRequisitionComponent extends BaseAddEditLayout {
   moduleName = 'requisition.ae.';
@@ -34,7 +36,8 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
 
   constructor(protected activatedRoute: ActivatedRoute, protected formBuilder: FormBuilder, protected location: Location, private http: HttpClient,
               protected translateService: TranslateService, protected apiService: ApiService, protected serviceUtils: ServiceUtils,
-              @Inject(MAT_DIALOG_DATA) public data: RequisitionModel, public dialogRef: MatDialogRef<RequisitionComponent>,) {
+              @Inject(MAT_DIALOG_DATA) public data: RequisitionModel, public dialogRef: MatDialogRef<RequisitionComponent>,
+              private datePipe: DatePipe) {
     super(activatedRoute, location, translateService, serviceUtils);
   }
 
@@ -45,7 +48,7 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
       this.id = this.data.id;
     }
     this.addEditForm = this.formBuilder.group({
-      code: [''],
+      deadline: [''],
       title: [''],
       type: [''],
       signerIds: [''],
@@ -119,7 +122,11 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
 
   onSubmit(): void {
     console.log(this.addEditForm);
+    const deadline = this.addEditForm.get('deadline').value;
+    const deadlineFormat = this.datePipe.transform(deadline, AppSettings.API_DATE_FORMAT, '+7');
+
     const objSave = new RequisitionModel(this.addEditForm);
+    objSave.deadline = `${deadlineFormat ? deadlineFormat : ''}`;
     let apiCall;
     let action;
 

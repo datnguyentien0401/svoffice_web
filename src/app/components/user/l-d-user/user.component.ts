@@ -78,6 +78,12 @@ export class UserComponent extends BaseSearchLayout {
       className: 'mat-column-organization'
     },
     {
+      columnDef: 'position', header: 'position',
+      title: (e: User) => `${e.position}`,
+      cell: (e: User) => `${e.position}`,
+      className: 'mat-column-email'
+    },
+    {
       columnDef: 'status',
       header: 'status',
       title: (e: User) => `${this.utils.getEnumValueTranslated(UserStatusEnum, e.status === true ? '1' : '0')}`,
@@ -100,6 +106,7 @@ export class UserComponent extends BaseSearchLayout {
         columnDef: 'reset-pass',
         color: 'warn',
         icon: 'loop',
+        title: 'Reset password',
         click: 'resetPass',
         disabled: (e: User) => !(AuthoritiesUtils.hasAuthority('post/users/reset-pass')),
         display: (e: User) => true
@@ -108,11 +115,13 @@ export class UserComponent extends BaseSearchLayout {
         columnDef: 'edit',
         color: 'warn',
         icon: 'edit',
+        title: 'Update',
         click: 'addOrEdit',
         header: {
           columnDef: 'add',
           icon: 'add',
           color: 'warn',
+          title: 'Add',
           click: 'addOrEdit',
           display: (e: User) => AuthoritiesUtils.hasAuthority('post/users')
         },
@@ -125,6 +134,7 @@ export class UserComponent extends BaseSearchLayout {
         color: 'warn',
         icon: 'clear',
         click: 'deactivate',
+        title: 'Delete',
         disabled: (e: User) => (!AuthoritiesUtils.hasAuthority('put/users/deactivate')) ||
           Utils.getEnumValue(UserStatusEnum, e.status === true ? '1' : '0') !== UserStatusEnum._1,
         display: (e: User) => true
@@ -134,6 +144,7 @@ export class UserComponent extends BaseSearchLayout {
         color: 'warn',
         icon: 'visibility',
         click: 'onRowClick',
+        title: 'View detail',
         display: (e: User) => e && AuthoritiesUtils.hasAuthority('get/users/{username}'),
       },
     );

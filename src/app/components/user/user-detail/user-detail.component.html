@@ -21,6 +21,10 @@
                formControlName="type"
                [readonly]="true"
                style="width: calc(40% - 1rem);"></app-input>
+    <app-input [placeholder]="moduleName + 'position'"
+               formControlName="position"
+               [readonly]="true"
+               style="width: calc(40% - 1rem);"></app-input>
     <h4 style="width: 100%;">{{moduleName + 'detail.title.contact'|translate}}</h4>
     <app-input name="tel" formControlName="tel"
                [placeholder]="moduleName + 'tel'|translate"

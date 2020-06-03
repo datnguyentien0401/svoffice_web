@@ -80,8 +80,8 @@ export class RequisitionComponent extends BaseSearchLayout {
       },
       {
         columnDef: 'deadline', header: 'deadline',
-        title: (e: RequisitionModel) => `${this.datePipe.transform(e.createDate, AppSettings.DIS_DATE_FORMAT, '-0')}`,
-        cell: (e: RequisitionModel) => `${this.datePipe.transform(e.createDate, AppSettings.DIS_DATE_FORMAT, '-0')}`,
+        title: (e: RequisitionModel) => `${this.datePipe.transform(e.deadline, AppSettings.DIS_DATE_FORMAT, '+7')}`,
+        cell: (e: RequisitionModel) => `${this.datePipe.transform(e.deadline, AppSettings.DIS_DATE_FORMAT, '+7')}`,
         className: 'mat-column-deadline'
       },
       {

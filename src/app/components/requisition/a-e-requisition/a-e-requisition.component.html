@@ -6,23 +6,17 @@
                style="width: calc(50% - 1rem);"
                [required]="true">
     </app-input>
-    <app-input name="code" formControlName="code"
-               [placeholder]="moduleName + 'code'"
-               style="width: calc(50% - 1rem);"
-               [required]="true">
-    </app-input>
+    <app-datepicker formControlName="deadline"
+                    [required]="true"
+                    [placeholder]="moduleName + 'deadline'"
+                    style="width: calc(50% - 1rem);">
+    </app-datepicker>
     <app-select [label]="moduleName + 'type'"
                 [data]="typeValues"
                 formControlName="type"
                 style="width: calc(50% - 1rem);"
                 [required]="true">
     </app-select>
-<!--    <app-select [label]="moduleName + 'signer'"-->
-<!--                [data]="signerValues"-->
-<!--                formControlName="signerId"-->
-<!--                style="width: calc(50% - 1rem);"-->
-<!--                [required]="true">-->
-<!--    </app-select>-->
     <app-multi-select-autocomplete formControlName="signerIds"
                       [options]="signerValues"
                       [label]="moduleName + 'signer'"

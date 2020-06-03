@@ -15,8 +15,10 @@
     "document": {
       "": "Document management",
       "requisition": "Requisition",
-      "sign-document": "Sign Document"
+      "sign-document": "Sign Document",
+      "receive-document": "Arrival document"
     },
+    "notification": "Notification",
     "logout": "Logout"
   },
   "user": {
@@ -31,17 +33,7 @@
         "email": "Email",
         "status": "Status",
         "type": "User type",
-        "organization": "Organization",
-        "hint": {
-          "username": "Username",
-          "firstName": "First name",
-          "lastName": "Last name",
-          "tel": "Telephone number",
-          "email": "Email",
-          "status": "Status",
-          "type": "User type",
-          "organization": "Organization"
-        }
+        "organization": "Organization"
       }
     },
     "status": {
@@ -52,9 +44,8 @@
     "type": {
       "": "All",
       "admin": "Admin",
-      "family": "warehouse control person",
-      "organization": "Warehouse lessor",
-      "storekeeper": "Store keeper"
+      "employee": "Employee",
+      "leader": "Leader"
     },
     "table": {
       "header": {
@@ -65,48 +56,51 @@
         "tel": "Telephone number",
         "email": "Email",
         "status": "Status",
-        "type": "User type",
-        "organization": "Organization"
+        "type": "Role",
+        "organization": "Organization",
+        "file": "Signature",
+        "position": "Position"
       }
     },
     "confirm": {
-      "process": "Submit",
-      "cancelProcess": "Cancel",
-      "approve": "Approve",
-      "reject": "Reject",
+      "reset-pass": "Assign default password",
+      "deactivate": "Deactivate account",
+      "active": "Deactivate account",
       "remove": "Delete"
     },
     "success": {
       "reset-pass": "Assign default password success",
       "deactivate": "Deactivate account success",
-      "active": "Active account success",
+      "active": "Deactivate account success",
       "remove": "Delete success"
     },
     "ae": {
-      "": "Search",
       "username": "Username",
       "firstName": "First name",
       "lastName": "Last name",
       "tel": "Telephone number",
       "email": "Email",
       "status": "Status",
-      "type": "User type",
+      "type": "Role",
       "organization": "Organization",
-      "hint": {
-        "username": "Username",
-        "firstName": "First name",
-        "lastName": "Last name",
-        "tel": "Telephone number",
-        "email": "Email",
-        "status": "Status",
-        "type": "User type",
-        "organization": "Organization"
-      },
+      "file": "Attachment",
+      "fullName": "Full name",
+      "position": "Position",
       "edit": {
-        "confirm": "Update user"
+        "confirm": "Update employee",
+        "success": "Update employee success"
       },
       "add": {
-        "confirm": "Add user"
+        "confirm": "Add employee",
+        "success": "Add employee success"
+      },
+      "detail": {
+        "title": {
+          "general": "General information",
+          "contact": "Contact",
+          "other": "Others",
+          "signature": "Template signature"
+        }
       }
     }
   },
@@ -116,7 +110,213 @@
     "login": "Login",
     "error": "Username or password is invalid"
   },
+  "organization": {
+    "management": {
+      "": "Organization Management",
+      "search": {
+        "": "Search",
+        "code": "Code",
+        "name": "Name",
+        "status": "Status"
+      }
+    },
+    "status": {
+      "all": "All",
+      "active": "Active",
+      "deactivate": "Inactive"
+    },
+    "table": {
+      "header": {
+        "stt": "No.",
+        "code": "Code",
+        "name": "Name",
+        "status": "Status"
+      }
+    },
+    "confirm": {
+      "deactivate": "Delete Update",
+      "active": "Active Update"
+    },
+    "success": {
+      "deactivate": "Delete Update success",
+      "active": "Active Update success"
+    },
+    "ae": {
+      "addTitle": "Add organization",
+      "editTitle": "Update organization",
+      "code": "Code",
+      "name": "Name",
+      "status": "Status",
+      "edit": {
+        "confirm": "Update organization",
+        "success": "Update organization success"
+      },
+      "add": {
+        "confirm": "Add organization",
+        "success": "Add organization success"
+      }
+    }
+  },
+  "requisition": {
+    "management": {
+      "": "Requisition Management",
+      "sign": "Approve document",
+      "search": {
+        "code": "Code",
+        "title": "Document title",
+        "status": "Status",
+        "type": "Document type",
+        "fromDate": "From date",
+        "toDate": "To date",
+        "hint": {
+          "code": "Code",
+          "title": "Document title",
+          "status": "Status",
+          "type": "Document type",
+          "fromDate": "From date",
+          "toDate": "To date"
+        }
+      }
+    },
+    "type": {
+      "all": "All",
+      "record": "Biên bản",
+      "decided": "Quyết định",
+      "notice": "Thông báo",
+      "report": "Báo cáo",
+      "plan": "Kế hoạch",
+      "rule": "Quy định",
+      "guideline": "Hướng dẫn"
+    },
+    "status": {
+      "all": "All",
+      "new": "New",
+      "waiting": "Waiting",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "transfer": "Transfer"
+
+    },
+    "table": {
+      "header": {
+        "stt": "No.",
+        "id": "ID",
+        "code": "Code",
+        "title": "Title",
+        "status": "Status",
+        "type": "Type",
+        "createdDate": "Create date",
+        "file": "Attachment",
+        "signer": "Signer",
+        "reason": "Reason",
+        "transferDate": "Arrival date",
+        "transferUser": "Sender",
+        "transferComment": "Transfer comment",
+        "requisitionDate": "Process date",
+        "organization": "Organization",
+        "deadline": "Deadline"
+      }
+    },
+    "confirm": {
+      "process": "Process",
+      "cancelProcess": "Cancel Process",
+      "approve": "Approve",
+      "reject": "Reject",
+      "remove": "Delete document",
+      "reason": "Reason",
+      "transfer": "Transfer document",
+      "verify": "Verify document",
+      "file": "Signature",
+      "selectFile": "Select signature",
+      "absoluteX": "Coordinates X",
+      "absoluteY": "Coordinates Y"
+
+    },
+    "success": {
+      "process": "Process success",
+      "cancelProcess": "Cancel Process success",
+      "approve": "Approve success",
+      "reject": "Reject success",
+      "remove": "Delete document success",
+      "transfer": "Transfer document success",
+      "verify": "Data integrity document"
+    },
+    "ae": {
+      "addTitle": "Add document Process",
+      "editTitle": "Update document Process",
+      "code": "Code",
+      "title": "Document title",
+      "type": "Document type",
+      "signer": "Signer",
+      "file": "Attachment",
+      "createUser": "Creator",
+      "createDate": "Create date",
+      "reason": "Reason",
+      "status": "Status",
+      "organization": "Organization",
+      "transferDate": "Arrival date",
+      "transferUser": "Sender",
+      "transferComment": "Transfer comment",
+      "receiver": "Related people",
+      "deadline": "Deadline",
+      "edit": {
+        "confirm": "Update document",
+        "success": "Update document success"
+      },
+      "add": {
+        "confirm": "Add document",
+        "success": "Add document success"
+      },
+      "detail": {
+        "title": {
+          "general": "General information",
+          "contact": "Contact",
+          "other": "Others",
+          "signature": "Template signature"
+        }
+      }
+    },
+    "transfer": {
+      "": "Transfer document",
+      "comment": "Comment",
+      "comment-maxlength": "2000 Character",
+      "Update": "Update",
+      "receiveUser": "Receiver"
+    },
+    "receive": {
+      "": "Arrival Document Management"
+    }
+  },
+  "notification": {
+    "management": {
+      "": "Notification Management",
+      "search": {
+        "createDate": "Arrival date",
+        "deadline": "Deadline",
+        "fromDate": "From date",
+        "toDate": "To date"
+      }
+    },
+    "table": {
+      "header": {
+        "No.": "No.",
+        "id": "ID",
+        "content": "Content",
+        "createDate": "Arrival date",
+        "deadline": "Deadline",
+        "sender": "Sender"
+      }
+    }
+  },
   "btnAddEdit": "Save",
   "btnCancel": "Cancel",
-  "btnBack": "Back"
+  "btnBack": "Back",
+  "btnCancelProcess": "Cancel process",
+  "btnProcess": "Process",
+  "btnTransfer": "Transfer document",
+  "btnSign": "Sign",
+  "btnApprove": "Approve",
+  "btnReject": "Reject",
+  "signDocNotification": "Approve document",
+  "recvDocNotification": "Arrival document"
 }

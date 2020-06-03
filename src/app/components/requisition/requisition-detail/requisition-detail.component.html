@@ -3,11 +3,6 @@
 </div>
 <form [formGroup]="addEditForm" class="form" style="margin: 0px 1rem">
   <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="1rem">
-    <app-input name="code" formControlName="code"
-               [placeholder]="moduleName + 'code'"
-               style="width: calc(50% - 1rem);"
-               [readonly]="true">
-    </app-input>
     <app-input [placeholder]="moduleName + 'type'"
                name="type" formControlName="type"
                style="width: calc(50% - 1rem);"
@@ -30,6 +25,11 @@
     </app-input>
     <app-input name="createDate" formControlName="createDate"
                [placeholder]="moduleName + 'createDate'"
+               style="width: calc(50% - 1rem);"
+               [readonly]="true">
+    </app-input>
+    <app-input name="deadline" formControlName="deadline"
+               [placeholder]="moduleName + 'deadline'"
                style="width: calc(50% - 1rem);"
                [readonly]="true">
     </app-input>
@@ -61,6 +61,18 @@
   </div>
   <div class="btn-sec">
     <button mat-raised-button type="submit" color="primary" class="Update-btn"
+            (click)="approve()"
+            [disabled]="!isApproveOrRejectPermission()"
+            *ngIf="hasAuthority() && !this.data.isTransferMenu">
+      {{'btnApprove'|translate}}
+    </button>
+    <button mat-raised-button type="submit" color="primary" class="Update-btn"
+            (click)="reject()"
+            [disabled]="!isApproveOrRejectPermission()"
+            *ngIf="hasAuthority() && !this.data.isTransferMenu">
+      {{'btnReject'|translate}}
+    </button>
+    <button mat-raised-button type="submit" color="primary" class="Update-btn"
             (click)="process()"
             [disabled]="this.data.status != 0"
             *ngIf="hasAuthority() && !this.data.isTransferMenu">
@@ -68,7 +80,7 @@
     </button>
     <button mat-raised-button type="submit" color="primary" class="Update-btn"
             (click)="cancelProcess()"
-            [disabled]="this.data.status != 1"
+            [disabled]="!isCancelProcessPermission()"
             *ngIf="hasAuthority() && !this.data.isTransferMenu">
       {{'btnCancelProcess'|translate}}
     </button>

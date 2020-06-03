@@ -38,8 +38,12 @@
   <div class="btn-sec">
     <div class="btn-sec">
       <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onSubmit()"
-              *ngIf="hasAuthority()" [disabled]="addEditForm.invalid">
+              *ngIf="hasAuthority() && !this.data.isReject" [disabled]="addEditForm.invalid">
         {{'btnSign'|translate}}
+      </button>
+      <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onSubmit()"
+              *ngIf="hasAuthority() && this.data.isReject" [disabled]="addEditForm.invalid">
+        {{'btnReject'|translate}}
       </button>
       <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onCloseDialog()">
         {{'btnCancel'|translate}}

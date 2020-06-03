@@ -34,14 +34,9 @@
                       [label]="moduleName + 'organization'"
                       [required]="false"
                       style="width: calc(45% - 1rem);"></app-autocomplete>
-<!--    <label for="file">{{ moduleName + 'file' | translate}}</label>-->
-<!--    <input type="file"-->
-<!--           id="file"-->
-<!--           name="signatureFileUpload"-->
-<!--           formControlName="signatureFileUpload"-->
-<!--           class="btn-1"-->
-<!--           accept="image/*"-->
-<!--           (change)="onChangeFileUpload($event)"/>-->
+    <app-input name="position" formControlName="position"
+               [placeholder]="moduleName + 'position'|translate"
+               style="width: calc(45% - 1rem);" [required]="true"></app-input>
   </div>
   <div class="btn-sec">
     <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onSubmit()"

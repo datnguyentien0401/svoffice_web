@@ -8,6 +8,7 @@ export class RequisitionModel {
   code: string;
   title: string;
   createDate: string;
+  createUser: string;
   type: string;
   status: number;
   signer: User;
@@ -27,6 +28,7 @@ export class RequisitionModel {
   receivers: string;
   signerList: string;
   requisitionDate: string;
+  deadline: string;
 
   isTransferMenu: boolean;
 
@@ -50,6 +52,9 @@ export class RequisitionModel {
       }
       if (form.get('createDate')) {
         this.createDate = form.get('createDate').value;
+      }
+      if (form.get('createUser')) {
+        this.createUser = form.get('createUser').value;
       }
       if (form.get('signerIds')) {
         this.signerIds = form.get('signerIds').value;
@@ -89,6 +94,9 @@ export class RequisitionModel {
       }
       if (form.get('signerId')) {
         this.signerId = form.get('signerId').value;
+      }
+      if (form.get('deadline')) {
+        this.deadline = form.get('deadline').value;
       }
     } else {
       this.id = form;

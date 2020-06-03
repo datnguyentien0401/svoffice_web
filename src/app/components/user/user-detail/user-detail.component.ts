@@ -49,6 +49,7 @@ export class UserDetailComponent extends BaseAddEditLayout {
       status: [''],
       type: [''],
       organization: [''],
+      position: [''],
     });
 
     const user = await this.apiService.get('/users/' + this.data.username, null).toPromise() as User;

@@ -55,7 +55,7 @@ export class AddEditUserComponent extends BaseAddEditLayout {
       status: [''],
       type: [''],
       organization: [''],
-      // signatureFileUpload: ['']
+      position: ['']
     });
 
     Object.keys(UserStatusEnum).forEach(key => {

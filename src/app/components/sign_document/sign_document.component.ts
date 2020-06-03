@@ -19,6 +19,8 @@ import {Observable} from "rxjs";
 import {ConfirmRequisitionComponent} from "./confirm-requesition/confirm-requisition.component";
 import {MatDialog} from "@angular/material";
 import {CookieService} from "ngx-cookie-service";
+import {User} from "../../_models/user.model";
+import {RequisitionDetailComponent} from "../requisition/requisition-detail/requisition-detail.component";
 
 @Component({
   selector: 'app-user',
@@ -81,8 +83,8 @@ export class SignDocumentComponent extends BaseSearchLayout {
       },
       {
         columnDef: 'deadline', header: 'deadline',
-        title: (e: RequisitionModel) => `${this.datePipe.transform(e.requisitionDate, AppSettings.DIS_DATE_FORMAT, '-0')}`,
-        cell: (e: RequisitionModel) => `${this.datePipe.transform(e.requisitionDate, AppSettings.DIS_DATE_FORMAT, '-0')}`,
+        title: (e: RequisitionModel) => `${this.datePipe.transform(e.deadline, AppSettings.DIS_DATE_FORMAT, '+7')}`,
+        cell: (e: RequisitionModel) => `${this.datePipe.transform(e.deadline, AppSettings.DIS_DATE_FORMAT, '+7')}`,
         className: 'mat-column-deadline'
       },
       {
@@ -107,6 +109,14 @@ export class SignDocumentComponent extends BaseSearchLayout {
     );
 
     this.buttons.push(
+      {
+        columnDef: 'viewDetail',
+        color: 'warn',
+        icon: 'visibility',
+        click: 'viewDetail',
+        title: 'View detail',
+        display: (e: User) => e && AuthoritiesUtils.hasAuthority('get/requisitions/{id}'),
+      },
       {
         columnDef: 'approve',
         color: 'warn',
@@ -206,6 +216,19 @@ export class SignDocumentComponent extends BaseSearchLayout {
       data: req ,
     });
     return dialogRef.afterClosed();
+  }
+
+  viewDetail(req: RequisitionModel){
+    req.isTransferMenu = false;
+    this.dialog.open(RequisitionDetailComponent, {
+      width: '80%',
+      maxWidth: '80%',
+      height: '90%',
+      maxHeight: '90%',
+      data: req,
+    }).afterClosed().subscribe(res => {
+      this.search();
+    });
   }
 
 }
