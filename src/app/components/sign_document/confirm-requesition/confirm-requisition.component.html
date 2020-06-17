@@ -5,7 +5,7 @@
   <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="1rem"
        *ngIf="this.data.isReject">
       <textarea name="reason" formControlName="reason"
-                rows="5" cols="50"
+                rows="8" cols="50"
                 required="{{data.isReject}}"
                 placeholder="{{moduleName + '.reason'|translate}}"
                 style="width: calc(100% - 1rem);">
@@ -23,15 +23,18 @@
            formControlName="file"
            class="btn-1"
            accept="image/*"
+           required="true"
            (change)="onChangeFileUpload($event)"/>
     <p>{{file ? file.name : ''}}</p>
     <div style="width: calc(100% - 1rem);"></div>
     <app-number name="absoluteX"
                formControlName="absoluteX"
-               [placeholder]="moduleName + '.absoluteX'"
+                [required]="true"
+                [placeholder]="moduleName + '.absoluteX'"
                style="width: calc(50% - 1rem);"></app-number>
     <app-number name="absoluteY"
                 formControlName="absoluteY"
+                [required]="true"
                 [placeholder]="moduleName + '.absoluteY'"
                 style="width: calc(50% - 1rem);"></app-number>
   </div>
@@ -45,7 +48,7 @@
               *ngIf="hasAuthority() && this.data.isReject" [disabled]="addEditForm.invalid">
         {{'btnReject'|translate}}
       </button>
-      <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onCloseDialog()">
+      <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onCloseDialog(null)">
         {{'btnCancel'|translate}}
       </button>
     </div>

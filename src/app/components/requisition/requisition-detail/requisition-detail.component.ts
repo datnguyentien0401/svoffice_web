@@ -67,7 +67,6 @@ export class RequisitionDetailComponent extends BaseAddEditLayout {
     this.urlDownload = AppSettings.BASE_URL + '/files/download/' + this.data.fileId;
 
     const requisition = await this.apiService.get('/requisitions/' + this.data.id, null).toPromise() as RequisitionModel;
-    console.log(requisition);
     this.title = requisition.title;
     this.fileName = requisition.file.fileName;
 
@@ -81,7 +80,6 @@ export class RequisitionDetailComponent extends BaseAddEditLayout {
   };
 
   download(){
-    console.log(this.urlDownload);
     let headers = new HttpHeaders();
     headers = headers.append('Accept', 'application/pdf; charset=utf-8');
      this.http.get(this.urlDownload, {
@@ -146,14 +144,18 @@ export class RequisitionDetailComponent extends BaseAddEditLayout {
   approve() {
     this.data.isReject = false;
     this.openDialog(this.data).subscribe( data => {
-      this.onCloseDialog();
+      if (data != null) {
+        this.onCloseDialog();
+      }
     });
   }
 
   reject() {
     this.data.isReject = true;
     this.openDialog(this.data).subscribe( data => {
-      this.onCloseDialog();
+      if (data != null) {
+        this.onCloseDialog();
+      }
     });
   }
 

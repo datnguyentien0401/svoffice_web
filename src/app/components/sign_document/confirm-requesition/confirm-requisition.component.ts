@@ -80,8 +80,8 @@ export class ConfirmRequisitionComponent extends BaseAddEditLayout {
     this.file = <File>event.target.files[0];
   }
 
-  onCloseDialog() {
-    this.dialogRef.close();
+  onCloseDialog(data: any|null) {
+    this.dialogRef.close(data);
   }
 
   hasAuthority(): boolean {
@@ -91,7 +91,7 @@ export class ConfirmRequisitionComponent extends BaseAddEditLayout {
 
   onSuccessFunc = (data: any, onSuccessMessage: string): void => {
     this.serviceUtils.onSuccessFunc(onSuccessMessage);
-    this.onCloseDialog();
+    this.onCloseDialog(data);
   };
 
 }

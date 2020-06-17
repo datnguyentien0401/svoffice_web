@@ -69,9 +69,6 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
       this.addEditForm.setValue(Utils.reduceEntityAttributeForFormControl(this.addEditForm, requisition));
 
       if (requisition.signerList) {
-        console.log(requisition.signerList.split(',').filter(obj => {
-          return obj != '';
-        }));
         this.addEditForm.get('signerIds').setValue(requisition.signerList.split(',').filter(obj => {
           return obj != '';
         }));
@@ -85,6 +82,8 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
       } else {
         this.addEditForm.get('receiverIds').setValue([]);
       }
+      this.addEditForm.get('deadline').setValue(new Date(this.data.deadline));
+      console.log(this.addEditForm);
 
       this.file = new File([""], requisition.file.fileName);
     } else {

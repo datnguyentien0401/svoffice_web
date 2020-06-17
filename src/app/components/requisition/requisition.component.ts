@@ -121,7 +121,7 @@ export class RequisitionComponent extends BaseSearchLayout {
         tooltip: 'remove',
         click: 'remove',
         title: 'Delete',
-        disabled: (o: RequisitionModel) => o.status == 5 || o.status == 2,
+        disabled: (o: RequisitionModel) => o.status != 0 && o.status != 3,
         display: (o: RequisitionModel) => AuthoritiesUtils.hasAuthority('delete/requisitions/{id}'),
       },
       {
