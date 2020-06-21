@@ -10,7 +10,7 @@ import {ServiceUtils} from '../../base/utils/service.utils';
 import {ConfirmRequisitionComponent} from "../sign_document/confirm-requesition/confirm-requisition.component";
 
 @Component({
-  selector: 'app-add-edit-environment',
+  selector: 'app-otp',
   templateUrl: './otp.component.html',
   styleUrls: ['./otp.component.scss']
 })

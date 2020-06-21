@@ -45,6 +45,7 @@
     </app-input>
     <label>{{ moduleName + 'file' | translate}}</label>
     <a (click)="download()">{{ fileName }}</a>
+    <hr>
   </div>
   <br>
   <div *ngIf="this.data.isTransferMenu" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="1rem">
@@ -59,6 +60,8 @@
                [readonly]="true">
     </app-input>
   </div>
+  <app-receive-user-requisition [usernameList]="receivers"></app-receive-user-requisition>
+
   <div class="btn-sec">
     <button mat-raised-button type="submit" color="primary" class="Update-btn"
             (click)="approve()"
@@ -88,12 +91,6 @@
       <mat-icon>cancel</mat-icon>
       {{'btnCancelProcess'|translate}}
     </button>
-<!--    <button mat-raised-button type="submit" color="primary" class="Update-btn"-->
-<!--            (click)="transfer()"-->
-<!--            [disabled]="this.data.status != 2 && this.data.status != 5"-->
-<!--            *ngIf="hasAuthority()">-->
-<!--      {{'btnTransfer'|translate}}-->
-<!--    </button>-->
     <button mat-raised-button type="submit" color="primary" class="Update-btn"
             (click)="onCloseDialog()">
       <mat-icon>undo</mat-icon>

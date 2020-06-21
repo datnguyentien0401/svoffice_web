@@ -11,7 +11,7 @@ import {ConfirmRequisitionComponent} from "../sign_document/confirm-requesition/
 import {PasswordModel} from "../../_models/password.model";
 
 @Component({
-  selector: 'app-add-edit-environment',
+  selector: 'app-change-password',
   templateUrl: './password.component.html',
   styleUrls: ['./password.component.scss']
 })

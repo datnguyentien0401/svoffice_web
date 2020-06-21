@@ -37,7 +37,6 @@ export class RequisitionComponent extends BaseSearchLayout {
   statusValues: SelectModel[] = [];
   typeValues: SelectModel[] = [];
 
-
   constructor(protected formBuilder: FormBuilder, protected router: Router, protected apiService: ApiService,
               protected utils: Utils, protected serviceUtils: ServiceUtils, protected uiStateService: UiStateService,
               protected translateService: TranslateService, private datePipe: DatePipe, public dialog: MatDialog) {
