@@ -324,9 +324,13 @@
     "": "Enter OTP"
   },
   "receive-user": {
-    "stt": "No.",
-    "name": "Full name",
-    "org": "Organization"
+    "table": {
+      "header": {
+        "stt": "No.",
+        "name": "Full name",
+        "org": "Organization"
+      }
+    }
   },
   "btnOk": "OK",
   "btnAddEdit": "Save",
