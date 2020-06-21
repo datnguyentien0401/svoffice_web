@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, EventEmitter, Inject} from '@angular/core';
 
 import {ActivatedRoute} from '@angular/router';
 import {FormBuilder} from '@angular/forms';
@@ -20,7 +20,7 @@ import {RequisitionComponent} from "../requisition.component";
 import {AppSettings} from "../../../app.settings";
 
 @Component({
-  selector: 'app-a-e-organization',
+  selector: 'app-a-e-requisition',
   templateUrl: './a-e-requisition.component.html',
   styleUrls: ['./a-e-requisition.component.scss'],
   providers: [DatePipe]
@@ -33,6 +33,8 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
   receiverValues: SelectModel[] = [];
   file: File;
   fileId: number;
+  receivers: string;
+  receiversChanged: EventEmitter<string> = new EventEmitter();
 
   constructor(protected activatedRoute: ActivatedRoute, protected formBuilder: FormBuilder, protected location: Location, private http: HttpClient,
               protected translateService: TranslateService, protected apiService: ApiService, protected serviceUtils: ServiceUtils,
@@ -83,7 +85,6 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
         this.addEditForm.get('receiverIds').setValue([]);
       }
       this.addEditForm.get('deadline').setValue(new Date(this.data.deadline));
-      console.log(this.addEditForm);
 
       this.file = new File([""], requisition.file.fileName);
     } else {
@@ -113,6 +114,12 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
     signers.forEach((leader: User) => {
       this.signerValues.push(new SelectModel(leader.username, leader.lastName + ' ' + leader.firstName));
     });
+  }
+
+  onChangeReceiver(): void{
+    this.receivers = this.addEditForm.get('receiverIds').value.join();
+    console.log(this.receivers);
+    this.receiversChanged.emit(this.receivers);
   }
 
   onChangeFileUpload(event: any): void {

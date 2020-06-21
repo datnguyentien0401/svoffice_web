@@ -26,6 +26,7 @@
     <app-multi-select-autocomplete [multiple]="true"
                                    [options]="receiverValues"
                                    [label]="moduleName + 'receiver'"
+                                   (change)="onChangeReceiver()"
                                    formControlName="receiverIds"
                                    style="width: calc(50% - 1rem);">
     </app-multi-select-autocomplete>
@@ -42,6 +43,7 @@
            (change)="onChangeFileUpload($event)"/>
     <p>{{file ? file.name : ''}}</p>
   </div>
+  <app-receive-user-requisition [usernameList]="receivers" [usernameChanged]="receiversChanged"></app-receive-user-requisition>
   <div class="btn-sec">
     <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onSubmit()"
             [disabled]="addEditForm.invalid || this.file === undefined ||(isEdit && !isExists) "

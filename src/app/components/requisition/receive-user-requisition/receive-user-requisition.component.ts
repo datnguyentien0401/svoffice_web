@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
@@ -27,6 +27,8 @@ export class ReceiveUserRequisitionComponent extends BaseSearchLayout {
   buttons = [];
 
   usernames: string;
+  @Input() usernameChanged: EventEmitter<string>;
+
   @Input() set usernameList(value: string) {
     console.log(value);
     if (value) {
@@ -48,7 +50,7 @@ export class ReceiveUserRequisitionComponent extends BaseSearchLayout {
         className: 'mat-column-stt'
       },
       {
-        columnDef: 'name', header: 'name', title: (e: User) => (`${e.lastName}` + ' ' +`${ e.firstName}`),
+        columnDef: 'name', header: 'name', title: (e: User) => (`${e.lastName}` + ' ' + `${e.firstName}`),
         cell: (e: User) => `${e.lastName + ' ' + e.firstName}`,
         className: 'mat-column-id'
       },
@@ -58,21 +60,24 @@ export class ReceiveUserRequisitionComponent extends BaseSearchLayout {
         cell: (e: User) => `${e.organization.name}`,
         className: 'mat-column-org'
       },
-
     );
 
   }
 
   ngOnInit = async () => {
-    this.searchForm = this.formBuilder.group({
-    });
+    this.searchForm = this.formBuilder.group({});
     super.ngOnInit();
-    // this.onSubmit();
+    console.log(this.usernameChanged);
+    if (this.usernameChanged) {
+      this.usernameChanged.subscribe(data => {
+        this.usernames = data;
+      });
+      this.search();
+    }
 
   };
 
   search() {
-    console.log(this.usernames);
     const params = new HttpParams()
       .set("usernameList", this.usernames);
     this._fillData('/users/username-list', params);

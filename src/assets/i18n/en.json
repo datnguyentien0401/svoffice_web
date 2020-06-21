@@ -324,6 +324,7 @@
     "": "Enter OTP"
   },
   "receive-user": {
+    "": "Related people",
     "table": {
       "header": {
         "stt": "No.",

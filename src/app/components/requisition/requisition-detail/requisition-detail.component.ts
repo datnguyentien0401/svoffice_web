@@ -26,7 +26,7 @@ import {ConfirmRequisitionComponent} from "../../sign_document/confirm-requesiti
 import {CookieService} from "ngx-cookie-service";
 
 @Component({
-  selector: 'app-a-e-organization',
+  selector: 'app-organization-detail',
   templateUrl: './requisition-detail.component.html',
   styleUrls: ['./requisition-detail.component.scss'],
   providers: [DatePipe]
