@@ -78,6 +78,7 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
         this.addEditForm.get('signerIds').setValue([]);
       }
       if (requisition.receivers) {
+        this.receivers = requisition.receivers;
         this.addEditForm.get('receiverIds').setValue(requisition.receivers.split(',').filter(obj => {
           return obj != '';
         }));
@@ -116,9 +117,8 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
     });
   }
 
-  onChangeReceiver(): void{
+  onChangeReceiver(event: any): void{
     this.receivers = this.addEditForm.get('receiverIds').value.join();
-    console.log(this.receivers);
     this.receiversChanged.emit(this.receivers);
   }
 
