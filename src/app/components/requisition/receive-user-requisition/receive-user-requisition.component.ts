@@ -11,6 +11,7 @@ import {ApiService} from "../../../_services/api.service";
 import {UiStateService} from "../../../_services/ui.state/ui.state.service";
 import {Utils} from "../../../base/utils/utils";
 import {User} from "../../../_models/user.model";
+import {Paging} from "../../../_models/base/Paging";
 
 @Component({
   selector: 'app-receive-user-requisition',
@@ -25,7 +26,14 @@ export class ReceiveUserRequisitionComponent extends BaseSearchLayout {
   columns = [];
   buttons = [];
 
-  @Input() usernameList;
+  usernames: string;
+  @Input() set usernameList(value: string) {
+    console.log(value);
+    if (value) {
+      this.usernames = value;
+      this.search();
+    }
+  }
 
   constructor(protected formBuilder: FormBuilder, protected router: Router, protected apiService: ApiService,
               protected utils: Utils, protected serviceUtils: ServiceUtils, protected uiStateService: UiStateService,
@@ -40,8 +48,8 @@ export class ReceiveUserRequisitionComponent extends BaseSearchLayout {
         className: 'mat-column-stt'
       },
       {
-        columnDef: 'name', header: 'name', title: (e: User) => `${e.lastName + e.firstName}`,
-        cell: (e: User) => `${e.id}`,
+        columnDef: 'name', header: 'name', title: (e: User) => (`${e.lastName}` + ' ' +`${ e.firstName}`),
+        cell: (e: User) => `${e.lastName + ' ' + e.firstName}`,
         className: 'mat-column-id'
       },
       {
@@ -56,15 +64,17 @@ export class ReceiveUserRequisitionComponent extends BaseSearchLayout {
   }
 
   ngOnInit = async () => {
-
+    this.searchForm = this.formBuilder.group({
+    });
     super.ngOnInit();
-
-    this.onSubmit();
+    // this.onSubmit();
 
   };
 
   search() {
-    const params = new HttpParams();
+    console.log(this.usernames);
+    const params = new HttpParams()
+      .set("usernameList", this.usernames);
     this._fillData('/users/username-list', params);
 
   }

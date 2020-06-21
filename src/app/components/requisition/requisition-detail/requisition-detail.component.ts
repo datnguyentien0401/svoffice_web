@@ -39,7 +39,7 @@ export class RequisitionDetailComponent extends BaseAddEditLayout {
 
   urlDownload: string;
 
-  receivers: string[];
+  receivers: string;
 
 
   constructor(protected activatedRoute: ActivatedRoute, protected formBuilder: FormBuilder, protected location: Location, private http: HttpClient,
@@ -78,7 +78,8 @@ export class RequisitionDetailComponent extends BaseAddEditLayout {
     this.addEditForm.get('transferDate').setValue(this.datePipe.transform(requisition.transferDate, AppSettings.DIS_DATE_FORMAT, '-0'));
     this.addEditForm.get('organization').setValue(requisition.organization.name);
     this.addEditForm.get('deadline').setValue(this.datePipe.transform(requisition.deadline, AppSettings.DIS_DATE_FORMAT, '+7'));
-    this.receivers = requisition.receivers.split(',');
+    this.receivers = requisition.receivers;
+    console.log(this.receivers);
     this.selectModelInit(requisition);
   };
 

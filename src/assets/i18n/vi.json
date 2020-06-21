@@ -326,10 +326,24 @@
     "pass": "Mật khẩu cũ",
     "newPass": "Mật khẩu mới",
     "newPassConfirm": "Nhập lại mật khẩu",
-    ,
+    "confirm": {
+      "change": "Thay đổi mật khẩu"
+    },
+    "success": {
+      "change": "Thay đổi mật khẩu thành công"
+    }
   },
   "otp":{
     "": "Nhập OTP"
+  },
+  "receive-user": {
+    "table": {
+      "header": {
+        "stt": "STT",
+        "name": "Họ tên",
+        "org": "Đơn vị"
+      }
+    }
   },
   "btnOk": "OK",
   "btnAddEdit": "Lưu",

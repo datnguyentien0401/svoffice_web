@@ -308,6 +308,27 @@
       }
     }
   },
+  "password": {
+    "title": "Change password",
+    "pass": "Old password",
+    "newPass": "New password",
+    "newPassConfirm": "Confirm new password",
+    "confirm": {
+      "change": "Change password"
+    },
+    "success": {
+      "change": "Change password success"
+    }
+  },
+  "otp":{
+    "": "Enter OTP"
+  },
+  "receive-user": {
+    "stt": "No.",
+    "name": "Full name",
+    "org": "Organization"
+  },
+  "btnOk": "OK",
   "btnAddEdit": "Save",
   "btnCancel": "Cancel",
   "btnBack": "Back",
