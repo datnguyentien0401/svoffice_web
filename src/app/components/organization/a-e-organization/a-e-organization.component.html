@@ -21,9 +21,12 @@
   <div class="btn-sec">
     <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onSubmit()"
             [disabled]="addEditForm.invalid || (isEdit && !isExists)"
-            *ngIf="hasAuthority()">{{'btnAddEdit'|translate}}
+            *ngIf="hasAuthority()">
+      <mat-icon>bookmark</mat-icon>
+      {{'btnAddEdit'|translate}}
     </button>
     <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onCloseDialog()">
+      <mat-icon>clear</mat-icon>
       {{'btnCancel'|translate}}
     </button>
   </div>

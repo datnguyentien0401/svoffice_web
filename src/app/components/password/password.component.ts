@@ -8,6 +8,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {ApiService} from '../../_services/api.service';
 import {ServiceUtils} from '../../base/utils/service.utils';
 import {ConfirmRequisitionComponent} from "../sign_document/confirm-requesition/confirm-requisition.component";
+import {PasswordModel} from "../../_models/password.model";
 
 @Component({
   selector: 'app-add-edit-environment',
@@ -17,6 +18,7 @@ import {ConfirmRequisitionComponent} from "../sign_document/confirm-requesition/
 export class PasswordComponent extends BaseAddEditLayout {
   moduleName = 'password';
   password: any;
+
   constructor(protected activatedRoute: ActivatedRoute, protected formBuilder: FormBuilder, protected location: Location,
               protected translateService: TranslateService, protected apiService: ApiService, protected serviceUtils: ServiceUtils,
               public dialogRef: MatDialogRef<ConfirmRequisitionComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -27,19 +29,18 @@ export class PasswordComponent extends BaseAddEditLayout {
     super.ngOnInit();
 
     this.addEditForm = this.formBuilder.group({
-      pass: [''],
-      newPass: [''],
-      newPassConfirm: [''],
+      password: [''],
+      newPassword: [''],
+      newPasswordConfirm: [''],
     });
 
   }
 
   onSubmit(): void {
-    this.password.pass = this.addEditForm.get('pass').value;
-    this.password.newPass = this.addEditForm.get('newPass').value;
-    this.password.newPassConfirm = this.addEditForm.get('newPassConfirm').value;
+    console.log(this.addEditForm);
+    const body = new PasswordModel(this.addEditForm);
 
-    this.serviceUtils.execute(this.apiService.post('/users/change-pass', this.password),
+    this.serviceUtils.execute(this.apiService.post('/users/change-password', body),
       this.onSuccessFunc, this.moduleName + '.success.change',
       this.moduleName + '.confirm.change');
   }

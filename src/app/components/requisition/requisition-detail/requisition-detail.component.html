@@ -64,24 +64,28 @@
             (click)="approve()"
             [disabled]="!isApproveOrRejectPermission()"
             *ngIf="hasAuthority() && !this.data.isTransferMenu">
+      <mat-icon>done_all</mat-icon>
       {{'btnApprove'|translate}}
     </button>
     <button mat-raised-button type="submit" color="primary" class="Update-btn"
             (click)="reject()"
             [disabled]="!isApproveOrRejectPermission()"
             *ngIf="hasAuthority() && !this.data.isTransferMenu">
+      <mat-icon>clear</mat-icon>
       {{'btnReject'|translate}}
     </button>
     <button mat-raised-button type="submit" color="primary" class="Update-btn"
             (click)="process()"
             [disabled]="this.data.status != 0"
             *ngIf="hasAuthority() && !this.data.isTransferMenu">
+      <mat-icon>call_made</mat-icon>
       {{'btnProcess'|translate}}
     </button>
     <button mat-raised-button type="submit" color="primary" class="Update-btn"
             (click)="cancelProcess()"
             [disabled]="!isCancelProcessPermission()"
             *ngIf="hasAuthority() && !this.data.isTransferMenu">
+      <mat-icon>cancel</mat-icon>
       {{'btnCancelProcess'|translate}}
     </button>
 <!--    <button mat-raised-button type="submit" color="primary" class="Update-btn"-->
@@ -92,6 +96,7 @@
 <!--    </button>-->
     <button mat-raised-button type="submit" color="primary" class="Update-btn"
             (click)="onCloseDialog()">
+      <mat-icon>undo</mat-icon>
       {{'btnBack'|translate}}
     </button>
   </div>

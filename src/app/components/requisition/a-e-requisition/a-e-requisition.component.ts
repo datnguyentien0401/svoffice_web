@@ -120,7 +120,6 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
   }
 
   onSubmit(): void {
-    console.log(this.addEditForm);
     const deadline = this.addEditForm.get('deadline').value;
     const deadlineFormat = this.datePipe.transform(deadline, AppSettings.API_DATE_FORMAT, '+7');
 
