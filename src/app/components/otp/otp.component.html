@@ -1,0 +1,18 @@
+<h2 style="text-align: center">{{moduleName|translate}}</h2>
+<form [formGroup]="addEditForm" class="form" style="margin: 0px 1rem">
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="1rem">
+    <app-input name="otp"
+               formControlName="otp"
+               [required]="true"
+               style="width: calc(50% - 1rem);">
+    </app-input>
+  </div>
+  <div class="btn-sec">
+    <button mat-raised-button type="submit" color="primary" class="Update-btn"
+            (click)="onSubmit()"
+            [disabled]="addEditForm.invalid"
+            *ngIf="true">
+      {{'btnOk'|translate}}
+    </button>
+  </div>
+</form>

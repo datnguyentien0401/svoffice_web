@@ -1,11 +1,11 @@
 @import '../../node_modules/@angular/material/theming';
-
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
 ////////////////////////////////////////////////////////////////////
 // POSEIDON THEME
 ////////////////////////////////////////////////////////////////////
 
 $poseidon-typography: mat-typography-config(
-  $font-family:   'Roboto, "Helvetica Neue", sans-serif',
+  $font-family:   'Ubuntu, sans-serif',
   $display-4:     mat-typography-level(112px, 112px, 300),
   $display-3:     mat-typography-level(66px, 56px, 400),
   $display-2:     mat-typography-level(55px, 48px, 400),

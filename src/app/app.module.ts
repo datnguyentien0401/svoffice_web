@@ -64,6 +64,9 @@ import {MultiSelectAutocompleteComponent} from "./base/multi-select-autocomplete
 import {ReceiveRequisitionComponent} from "./components/receive-requisition/receive-requisition.component";
 import {NotificationComponent} from "./components/notification/notification.component";
 import {NumberComponent} from "./base/number/number.component";
+import {OtpComponent} from "./components/otp/otp.component";
+import {PasswordComponent} from "./components/password/password.component";
+import {PassComponent} from "./base/password/pass.component";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -95,6 +98,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SelectComponent,
     InputComponent,
     NumberComponent,
+    PassComponent,
     CheckboxComponent,
     CounterInputComponent,
     DatepickerComponent,
@@ -111,7 +115,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     RequisitionDetailComponent,
     TransferRequisitionComponent,
     ReceiveRequisitionComponent,
-    NotificationComponent
+    NotificationComponent,
+    OtpComponent,
+    PasswordComponent
   ],
   // Mấy ông mà gọi Modal là phải cho vào đây nhé @@
   entryComponents: [
@@ -122,7 +128,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     TransferRequisitionComponent,
     AddEditUserComponent,
     AddEditOrganizationComponent,
-    AddEditRequisitionComponent
+    AddEditRequisitionComponent,
+    OtpComponent,
+    PasswordComponent
   ],
   imports: [
     BrowserModule,

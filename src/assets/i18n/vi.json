@@ -321,6 +321,16 @@
       }
     }
   },
+  "password": {
+    "title": "Đổi mật khẩu",
+    "pass": "Mật khẩu cũ",
+    "newPass": "Mật khẩu mới",
+    "newPassConfirm": "Nhập lại mật khẩu"
+  },
+  "otp":{
+    "": "Nhập OTP"
+  },
+  "btnOk": "OK",
   "btnAddEdit": "Lưu",
   "btnCancel": "Hủy",
   "btnBack": "Quay lại",
