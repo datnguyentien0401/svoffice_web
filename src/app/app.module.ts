@@ -68,6 +68,7 @@ import {OtpComponent} from "./components/otp/otp.component";
 import {PasswordComponent} from "./components/password/password.component";
 import {PassComponent} from "./base/password/pass.component";
 import {ReceiveUserRequisitionComponent} from "./components/requisition/receive-user-requisition/receive-user-requisition.component";
+import {SignerRequisitionComponent} from "./components/requisition/signer-requisition/signer-requisition.component";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -119,7 +120,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NotificationComponent,
     OtpComponent,
     PasswordComponent,
-    ReceiveUserRequisitionComponent
+    ReceiveUserRequisitionComponent,
+    SignerRequisitionComponent
   ],
   // Mấy ông mà gọi Modal là phải cho vào đây nhé @@
   entryComponents: [

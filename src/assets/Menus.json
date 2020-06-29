@@ -33,7 +33,7 @@
     "displayName": "menu.notification",
     "iconName": "notifications",
     "route": "notification",
-    "roleMenu": "TB"
+    "roleMenu": "QLTB"
   },
   {
     "displayName": "menu.logout",

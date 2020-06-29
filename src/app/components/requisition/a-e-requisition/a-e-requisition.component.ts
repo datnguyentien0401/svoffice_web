@@ -31,10 +31,15 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
   typeValues: SelectModel[] = [];
   signerValues: SelectModel[] = [];
   receiverValues: SelectModel[] = [];
+
   file: File;
   fileId: number;
+
   receivers: string;
   receiversChanged: EventEmitter<string> = new EventEmitter();
+
+  signers: string;
+  signersChanged: EventEmitter<string> = new EventEmitter();
 
   constructor(protected activatedRoute: ActivatedRoute, protected formBuilder: FormBuilder, protected location: Location, private http: HttpClient,
               protected translateService: TranslateService, protected apiService: ApiService, protected serviceUtils: ServiceUtils,
@@ -115,6 +120,11 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
     signers.forEach((leader: User) => {
       this.signerValues.push(new SelectModel(leader.username, leader.lastName + ' ' + leader.firstName));
     });
+  }
+
+  onChangeSigner(event: any): void{
+    this.signers = this.addEditForm.get('signerIds').value.join();
+    this.signersChanged.emit(this.signers);
   }
 
   onChangeReceiver(event: any): void{

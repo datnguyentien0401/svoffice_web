@@ -17,19 +17,6 @@
                 style="width: calc(50% - 1rem);"
                 [required]="true">
     </app-select>
-    <app-multi-select-autocomplete formControlName="signerIds"
-                      [options]="signerValues"
-                      [label]="moduleName + 'signer'"
-                      [required]="true"
-                      style="width: calc(50% - 1rem);">
-    </app-multi-select-autocomplete>
-    <app-multi-select-autocomplete [multiple]="true"
-                                   [options]="receiverValues"
-                                   [label]="moduleName + 'receiver'"
-                                   (selectionChange)="onChangeReceiver($event)"
-                                   formControlName="receiverIds"
-                                   style="width: calc(50% - 1rem);">
-    </app-multi-select-autocomplete>
     <label for="file">{{ moduleName + 'file' | translate}}</label>
     <label for="file" class="custom-file-upload">
       <i class="fa fa-cloud-upload"></i> File upload
@@ -42,8 +29,28 @@
            accept="application/pdf"
            (change)="onChangeFileUpload($event)"/>
     <p>{{file ? file.name : ''}}</p>
+    <app-multi-select-autocomplete [multiple]="true"
+                                   [options]="receiverValues"
+                                   [label]="moduleName + 'receiver'"
+                                   (selectionChange)="onChangeReceiver($event)"
+                                   formControlName="receiverIds"
+                                   style="width: calc(50% - 1rem);">
+    </app-multi-select-autocomplete>
   </div>
-  <app-receive-user-requisition [usernameList]="receivers" [usernameChanged]="receiversChanged"></app-receive-user-requisition>
+  <app-receive-user-requisition [usernameList]="receivers"
+                                [usernameChanged]="receiversChanged"></app-receive-user-requisition>
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="1rem">
+    <app-multi-select-autocomplete formControlName="signerIds"
+                                   [options]="signerValues"
+                                   [label]="moduleName + 'signer'"
+                                   [required]="true"
+                                   (ngModelChange)="onChangeSigner($event)"
+                                   style="width: calc(50% - 1rem);">
+    </app-multi-select-autocomplete>
+  </div>
+  <app-signer-requisition [usernameList]="signers"
+                                [usernameChanged]="signersChanged"></app-signer-requisition>
+
   <div class="btn-sec">
     <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onSubmit()"
             [disabled]="addEditForm.invalid || this.file === undefined ||(isEdit && !isExists) "

@@ -229,8 +229,8 @@ export class RequisitionComponent extends BaseSearchLayout {
     this.dialog.open(AddEditRequisitionComponent, {
       width: '60%',
       maxWidth: '60%',
-      height: '75%',
-      maxHeight: '75%',
+      height: '98%',
+      maxHeight: '98%',
       data: req,
     }).afterClosed().subscribe(rs => {
       this.search();
@@ -271,8 +271,8 @@ export class RequisitionComponent extends BaseSearchLayout {
     this.dialog.open(RequisitionDetailComponent, {
       width: '80%',
       maxWidth: '80%',
-      height: '90%',
-      maxHeight: '90%',
+      height: '100%',
+      maxHeight: '100%',
       data: req,
     }).afterClosed().subscribe(res => {
       this.search();

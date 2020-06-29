@@ -333,6 +333,16 @@
       }
     }
   },
+  "sign-user": {
+    "": "People waiting to sign",
+    "table": {
+      "header": {
+        "stt": "No.",
+        "name": "Full name",
+        "org": "Organization"
+      }
+    }
+  },
   "btnOk": "OK",
   "btnAddEdit": "Save",
   "btnCancel": "Cancel",

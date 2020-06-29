@@ -342,7 +342,17 @@
       "header": {
         "stt": "STT",
         "name": "Họ tên",
-        "org": "Đơn vị"
+        "org": "Phòng ban"
+      }
+    }
+  },
+  "sign-user": {
+    "": "Thành phần chờ ký",
+    "table": {
+      "header": {
+        "stt": "Thứ tự ký",
+        "name": "Họ tên",
+        "org": "Phòng ban"
       }
     }
   },

@@ -1,0 +1,8 @@
+<p> {{ moduleName + '.'| translate }} </p>
+<div class="content">
+  <app-table [columns]="columns" [buttons]="buttons"
+             [paging]="paging" (pagingChange)="pagingChange($event)"
+             [moduleName]="moduleName" [results]="results"
+             (clickAction)="onClick($event)">
+  </app-table>
+</div>
