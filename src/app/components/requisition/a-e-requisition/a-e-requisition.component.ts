@@ -78,7 +78,7 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
       if (requisition.signerList) {
         this.addEditForm.get('signerIds').setValue(requisition.signerList.split(',').filter(obj => {
           return obj != '';
-        }));
+        }).reverse());
       } else {
         this.addEditForm.get('signerIds').setValue([]);
       }
@@ -120,6 +120,14 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
     signers.forEach((leader: User) => {
       this.signerValues.push(new SelectModel(leader.username, leader.lastName + ' ' + leader.firstName));
     });
+  }
+
+  upSignLevel(idx: number) {
+    AppSettings.array_move(this.addEditForm.get('signerIds').value, idx, idx - 1);
+  }
+
+  downSignLevel(idx: number) {
+    AppSettings.array_move(this.addEditForm.get('signerIds').value, idx, idx + 1);
   }
 
   onChangeSigner(event: any): void{

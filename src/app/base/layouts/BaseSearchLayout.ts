@@ -83,6 +83,7 @@ export class BaseSearchLayout implements OnInit, OnDestroy, AfterViewInit {
 
     this.apiService.getPaging(nativeUrl, params)
       .subscribe(data => {
+        console.log(data.content);
         this.isResetPaging = false;
         this.results = new MatTableDataSource<SuperEntity>(data.content);
         this.paging.pageSize = data.size;

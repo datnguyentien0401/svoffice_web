@@ -14,6 +14,9 @@ import {User} from "../../../_models/user.model";
 import {Paging} from "../../../_models/base/Paging";
 import {AuthoritiesUtils} from "../../../base/utils/authorities.utils";
 import {RequisitionModel} from "../../../_models/requisition.model";
+import {AppSettings} from "../../../app.settings";
+import {SuperEntity} from "../../../_models/base/SuperEntity";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-signer-requisition',
@@ -40,6 +43,8 @@ export class SignerRequisitionComponent extends BaseSearchLayout {
   }
 
   @Input() isDetail: boolean;
+  @Output() signLevelUp: EventEmitter<number> = new EventEmitter();
+  @Output() signLevelDown: EventEmitter<number> = new EventEmitter();
 
   constructor(protected formBuilder: FormBuilder, protected router: Router, protected apiService: ApiService,
               protected utils: Utils, protected serviceUtils: ServiceUtils, protected uiStateService: UiStateService,
@@ -105,26 +110,18 @@ export class SignerRequisitionComponent extends BaseSearchLayout {
     console.log(this.results.data);
     const data = this.results.data as [User];
     const idx = data.indexOf(user);
-    this.results.data = this.array_move(this.results.data, idx, idx - 1);
+    this.results.data = AppSettings.array_move(this.results.data, idx, idx - 1);
+    this.signLevelUp.emit(idx);
   };
 
   changeLevelSignDown(user: User) {
     console.log(this.results.data);
     const data = this.results.data as [User];
     const idx = data.indexOf(user);
-    this.results.data = this.array_move(this.results.data, idx, idx + 1);
+    this.results.data = AppSettings.array_move(this.results.data, idx, idx + 1);
+    this.signLevelDown.emit(idx);
   };
 
-  array_move(arr, oldIndex, newIndex) {
-    if (newIndex >= arr.length) {
-      let k = newIndex - arr.length + 1;
-      while (k--) {
-        arr.push(undefined);
-      }
-    }
-    arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0]);
-    return arr;
-  };
 
   ngOnInit = async () => {
     this.searchForm = this.formBuilder.group({});
@@ -140,10 +137,26 @@ export class SignerRequisitionComponent extends BaseSearchLayout {
   };
 
   search() {
+    if (!this.usernames) {
+      return;
+    }
+    let usernameArr :string[] = this.usernames.split(",");
     const params = new HttpParams()
-      .set("usernameList", this.usernames);
-    this._fillData('/users/username-list', params);
+      .set("usernameList", this.usernames)
+      .set('pageNumber', this.isResetPaging ? '1' : (this.paging ? this.paging.pageNumber.toString() : '1'))
+      .set('pageSize', this.paging ? this.paging.pageSize.toString() : AppSettings.PAGE_SIZE.toString());
 
+    this.apiService.getPaging('/users/username-list', params)
+      .subscribe(data => {
+        console.log(data.content);
+        this.isResetPaging = false;
+        this.results = new MatTableDataSource<SuperEntity>(data.content.sort(function(a, b){
+          return usernameArr.indexOf(a.username) - usernameArr.indexOf(b.username);
+        }));
+        this.paging.pageSize = data.size;
+        this.paging.pageNumber = data.number + 1;
+        this.paging.totalElements = data.totalElements;
+      });
   }
 
 }
