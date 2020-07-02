@@ -80,11 +80,9 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
         this.addEditForm.get('signerIds').setValue(requisition.signerList.split(',').filter(obj => {
           return obj != '';
         }));
-        console.log(this.addEditForm.get('signerIds').value);
         let signerArr = this.addEditForm.get('signerIds').value;
         this.signers = signerArr.reverse().join();
         signerArr.reverse();
-        console.log(this.addEditForm.get('signerIds').value);
 
       } else {
         this.addEditForm.get('signerIds').setValue([]);
@@ -131,25 +129,18 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
 
   upSignLevel(idx: number) {
     idx = this.addEditForm.get('signerIds').value.length - 1 -idx;
-    console.log(this.addEditForm.get('signerIds').value);
     AppSettings.array_move(this.addEditForm.get('signerIds').value, idx, idx + 1);
-    console.log(this.addEditForm.get('signerIds').value);
   }
 
   downSignLevel(idx: number) {
     idx = this.addEditForm.get('signerIds').value.length - 1 -idx;
-    console.log(this.addEditForm.get('signerIds').value);
     AppSettings.array_move(this.addEditForm.get('signerIds').value, idx, idx - 1);
-    console.log(this.addEditForm.get('signerIds').value);
   }
 
   onChangeSigner(event: any): void{
-    console.log(this.addEditForm.get('signerIds').value);
     let signerIdArr = this.addEditForm.get('signerIds').value;
     this.signers = signerIdArr.reverse().join();
     signerIdArr.reverse();
-    console.log(this.addEditForm.get('signerIds').value);
-    console.log(this.signers);
     this.signersChanged.emit(this.signers);
   }
 
