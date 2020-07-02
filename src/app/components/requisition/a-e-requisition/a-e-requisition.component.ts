@@ -39,6 +39,7 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
   receiversChanged: EventEmitter<string> = new EventEmitter();
 
   signers: string;
+
   signersChanged: EventEmitter<string> = new EventEmitter();
 
   constructor(protected activatedRoute: ActivatedRoute, protected formBuilder: FormBuilder, protected location: Location, private http: HttpClient,
@@ -78,7 +79,13 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
       if (requisition.signerList) {
         this.addEditForm.get('signerIds').setValue(requisition.signerList.split(',').filter(obj => {
           return obj != '';
-        }).reverse());
+        }));
+        console.log(this.addEditForm.get('signerIds').value);
+        let signerArr = this.addEditForm.get('signerIds').value;
+        this.signers = signerArr.reverse().join();
+        signerArr.reverse();
+        console.log(this.addEditForm.get('signerIds').value);
+
       } else {
         this.addEditForm.get('signerIds').setValue([]);
       }
@@ -123,15 +130,26 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
   }
 
   upSignLevel(idx: number) {
-    AppSettings.array_move(this.addEditForm.get('signerIds').value, idx, idx - 1);
+    idx = this.addEditForm.get('signerIds').value.length - 1 -idx;
+    console.log(this.addEditForm.get('signerIds').value);
+    AppSettings.array_move(this.addEditForm.get('signerIds').value, idx, idx + 1);
+    console.log(this.addEditForm.get('signerIds').value);
   }
 
   downSignLevel(idx: number) {
-    AppSettings.array_move(this.addEditForm.get('signerIds').value, idx, idx + 1);
+    idx = this.addEditForm.get('signerIds').value.length - 1 -idx;
+    console.log(this.addEditForm.get('signerIds').value);
+    AppSettings.array_move(this.addEditForm.get('signerIds').value, idx, idx - 1);
+    console.log(this.addEditForm.get('signerIds').value);
   }
 
   onChangeSigner(event: any): void{
-    this.signers = this.addEditForm.get('signerIds').value.join();
+    console.log(this.addEditForm.get('signerIds').value);
+    let signerIdArr = this.addEditForm.get('signerIds').value;
+    this.signers = signerIdArr.reverse().join();
+    signerIdArr.reverse();
+    console.log(this.addEditForm.get('signerIds').value);
+    console.log(this.signers);
     this.signersChanged.emit(this.signers);
   }
 
@@ -147,7 +165,8 @@ export class AddEditRequisitionComponent extends BaseAddEditLayout {
   onSubmit(): void {
     const deadline = this.addEditForm.get('deadline').value;
     const deadlineFormat = this.datePipe.transform(deadline, AppSettings.API_DATE_FORMAT, '+7');
-
+    console.log(this.addEditForm.get('signerIds').value);
+    // this.addEditForm.get("signerIds").setValue(this.addEditForm.get("signerIds").value.reverse());
     const objSave = new RequisitionModel(this.addEditForm);
     objSave.deadline = `${deadlineFormat ? deadlineFormat : ''}`;
     let apiCall;
