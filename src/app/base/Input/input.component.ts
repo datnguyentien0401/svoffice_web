@@ -20,6 +20,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() disabled = false;
   @Input() $text = '';
   @Input() readonly  = false;
+  @Input() type = 'text';
 
   get textValue() {
     return this.$text;

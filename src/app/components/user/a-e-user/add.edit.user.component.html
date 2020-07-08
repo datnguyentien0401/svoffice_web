@@ -2,8 +2,8 @@
 <form [formGroup]="addEditForm" class="form" style="margin: 0 1rem">
   <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="1rem">
     <app-input name="username" formControlName="username"
-              [placeholder]="moduleName + 'username'|translate"
-              style="width: calc(45% - 1rem);" [required]="true" [disabled]="isEdit"></app-input>
+               [placeholder]="moduleName + 'username'|translate"
+               style="width: calc(45% - 1rem);" [required]="true" [disabled]="isEdit"></app-input>
     <div style="width: calc(10% - 1rem);"></div>
     <app-select [label]="moduleName + 'status'" [data]="statusValues"
                 formControlName="status" [disabled]="true"
@@ -13,16 +13,17 @@
                style="width: calc(45% - 1rem);" [required]="true" [disabled]="isEdit && !isExists"></app-input>
     <div style="width: calc(10% - 1rem);"></div>
     <app-input name="firstName" formControlName="firstName"
-              [placeholder]="moduleName + 'firstName'|translate"
-              style="width: calc(45% - 1rem);" [required]="true" [disabled]="isEdit && !isExists"></app-input>
+               [placeholder]="moduleName + 'firstName'|translate"
+               style="width: calc(45% - 1rem);" [required]="true" [disabled]="isEdit && !isExists"></app-input>
     <app-input name="tel" formControlName="tel"
-              [placeholder]="moduleName + 'tel'|translate"
-              style="width: calc(45% - 1rem);" [required]="true" [disabled]="isEdit && !isExists"></app-input>
+               [placeholder]="moduleName + 'tel'|translate"
+               style="width: calc(45% - 1rem);" [required]="true" [disabled]="isEdit && !isExists"></app-input>
     <div style="width: calc(10% - 1rem);"></div>
     <app-input name="email" formControlName="email"
-              [placeholder]="moduleName + 'email'|translate"
-              style="width: calc(45% - 1rem);" [required]="true" [disabled]="isEdit && !isExists"></app-input>
-   
+               [placeholder]="moduleName + 'email'|translate"
+               [type]="'email'"
+               style="width: calc(45% - 1rem);" [required]="true" [disabled]="isEdit && !isExists"></app-input>
+
     <app-select [label]="moduleName + 'type'" [data]="typeValues"
                 formControlName="type" [required]="true"
                 (onSelectedChange)="onTypeChange()"
